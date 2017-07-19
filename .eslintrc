@@ -1,8 +1,8 @@
-module.exports ={
+{
   "root": true,
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "script",
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
@@ -20,7 +20,7 @@ module.exports ={
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
-    "indent": ["error", 2],
+    "indent": ["error", 4],
     "no-console": "off"
   }
 }
