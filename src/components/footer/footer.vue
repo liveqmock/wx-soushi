@@ -1,13 +1,17 @@
 <template>
     <div class="nav-footer" ref="footer">
         <div class="nav-footer-list">
-            <div v-for="(item, key, index) in navObj">
-                <div class="nav-item" :key="item.id">
-                    <router-link to="/item">
-                        <i class="icon" :class="item"></i>
+            <div class="nav-item" :class="{active: item.isActive}" v-for="(item, item_index) in navObj" :key="item.id">
+                <div v-if="item_index === 2" class="photo-wrapper">
+                    <router-link :to="{path: item.name}">
+                        <i class="icon" :class="item.name"></i>
                         <span class="text">{{item.text}}</span>
                     </router-link>
                 </div>
+                <router-link v-else :to="{path: item.name}">
+                    <i class="icon" :class="item.name"></i>
+                    <span class="text">{{item.text}}</span>
+                </router-link>
             </div>
             <!--<div class="nav-item">-->
                 <!--<router-link to="/index">-->
@@ -46,8 +50,9 @@
 </template>
 
 <script>
+    import Vue from "vue";
 export default {
-    prop: {
+    props: {
         index: {
             type: Number,
             default: 0
@@ -73,19 +78,24 @@ export default {
             }]
         }
     },
-    mounted () {
+
+    created () {
         this.$nextTick(()=>{
-            this.highlight();
+            this.isActive();
         });
     },
-    methods: {
-        highlight () {
-            const navItems = [...new Set(this.$refs.footer.querySelectorAll(".nav-item"))];
-            navItems.forEach((item, index)=> {
-                if(index === this.index) {
 
+    computed: {
+
+    },
+
+    methods: {
+        isActive () {
+            this.navObj.forEach((item, index)=> {
+                if(this.index === index) {
+                    this.$set(item, 'isActive', true);
                 }
-            });
+            }, this);
         }
     }
 }
