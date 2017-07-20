@@ -1,0 +1,4 @@
+@mixin background($image) {
+  background: url("./icon/" + $image) no-repeat;
+  background-size: 100% 100%;
+}

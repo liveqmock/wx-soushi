@@ -22,7 +22,7 @@
                 <v-navlist></v-navlist>
             </div>
         </div>
-        <v-footer></v-footer>
+        <v-footer :index="index"></v-footer>
     </div>
 </template>
 
@@ -33,6 +33,11 @@ import navlist from "src/components/navlist/navlist";
 import footer from "src/components/footer/footer";
 
 export default {
+    data() {
+        return {
+            index: 0
+        }
+    },
     created () {
 
     },
@@ -68,6 +73,10 @@ export default {
                 display: -ms-flexbox;
                 display: -webkit-flex;
                 display: flex;
+                height: 328px;
+                img{
+                    width: 100%;
+                }
             }
             .swiper-pagination-bullet {
                 width: 10px;

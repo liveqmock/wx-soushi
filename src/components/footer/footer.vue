@@ -1,53 +1,166 @@
 <template>
-    <div class="nav-footer">
+    <div class="nav-footer" ref="footer">
         <div class="nav-footer-list">
-            <div class="nav-item">
-                <router-link to="/index">
-                    <i class="icon index"></i>
-                    <span class="text">首页</span>
-                </router-link>
+            <div v-for="(item, key, index) in navObj">
+                <div class="nav-item" :key="item.id">
+                    <router-link to="/item">
+                        <i class="icon" :class="item"></i>
+                        <span class="text">{{item.text}}</span>
+                    </router-link>
+                </div>
             </div>
-            <div class="nav-item">
-                <router-link to="/boutique">
-                    <i class="icon boutique"></i>
-                    <span class="text">精品</span>
-                </router-link>
-            </div>
-            <div class="nav-item">
-                <router-link to="/photo">
-                    <i class="icon photo"></i>
-                    <span class="text">拍照找石</span>
-                </router-link>
-            </div>
-            <div class="nav-item">
-                <router-link to="/search">
-                    <i class="icon search"></i>
-                    <span class="text">现货</span>
-                </router-link>
-            </div>
-            <div class="nav-item">
-                <router-link to="/mine">
-                    <i class="icon mine"></i>
-                    <span class="text">我的</span>
-                </router-link>
-            </div>
+            <!--<div class="nav-item">-->
+                <!--<router-link to="/index">-->
+                    <!--<i class="icon index"></i>-->
+                    <!--<span class="text">首页</span>-->
+                <!--</router-link>-->
+            <!--</div>-->
+            <!--<div class="nav-item">-->
+                <!--<router-link to="/boutique">-->
+                    <!--<i class="icon boutique"></i>-->
+                    <!--<span class="text">精品</span>-->
+                <!--</router-link>-->
+            <!--</div>-->
+            <!--<div class="nav-item">-->
+                <!--<div class="photo-wrapper">-->
+                    <!--<router-link to="/photo">-->
+                        <!--<i class="icon photo"></i>-->
+                        <!--<span class="text">拍照找石</span>-->
+                    <!--</router-link>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="nav-item">-->
+                <!--<router-link to="/search">-->
+                    <!--<i class="icon search"></i>-->
+                    <!--<span class="text">现货</span>-->
+                <!--</router-link>-->
+            <!--</div>-->
+            <!--<div class="nav-item">-->
+                <!--<router-link to="/mine">-->
+                    <!--<i class="icon mine"></i>-->
+                    <!--<span class="text">我的</span>-->
+                <!--</router-link>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    prop: {
+        index: {
+            type: Number,
+            default: 0
+        }
+    },
+    data () {
+        return {
+            navObj: [{
+                name: "index",
+                text: "首页",
+            },{
+                name: "boutique",
+                text: "精品",
+            },{
+                name: "photo",
+                text: "拍照找石",
+            },{
+                name: "search",
+                text: "现货",
+            },{
+                name: "mine",
+                text: "我的",
+            }]
+        }
+    },
+    mounted () {
+        this.$nextTick(()=>{
+            this.highlight();
+        });
+    },
+    methods: {
+        highlight () {
+            const navItems = [...new Set(this.$refs.footer.querySelectorAll(".nav-item"))];
+            navItems.forEach((item, index)=> {
+                if(index === this.index) {
 
+                }
+            });
+        }
+    }
 }
 </script>
 
 <style lang="sass">
+    @import "../../style/mixin.scss";
     .nav-footer {
+        position: fixed;
+        height: 95px;
+        width: 100%;
+        background: #fff;
+        bottom: 0;
+        text-align: center;
+        border-top: 1px solid #e5e5e5;
         .nav-footer-list {
             display: flex;
+            height: 100%;
             .nav-item{
                 flex: 1;
-                &.photo {
+                text-align: center;
+                position: relative;
+                .icon {
+                    display: inline-block;
+                    width: 44px;
+                    height: 44px;
+                    margin-top: 12px;
+                }
+                .text{
+                    display: block;
+                    font-size: 20px;
+                }
+                .index {
+                     @include background("icon_home.png");
+                 }
+                &.active .index {
+                    @include background("icon_home_1.png");
+                 }
+                .boutique {
+                    @include background("icon_boutique.png");
+                }
+                &.active .boutique {
+                    @include background("icon_boutique_1.png");
+                 }
+                .photo-wrapper {
+                    position: absolute;
+                    left: 50%;
+                    bottom: -60px;
+                    transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    @include background("bg_home.png");
+                    height: 121px;
+                    width: 112px;
+                    .photo{
+                        width: 51px;
+                        height: 51px;
+                        display: inline-block;
+                        margin-top: 25px;
+                        margin-bottom: 10px;
+                        @include background("icon_photograph.png");
+                    }
+                 }
+                .search {
+                    @include background("icon_search.png");
+                }
+                &.active .search {
+                     @include background("icon_search_1.png");
+                 }
+                .mine {
+                    @include background("icon_me.png");
+                }
+                &.active .mine {
+                    @include background("icon_me_1.png");
+                 }
+                &:nth-child(3) {
                     flex: 1.5;
                  }
             }

@@ -32,6 +32,7 @@ body {
     line-height: 1;
     font-family:'Microsoft YaHei','helvetica neue',tahoma,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
     -webkit-tap-highlight-color:transparent;
+    color: #333;
 }
 ol, ul {
     list-style: none;
@@ -50,6 +51,7 @@ table {
 }
 a {
     text-decoration: none;
+    color: #333;
 }
 .clearfix:after{
     content: '';
