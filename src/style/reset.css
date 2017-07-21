@@ -54,9 +54,11 @@ a {
     color: #333;
 }
 .clearfix:after{
-    content: '';
-    display: block;
+    content: "\20";
     clear: both;
+    height: 0;
+    display: block;
+    overflow: hidden;
 }
 .clearfix{
     zoom:1;

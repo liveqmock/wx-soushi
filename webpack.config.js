@@ -5,7 +5,6 @@ const path = require("path");
 const webpack = require("webpack");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
-// const px2rem = require("postcss-px2rem");
 
 module.exports = {
     entry: {
@@ -89,6 +88,7 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
+            favicon: "./src/images/logo.ico",
             template: "index.html",
             filename: "index.html",
             inject: "body"

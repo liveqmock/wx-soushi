@@ -4,11 +4,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import VueResource from "vue-resource";
-import Vuex from "vuex";
 import App from "./App.vue";
-import rem from "./config/flexible";
-import ResetCss from "./style/reset.css";
-import CommonCss from "./style/common.scss";
+import store from "./store/index";
+
 import index from "./page/index/index";
 import gallery from "./page/gallery/gallery";
 import boutique from "./page/boutique/boutique";
@@ -16,9 +14,12 @@ import search from "./page/search/search";
 import send from "./page/send/send";
 import mine from "./page/mine/mine";
 
-Vue.use(VueRouter);
+import rem from "./config/flexible";
+import ResetCss from "./style/reset.css";
+import CommonCss from "./style/common.scss";
 
-const a = "a";
+Vue.use(VueRouter);
+Vue.use(VueResource);
 
 const router = new VueRouter({
     routes: [{
@@ -30,34 +31,26 @@ const router = new VueRouter({
     },
     {
         path: "/gallery",
-        component: {
-            template: gallery
-        }
+        component: gallery
     },{
         path: "/boutique",
-        component: {
-            template: boutique
-        }
+        component: boutique
     },{
         path: "/search",
-        component: {
-            template: search
-        }
+        component: search
     },{
         path: "/send",
-        component: {
-            template: send
-        }
+        component: send
     },{
         path: "/mine",
-        component: {
-            template: mine
-        }
+        component: mine
     }]
 });
-
+console.log(store);
 const app = new Vue({
     el: "#app",
+    store,
     render: x => x(App),
     router
 });
+
