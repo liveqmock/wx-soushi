@@ -1,6 +1,6 @@
 <template>
     <div class="pic-list">
-        <div class="pic-item-wrapper">
+        <div class="pic-item-wrapper" v-for="item in picListData.data.list">
             <div class="pic-item">
                 <div class="box">
                     <img class="big-pic" src="http://slab.image.soushi88.com/block/5876/20170720/8/15005443320095247/1f1d9116acbc4a3cd01446a35dbcc49d.jpg?x-oss-process=style/high" alt="">
@@ -52,9 +52,7 @@
 export default {
     data () {
         return {
-            islogin: this.$store.state.data.islogin,
-            isShowPrice: this.$store.state.data.isShowPrice,
-            isEmployVerify: this.$store.state.data.isEmployVerify
+
         }
     },
     props:  {

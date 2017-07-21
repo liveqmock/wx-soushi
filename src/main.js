@@ -46,7 +46,7 @@ const router = new VueRouter({
         component: mine
     }]
 });
-console.log(store);
+
 const app = new Vue({
     el: "#app",
     store,

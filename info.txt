@@ -27,3 +27,8 @@ http://slab.soushi88.com/html/sxh.html
 yingchunsong@soushi88.com
 密码：
 Aa1*****1
+
+gitlab:
+yingchunsong@soushi88.com
+密码：
+aa1*****1

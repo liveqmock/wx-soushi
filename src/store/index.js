@@ -23,6 +23,17 @@ const store = new Vuex.Store({
         employVerify (state) {
             state.isEmployVerify = true;
         }
+    },
+    actions: {
+        login (context) {
+            context.commit("login");
+        },
+        showPrice (context) {
+            context.commit("showPrice");
+        },
+        employVerify (context) {
+            context.commit("employVerify");
+        }
     }
 });
 
