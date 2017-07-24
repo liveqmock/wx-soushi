@@ -35,7 +35,7 @@ module.exports = {
             }],
         }, {
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: /(node_modules|plugins)/,
             include: /src/,
             enforce: "pre",
             use: [{

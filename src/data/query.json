@@ -4,7 +4,7 @@
     "pageCurrent": 1,
     "pageSize": 8,
     "firstPage": true,
-    "totalRow": 7,
+    "totalRow": 6,
     "totalPage": 1
   },
   "status": {
@@ -111,39 +111,6 @@
         ]
       },
       {
-        "id": 15002759886865633,
-        "idString": "15002759886865633",
-        "blockNo": "HG1702-26#",
-        "companyId": 5876,
-        "variety": "爵士白",
-        "kind": 2,
-        "kindName": "大理石",
-        "color": 2,
-        "colorName": "白色",
-        "length": 2680.0,
-        "width": 1670.0,
-        "thickness": 15.0,
-        "area": 470.3325,
-        "grade": 1,
-        "gradeName": "A级",
-        "minPrice": 0.0,
-        "maxPrice": 0.0,
-        "imageUrlList": [
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/26ffc2e5bbe6fa4611b71ba30e60ea44.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/86dcac1ef39c6d84a5ae68af1b654fd0.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/a7b34410b7fabc015806aa5d60d52d2b.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/c3e574307d86c2b80f95ed664ef97923.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/1fe6060b7529903d5077935b481a93d1.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/c48f5fcbf630d3796b846c3963237b54.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/8af0f5c7592d5b05f284ffbafe48b35b.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/a1a2eb6e1c8a28bc7b70cb50b2441ca5.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/beb369e0017e018ddcbb6859dcda98f3.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/a970a59622d0d04f01c777bd2a58a8f1.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/7e32b7347a4a94d40cbc5bfff2c0aeda.jpg?x-oss-process\u003dstyle/high",
-          "http://slab.image.soushi88.com/block/5876/15002759886865633/20170717/8/3a0fd220b3e648590f4988ab8f41f611.jpg?x-oss-process\u003dstyle/high"
-        ]
-      },
-      {
         "id": 14998792661941411,
         "idString": "14998792661941411",
         "blockNo": "ERT-13",
@@ -170,6 +137,31 @@
           "http://slab.image.soushi88.com/block/5876/14998792661941411/20170713/8/676a44e4efce91c9b10239d1625fe2c8.JPG?x-oss-process\u003dstyle/high",
           "http://slab.image.soushi88.com/block/5876/14998792661941411/20170713/8/51d6fa0b62cad1604117d3123978409e.JPG?x-oss-process\u003dstyle/high",
           "http://slab.image.soushi88.com/block/5876/14998792661941411/20170713/8/8fd57b411c884995e62ee684bb7fcdd3.JPG?x-oss-process\u003dstyle/high"
+        ]
+      },
+      {
+        "id": 14998781010067152,
+        "idString": "14998781010067152",
+        "blockNo": "ERT-9",
+        "companyId": 5876,
+        "variety": "白玉兰",
+        "kind": 2,
+        "kindName": "大理石",
+        "color": 7,
+        "colorName": "黄色",
+        "length": 1960.0,
+        "width": 1750.0,
+        "thickness": 16.0,
+        "area": 291.6214,
+        "grade": 1,
+        "gradeName": "A级",
+        "minPrice": 0.0,
+        "maxPrice": 0.0,
+        "imageUrlList": [
+          "http://slab.image.soushi88.com/block/5876/14998781010067152/20170713/8/b2d6a3d7b7074a6ba3be7f7bdaaa311a.JPG?x-oss-process\u003dstyle/high",
+          "http://slab.image.soushi88.com/block/5876/14998781010067152/20170713/8/ac0cdcd600d2e06f9c8a777ad63883ae.JPG?x-oss-process\u003dstyle/high",
+          "http://slab.image.soushi88.com/block/5876/14998781010067152/20170713/8/74159083e99101766ae69d8578a2030b.JPG?x-oss-process\u003dstyle/high",
+          "http://slab.image.soushi88.com/block/5876/14998781010067152/20170713/8/9a23cf76f6ab78db97f534ca6a562cb5.JPG?x-oss-process\u003dstyle/high"
         ]
       },
       {

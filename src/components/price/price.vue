@@ -1,8 +1,8 @@
 <template>
-    <div class="price">
+    <div class="price" :class="{'showPrice': isShowPrice}">
         <i class="icon-rmb"></i>
         <div class="price-wrapper">
-            <div class="stars-wrapper">
+            <div class="stars-wrapper" v-show="!islogin">
                 <i class="star-item"></i>
                 <i class="icon-ym2"></i>
                 <span class="s-text">
@@ -10,7 +10,7 @@
                     价格
                 </span>
             </div>
-            <div class="text-wrapper">
+            <div class="text-wrapper" v-show="islogin">
                 <span class="s-text">
                     2000
                 </span>
@@ -22,9 +22,16 @@
 
 <script>
 export default {
-    methods: {
-        
-    }
+    data () {
+        return {
+
+        }
+    },
+    created () {
+        this.islogin = this.$store.state.islogin;
+        this.isShowPrice = this.$store.state.isShowPrice;
+        this.isEmployVerify = this.$store.state.isEmployVerify;
+    },
 }
 </script>
 
@@ -55,7 +62,6 @@ export default {
             float: left;
             width: 293px;
             .stars-wrapper, .text-wrapper {
-                display: none;
                 position: relative;
                 overflow: hidden;
                 &.active {

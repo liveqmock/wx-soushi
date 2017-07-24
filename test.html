@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <v-test :a="a"></v-test>
+</div>
+
+<script src="https://unpkg.com/vue@2.4.2"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data (){
+            return {
+                a: [{a: 0}, {a: 0}, {a: 0}, {a: 0}]
+            }
+        },
+        components: {
+            "v-test": {
+                template: "<div @click='addA(3)'>{{a}}</div>",
+                props: {
+                    a: Array,
+                    default () {
+                        return {}
+                    }
+                },
+                data () {
+                    return {
+                        count: 0
+                    }
+                },
+                methods: {
+                    addA(index) {
+                        this.$set(this.a[2], "a", 10);
+                    }
+                }
+            },
+        },
+//        watch: {
+//            a (val, oldVal) {
+//                console.log(val, oldVal);
+//            },
+//            b (val, oldVal) {
+//                console.log(val, oldVal);
+//            },
+//            c (val, oldVal) {
+//                console.log(val, oldVal);
+//            },
+//        },
+//        computed: {
+//            // 仅读取，值只须为函数
+//            aDouble: function () {
+//                return this.a;
+//            },
+//            cc: function () {
+//                return this.c;
+//            },
+//            // 读取和设置
+//            aPlus: {
+//                get: function () {
+//                    return this.a + 1
+//                },
+//                set: function (v) {
+//                    this.a = v - 1
+//                }
+//            }
+//        }
+    })
+</script>
+</body>
+</html>
