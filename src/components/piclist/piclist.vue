@@ -1,5 +1,5 @@
 <template>
-    <div class="pic-list" ref="pic-wrapper" :class="{index: index, boutique: boutique}">
+
         <ul class="pic-wrapper">
             <li class="pic-item" v-for="(item, index) in list" :key="item.id">
                 <div class="box">
@@ -13,9 +13,9 @@
                     <v-price></v-price>
                 </div>
             </li>
-            <v-loadingbar :loadingStatus="loadingStatus"></v-loadingbar>
+            <!--<v-loadingbar :loadingStatus="loadingStatus"></v-loadingbar>-->
         </ul>
-    </div>
+
 </template>
 
 <script>
@@ -62,37 +62,37 @@ export default {
         },
         initScroll () {
             let picList = document.querySelector(".pic-list");
-            let scroll = new IScroll(picList, {
-                bounceTime: 500,
-                mouseWheel: true,
-                scrollbars: true,
-                fadeScrollbars: true,
-                probeType: 3,
-                click:false
-            });
+//            let scroll = new IScroll(picList, {
+//                bounceTime: 500,
+//                mouseWheel: true,
+//                scrollbars: true,
+//                fadeScrollbars: true,
+//                probeType: 3,
+//                click:false
+//            });
             var self = this;
-            scroll.on("scrollEnd", function () {
-                if(this.y <= this.maxScrollY) {
-                    console.log(this.y, this.maxScrollY);
-                    self.$set(self.loadingStatus, "loading", false);
-                    self.$set(self.loadingStatus, "loaded", true);
-                    setTimeout(()=>{
-                        scroll.scrollTo(0, this.maxScrollY + 80, 500);
-                        setTimeout(()=>{
-                            self.$set(self.loadingStatus, "loading", true);
-                            self.$set(self.loadingStatus, "loaded", false);
-                        }, 500)
-                    }, 300);
-                }
-            });
-
-            scroll.on("scroll", function (pos) {
-                if(this.y <= this.maxScrollY) {
-//                    self.$set(self.loadingStatus, "loading", true);
-                }
-            });
-
-            this.scroll = scroll;
+//            scroll.on("scrollEnd", function () {
+//                if(this.y <= this.maxScrollY) {
+//                    console.log(this.y, this.maxScrollY);
+//                    self.$set(self.loadingStatus, "loading", false);
+//                    self.$set(self.loadingStatus, "loaded", true);
+//                    setTimeout(()=>{
+//                        scroll.scrollTo(0, this.maxScrollY + 80, 500);
+//                        setTimeout(()=>{
+//                            self.$set(self.loadingStatus, "loading", true);
+//                            self.$set(self.loadingStatus, "loaded", false);
+//                        }, 500)
+//                    }, 300);
+//                }
+//            });
+//
+//            scroll.on("scroll", function (pos) {
+//                if(this.y <= this.maxScrollY) {
+////                    self.$set(self.loadingStatus, "loading", true);
+//                }
+//            });
+//
+//            this.scroll = scroll;
         },
         selectSmallPic(index_imageUrlList, index, ev) {
             this.list[index].currentIndex = index_imageUrlList;
@@ -106,24 +106,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    .pic-list{
-        background: #f8f8f8;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        overflow: hidden;
-        &.index {
-             top: 533px;
-            .pic-wrapper{
-                padding: 0 10px 125px;
-            }
-         }
-        &.boutique, &.search {
-            top: 190px;
-            .pic-wrapper {
-                padding: 0 10px;
-            }
-          }
+
         .pic-wrapper{
             overflow: hidden;
             .pic-item{
@@ -163,5 +146,5 @@ export default {
                 }
             }
         }
-    }
+
 </style>

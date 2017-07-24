@@ -20,6 +20,7 @@
         <div class="wraper">
             <div class="container">
                 <v-navlist></v-navlist>
+                <v-divider></v-divider>
                 <div class="boutique-title">
                     <span class="text">精品推荐</span>
                     <div class="more">
@@ -30,7 +31,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <v-piclist :pic-list-data="picListData" v-if="flag" :index="true"></v-piclist>
+                    <div class="pic-list">
+                        <v-piclist :pic-list-data="picListData" v-if="flag" :index="true"></v-piclist>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,6 +47,7 @@
     import navlist from 'src/components/navlist/navlist';
     import footer from 'src/components/footer/footer';
     import piclist from 'src/components/piclist/piclist';
+    import divider from 'src/components/divider/divider';
     import Vue from 'vue';
     import * as url from "src/config/url";
     import { mapMutations } from "vuex";
@@ -61,7 +65,8 @@
         components: {
             'v-navlist': navlist,
             'v-footer': footer,
-            'v-piclist': piclist
+            'v-piclist': piclist,
+            'v-divider': divider,
         },
         mounted () {
             this.$nextTick(()=> {
@@ -163,7 +168,7 @@
     .wraper {
         .container {
             .boutique-title {
-                padding: 30px 20px;
+                padding: 20px 20px;
                 .text {
                     font-size: 32px;
                 }
@@ -177,6 +182,14 @@
                     }
                 }
             }
+        }
+        .content .pic-list {
+            background: #f8f8f8;
+            position: absolute;
+            top: 620px;
+            bottom: 0;
+            width: 100%;
+            overflow: hidden;
         }
     }
 </style>
