@@ -208,8 +208,8 @@ export default {
                     this.flag = false;
                     let list = this.galleryPicListData.data.list;
                     list = list.concat(response.data.data.list);
+                    this.$set(this.galleryPicListData.data, "list", list);
                     this.$nextTick(()=>{
-                        this.$set(this.galleryPicListData.data, "list", list);
                         this.flag = true;
                         this.refresh = true;
                         this.refreshCount++;

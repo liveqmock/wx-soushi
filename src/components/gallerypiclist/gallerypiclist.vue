@@ -1,8 +1,8 @@
 <template>
-    <div class="pic-list" ref="pic-wrapper">
+    <div class="pic-list" ref="pic-list">
         <ul class="pic-wrapper">
             <v-showsearchpic :src="src" :text="text" v-if="searchPic"></v-showsearchpic>
-            <li class="pic-item" v-for="(item, index) in list" :key="item.id">
+            <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <div class="box">
                     <img class="big-pic" :src="item.assistantImageList[item.currentIndex].assistantImageUrl" alt="">
                     <div class="small-pic-item-wrapper" ref="smallPicItemWrapper">
@@ -73,11 +73,14 @@
             this.initSearchPic();
         },
         mounted () {
-            console.log("mounted");
             this.initScroll();
             if(this.refresh) {
+                let showSearchPicClientHeight = 0;
+                if(this.searchPic) {
+                    showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
+                }
                 this.scroll.refresh();
-                this.scroll.scrollTo(0, -1700 * this.refreshCount + this.scroll.wrapperHeight - 80);
+                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * 4 * this.refreshCount + this.scroll.wrapperHeight - 130 - showSearchPicClientHeight);
             }
         },
         methods: {
@@ -87,7 +90,7 @@
                 })
             },
             initScroll () {
-                let picList = this.$refs["pic-wrapper"];
+                let picList = this.$refs["pic-list"];
                 let scroll = new IScroll(picList, {
                     bounceTime: 500,
                     mouseWheel: true,
@@ -96,7 +99,6 @@
                     probeType: 3,
                     click:false
                 });
-                window.scroll = scroll;
                 var self = this;
                 scroll.on("scrollEnd", function () {
                     if(this.y <= this.maxScrollY) {
@@ -167,6 +169,7 @@
 
                     .big-pic {
                         width: 100%;
+                        height: 260px;
                     }
 
                     .small-pic-item-wrapper {

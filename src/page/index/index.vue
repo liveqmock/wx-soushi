@@ -31,9 +31,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="pic-list">
-                        <v-piclist :pic-list-data="picListData" v-if="flag" :index="true"></v-piclist>
-                    </div>
+                    <v-piclist :pic-list-data="picListData" @get-data="getData" v-if="flag" :refresh="refresh" :index="true"></v-piclist>
                 </div>
             </div>
         </div>
@@ -56,7 +54,8 @@
         data() {
             return {
                 picListData: {},
-                flag: false
+                flag: false,
+                refresh: false,
             }
         },
         created () {
@@ -80,9 +79,9 @@
                 const swiper = new Swiper('.swiper-container', {
                     pagination: '.swiper-pagination',
                     paginationClickable: true,
-                    loop: true,
-                    autoplay: 2000,
-                    speed: 1000
+//                    loop: true,
+//                    autoplay: 2000,
+//                    speed: 1000
                 })
             },
             handleData () {
@@ -130,12 +129,15 @@
                 }).catch((response) => {
                     console.log('fail');
                 });
-            }
+            },
+            getData () {
+
+            },
         }
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
     @import "../../style/mixin.scss";
     .header {
         .swiper-container {
@@ -143,9 +145,6 @@
             height: 100%;
             .swiper-slide {
                 font-size: 18px;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
                 display: flex;
                 height: 328px;
                 img {
@@ -182,14 +181,6 @@
                     }
                 }
             }
-        }
-        .content .pic-list {
-            background: #f8f8f8;
-            position: absolute;
-            top: 620px;
-            bottom: 0;
-            width: 100%;
-            overflow: hidden;
         }
     }
 </style>

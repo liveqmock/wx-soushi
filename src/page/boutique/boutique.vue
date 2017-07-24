@@ -51,16 +51,16 @@
                 <div class="select-detail" v-show="isShowMasker">
                     <div class="select-detail-wrapper">
                         <div class="list kind-list" v-if="selectControlStatus[0]">
-                            <span class="item" :class="{active: selectItemStatus[0] == 0}" @click="selectItem(0, 0, $event)">全部</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 1}" @click="selectItem(1, 0, $event)">雅典黑冰花</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 2}" @click="selectItem(2, 0, $event)">磨卡咖</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 3}" @click="selectItem(3, 0, $event)">金线米黄</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 4}" @click="selectItem(4, 0, $event)">欧亚木纹</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 5}" @click="selectItem(5, 0, $event)">柏拉图灰</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 6}" @click="selectItem(6, 0, $event)">爵士白</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 7}" @click="selectItem(7, 0, $event)">金碧辉煌</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 8}" @click="selectItem(8, 0, $event)">银线米黄</span>
-                            <span class="item" :class="{active: selectItemStatus[0] == 9}" @click="selectItem(9, 0, $event)">金线米黄</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 0}" @click="selectItem('', 0, $event)">全部</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 1}" @click="selectItem('雅典黑冰花', 0, $event)">雅典黑冰花</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 2}" @click="selectItem('磨卡咖', 0, $event)">磨卡咖</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 3}" @click="selectItem('金线米黄', 0, $event)">金线米黄</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 4}" @click="selectItem('欧亚木纹', 0, $event)">欧亚木纹</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 5}" @click="selectItem('柏拉图灰', 0, $event)">柏拉图灰</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 6}" @click="selectItem('爵士白', 0, $event)">爵士白</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 7}" @click="selectItem('金碧辉煌', 0, $event)">金碧辉煌</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 8}" @click="selectItem('银线米黄', 0, $event)">银线米黄</span>
+                            <span class="item" :class="{active: selectItemStatus[0] == 9}" @click="selectItem('金线米黄', 0, $event)">金线米黄</span>
                         </div>
                         <div class="list color-list" v-if="selectControlStatus[1]">
                             <span class="item" :class="{active: selectItemStatus[1] == 0}" @click="selectItem(0, 1, $event)">全部</span>
@@ -83,7 +83,7 @@
                                 <input class="input" type="text" placeholder="宽">
                                 <i class="add-rotate">+</i>
                                 <input class="input" type="text" placeholder="厚">mm
-                                <span class="finish">完成</span>
+                                <span class="finish" @click="">完成</span>
                             </div>
                         </div>
                         <div class="list price-list" v-if="selectControlStatus[3]">
@@ -102,7 +102,7 @@
             </div>
 
             <!--<v-piclist :pic-list-data="picListData" :src="src" @get-data="getData" :refreshCount="refreshCount" :refresh="refresh" v-if="flag" :search-pic="searchPic"></v-piclist>-->
-            <v-piclist :pic-list-data="picListData" v-if="flag" :boutique="true"></v-piclist>
+            <v-piclist :pic-list-data="picListData" @get-data="getData" :refresh="refresh" :refreshCount="refreshCount" v-if="flag" :boutique="true"></v-piclist>
         </div>
     </div>
 </template>
@@ -122,7 +122,16 @@ export default {
     data () {
         return {
             selectControlStatus: [false, false, false, false],
-            selectItemStatus: [0, 0, 0, 0],
+            selectItemStatus: ["", 0],
+            formatStatus: {
+                length: 0,
+                width: 0,
+                thickness: 0
+            },
+            priceStatus: {
+                minPrice: 0,
+                maxPrice: 0
+            },
             selectTextStatus: ["品种", "颜色", "规格", "价格"],
             isShowMasker: false,
             flag: false,
@@ -169,11 +178,10 @@ export default {
             this.$set(this.selectItemStatus, parentIndex, index);
             this.selectControl(parentIndex, ev);
             this.selectText(parentIndex, ev);
-            this.getBoutiqueData ({
-                kind: this.selectItemStatus[0],
+            this.getBoutiqueData (Object.assign({}, this.handleData(), {
+                variety: this.selectItemStatus[0],
                 color: this.selectItemStatus[1],
-                country: this.selectItemStatus[2]
-            });
+            }));
         },
         selectText (parentIndex, ev) {
             var arr = ["品种", "颜色", "规格", "价格"];
@@ -216,7 +224,6 @@ export default {
             this.$http.get(url.boutique, {
                 params: data || this.handleData()
             }).then((response) => {
-                console.log("getGalleryData");
                 if(response.data.data.list.length == 0) {
                     this.isNoData = true;
                 }else {
@@ -232,14 +239,14 @@ export default {
         },
         getSearchData (data) {
             this.hideMasker();
-            this.getGalleryData(Object.assign({}, data, {
+            this.getBoutiqueData(Object.assign({}, data, {
                 kind: this.selectItemStatus[0],
                 color: this.selectItemStatus[1],
                 country: this.selectItemStatus[2]
             }));
         },
         getData () {
-            this.$http.get(url.gallery, {
+            this.$http.get(url.boutique, {
                 params: this.handleData()
             }).then((response) => {
                 if(response.data.data.list.length == 0) {
@@ -390,13 +397,6 @@ export default {
                 }
             }
         }
-    }
-    .pic-list {
-        background: #f8f8f8;
-        position: absolute;
-        top: 190px;
-        bottom: 0;
-        width: 100%;
     }
     .masker{
         position: fixed;
