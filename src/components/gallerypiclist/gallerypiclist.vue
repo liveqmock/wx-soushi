@@ -3,21 +3,23 @@
         <ul class="pic-wrapper">
             <v-showsearchpic :src="src" :text="text" v-if="searchPic"></v-showsearchpic>
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
-                <div class="box">
-                    <img class="big-pic" :src="item.assistantImageList[item.currentIndex].assistantImageUrl" alt="">
-                    <div class="small-pic-item-wrapper" ref="smallPicItemWrapper">
-                        <div class="small-pic-item" :class="{active: item.currentIndex === index_imageUrlList }"
-                             v-for="(item_imageUrlList, index_imageUrlList) in item.assistantImageList"
-                             v-if="index_imageUrlList <= 3"
-                             @click.stop.prevent="selectSmallPic(index_imageUrlList, index, $event)"
-                             :key="item_imageUrlList.id">
-                            <img class="small-pic" :src="item_imageUrlList.assistantImageUrl" alt="">
+                <router-link :to="{path: 'galleryDetail', query: {id: item.id}}">
+                    <div class="box">
+                        <img class="big-pic" :src="item.assistantImageList[item.currentIndex].assistantImageUrl" alt="">
+                        <div class="small-pic-item-wrapper" ref="smallPicItemWrapper">
+                            <div class="small-pic-item" :class="{active: item.currentIndex === index_imageUrlList }"
+                                 v-for="(item_imageUrlList, index_imageUrlList) in item.assistantImageList"
+                                 v-if="index_imageUrlList <= 3"
+                                 @click.stop.prevent="selectSmallPic(index_imageUrlList, index, $event)"
+                                 :key="item_imageUrlList.id">
+                                <img class="small-pic" :src="item_imageUrlList.assistantImageUrl" alt="">
+                            </div>
                         </div>
+                        <p class="text">{{item.chineseName}}</p>
                     </div>
-                    <p class="text">{{item.chineseName}}</p>
-                </div>
+                </router-link>
             </li>
-            <v-loadingbar :loading-status="loadingStatus"></v-loadingbar>
+            <v-loadingbar :loading-status="loadingStatus" ref="loading-bar"></v-loadingbar>
         </ul>
     </div>
 
@@ -80,7 +82,7 @@
                     showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
                 }
                 this.scroll.refresh();
-                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * 4 * this.refreshCount + this.scroll.wrapperHeight - 130 - showSearchPicClientHeight);
+                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
             }
         },
         methods: {

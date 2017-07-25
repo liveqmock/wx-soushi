@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <v-gallerypiclist :gallery-pic-list-data="galleryPicListData" :src="src" @get-data="getData" :refreshCount="refreshCount" :refresh="refresh" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
+            <v-gallerypiclist :gallery-pic-list-data="galleryPicListData" :src="src" @get-data="getData" :refresh="refresh" :refreshCount="refreshCount" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
         </div>
     </div>
 </template>

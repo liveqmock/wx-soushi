@@ -120,7 +120,7 @@
                 });
             },
             getQueryData() {
-                this.$http.get(url.query, {
+                this.$http.get(url.index, {
                     params: this.handleData()
                 }).then((response) => {
                     console.log("data");

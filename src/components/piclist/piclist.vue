@@ -1,6 +1,7 @@
 <template>
-    <div class="pic-list" :class="{index: index, boutique: boutique}" ref="pic-list">
+    <div class="pic-list" :class="{index: index, boutique: boutique, search: search}" ref="pic-list">
         <ul class="pic-wrapper">
+            <v-showsearchpic :src="src" :text="text" v-if="searchPic"></v-showsearchpic>
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <div class="box">
                     <img class="big-pic" :src="item.imageUrlList[item.currentIndex]" alt="">
@@ -9,17 +10,18 @@
                             <img class="small-pic" :src="item_imageUrlList" alt="">
                         </div>
                     </div>
-                    <p class="text">{{item.variety}}</p>
+                    <p class="text">{{item.variety}}-{{item.gradeName}}</p>
                     <v-price></v-price>
                 </div>
             </li>
-            <v-loadingbar :loadingStatus="loadingStatus"></v-loadingbar>
+            <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar"></v-loadingbar>
         </ul>
     </div>
 </template>
 
 <script>
     import price from "src/components/price/price";
+    import showsearchpic from "src/components/showsearchpic/showsearchpic";
     import IScroll from "src/plugins/iscroll-probe";
     import loadingbar from "src/components/loadingbar/loadingbar";
 export default {
@@ -38,14 +40,22 @@ export default {
             type: Boolean,
             default: false
         },
+        search: {
+            type: Boolean,
+            default: false
+        },
         refresh: {
             type: Boolean,
             default: false
         },
-        refreshCount: {
-            type: Number,
-            default: 0
+        src: {
+            type: String,
+            default: ""
         },
+        searchPic: {
+            type: Boolean,
+            default: false
+        }
     },
     data () {
         return {
@@ -55,7 +65,8 @@ export default {
                 loading: true,
                 loaded: false,
             },
-            text: ""
+            text: "",
+            isShowBar: false
         }
     },
     created () {
@@ -64,8 +75,12 @@ export default {
     mounted () {
         this.initScroll();
         if(this.refresh) {
+            let showSearchPicClientHeight = 0;
+            if(this.searchPic) {
+                showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
+            }
             this.scroll.refresh();
-            this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * 4 * this.refreshCount + this.scroll.wrapperHeight - 130);
+            this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
         }
     },
     methods: {
@@ -94,7 +109,7 @@ export default {
                     setTimeout(()=>{
                         if(self.index) {
                             self.scroll.refresh();
-                            self.scroll.scrollTo(0, self.scroll.maxScrollY + 120, 500);
+                            self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - document.querySelector(".nav-footer").clientHeight - 20, 500);
                         }else{
                             self.reloadData();
                         }
@@ -123,7 +138,8 @@ export default {
     },
     components: {
         "v-price": price,
-        "v-loadingbar": loadingbar
+        "v-loadingbar": loadingbar,
+        "v-showsearchpic": showsearchpic,
     }
 }
 </script>
@@ -141,7 +157,7 @@ export default {
                     padding-bottom: 110px;
                 }
              }
-            &.boutique {
+            &.boutique,&.search {
                 top: 190px;
              }
         }

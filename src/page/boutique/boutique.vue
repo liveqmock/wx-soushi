@@ -50,7 +50,7 @@
                 </div>
                 <div class="select-detail" v-show="isShowMasker">
                     <div class="select-detail-wrapper">
-                        <div class="list kind-list" v-if="selectControlStatus[0]">
+                        <div class="list kind-list" v-show="selectControlStatus[0]">
                             <span class="item" :class="{active: selectItemStatus[0] == 0}" @click="selectItem('', 0, $event)">全部</span>
                             <span class="item" :class="{active: selectItemStatus[0] == 1}" @click="selectItem('雅典黑冰花', 0, $event)">雅典黑冰花</span>
                             <span class="item" :class="{active: selectItemStatus[0] == 2}" @click="selectItem('磨卡咖', 0, $event)">磨卡咖</span>
@@ -62,7 +62,7 @@
                             <span class="item" :class="{active: selectItemStatus[0] == 8}" @click="selectItem('银线米黄', 0, $event)">银线米黄</span>
                             <span class="item" :class="{active: selectItemStatus[0] == 9}" @click="selectItem('金线米黄', 0, $event)">金线米黄</span>
                         </div>
-                        <div class="list color-list" v-if="selectControlStatus[1]">
+                        <div class="list color-list" v-show="selectControlStatus[1]">
                             <span class="item" :class="{active: selectItemStatus[1] == 0}" @click="selectItem(0, 1, $event)">全部</span>
                             <span class="item" :class="{active: selectItemStatus[1] == 1}" @click="selectItem(1, 1, $event)">红色</span>
                             <span class="item" :class="{active: selectItemStatus[1] == 2}" @click="selectItem(2, 1, $event)">白色</span>
@@ -74,35 +74,34 @@
                             <span class="item" :class="{active: selectItemStatus[1] == 3}" @click="selectItem(3, 1, $event)">蓝色</span>
                             <span class="item" :class="{active: selectItemStatus[1] == 9}" @click="selectItem(9, 1, $event)">其他</span>
                         </div>
-                        <div class="list format-list" v-if="selectControlStatus[2]">
+                        <div class="list format-list" v-show="selectControlStatus[2]">
                             <span class="all">全部</span>
                             <div class="self">
                                 <span class="s-text">自定义：</span>
-                                <input class="input" type="text" placeholder="长">
+                                <input class="input" type="text" placeholder="长" ref="length">
                                 <i class="add-rotate">+</i>
-                                <input class="input" type="text" placeholder="宽">
+                                <input class="input" type="text" placeholder="宽" ref="width">
                                 <i class="add-rotate">+</i>
-                                <input class="input" type="text" placeholder="厚">mm
-                                <span class="finish" @click="">完成</span>
+                                <input class="input" type="text" placeholder="厚" ref="thickness">mm
+                                <span class="finish" @click="selectFormat">完成</span>
                             </div>
                         </div>
-                        <div class="list price-list" v-if="selectControlStatus[3]">
+                        <div class="list price-list" v-show="selectControlStatus[3]">
                             <span class="all">全部</span>
                             <div class="self">
                                 <span class="s-text">自定义：</span>
-                                <input class="input" type="text" placeholder="200">
+                                <input class="input" type="text" placeholder="200" ref="minPrice">
                                 <i class="min">一</i>
-                                <input class="input input-max-price" type="text" placeholder="400">
+                                <input class="input input-max-price" type="text" placeholder="400" ref="maxPrice">
                                 <i class="icon-ypfm"></i>
-                                <span class="finish">完成</span>
+                                <span class="finish" @click="selectPrice">完成</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--<v-piclist :pic-list-data="picListData" :src="src" @get-data="getData" :refreshCount="refreshCount" :refresh="refresh" v-if="flag" :search-pic="searchPic"></v-piclist>-->
-            <v-piclist :pic-list-data="picListData" @get-data="getData" :refresh="refresh" :refreshCount="refreshCount" v-if="flag" :boutique="true"></v-piclist>
+            <v-piclist :pic-list-data="picListData" @get-data="getData" :refresh="refresh" v-if="flag" :boutique="true" :src="src" :search-pic="searchPic"></v-piclist>
         </div>
     </div>
 </template>
@@ -136,7 +135,6 @@ export default {
             isShowMasker: false,
             flag: false,
             refresh: false,
-            refreshCount: 0,
             isNoData: false,
             isNoResult: false,
             loadingStatus: {
@@ -149,10 +147,9 @@ export default {
     },
     created () {
         console.log("created");
-        this.getBoutiqueData();
     },
     mounted () {
-        console.log("mounted");
+        this.getBoutiqueData();
     },
     methods:{
         selectControl (index, ev) {
@@ -178,10 +175,7 @@ export default {
             this.$set(this.selectItemStatus, parentIndex, index);
             this.selectControl(parentIndex, ev);
             this.selectText(parentIndex, ev);
-            this.getBoutiqueData (Object.assign({}, this.handleData(), {
-                variety: this.selectItemStatus[0],
-                color: this.selectItemStatus[1],
-            }));
+            this.getBoutiqueData (this.handleData());
         },
         selectText (parentIndex, ev) {
             var arr = ["品种", "颜色", "规格", "价格"];
@@ -190,6 +184,14 @@ export default {
                 text = arr[parentIndex];
             }
             this.selectTextStatus[parentIndex] = text;
+        },
+        selectFormat () {
+            this.getBoutiqueData (this.handleData());
+            this.hideMasker();
+        },
+        selectPrice () {
+            this.getBoutiqueData (this.handleData());
+            this.hideMasker();
         },
         showMasker () {
             this.isShowMasker = true;
@@ -203,15 +205,15 @@ export default {
         handleData () {
             return {
                 kind: 0,
-                color: 0,
-                variety: '',
-                maxLength: 0,
-                minLength: 0,
-                maxWidth: 0,
-                minWidth: 0,
-                thickness: 0,
-                maxPrice: 0,
-                minPrice: 0,
+                color: this.selectItemStatus[1],
+                variety: this.selectItemStatus[0],
+                maxLength: this.$refs.length.value * 1.2 || 0,
+                minLength: this.$refs.length.value * 0.8 || 0,
+                maxWidth: this.$refs.width.value * 1.2 || 0,
+                minWidth: this.$refs.width.value * 0.8 || 0,
+                thickness: this.$refs.thickness.value || 0,
+                maxPrice: this.$refs.maxPrice.value * 1.2 || 0,
+                minPrice: this.$refs.minPrice.value * 0.8 || 0,
                 grade: 1,
                 pageSize: 8,
                 pageCurrent: 1,
@@ -239,11 +241,7 @@ export default {
         },
         getSearchData (data) {
             this.hideMasker();
-            this.getBoutiqueData(Object.assign({}, data, {
-                kind: this.selectItemStatus[0],
-                color: this.selectItemStatus[1],
-                country: this.selectItemStatus[2]
-            }));
+            this.getBoutiqueData(Object.assign({}, this.handleData(), data));
         },
         getData () {
             this.$http.get(url.boutique, {
@@ -259,7 +257,6 @@ export default {
                         this.$set(this.picListData.data, "list", list);
                         this.flag = true;
                         this.refresh = true;
-                        this.refreshCount++;
                     });
                 }
             }).catch((response) => {

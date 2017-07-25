@@ -1,0 +1,95 @@
+{
+  "status": {
+    "message": "ok",
+    "code": 0
+  },
+  "data": {
+    "detail": {
+      "alias": "蓝海",
+      "assistantImageList": [
+        {
+          "assistantImageUrl": "http://lib.image.soushi88.com/1040/b87ecfe8863d2f95d151b8b17aaaaa49.jpg?x-oss-process=style/gray-high",
+          "rank": 1,
+          "remark": "细节图"
+        },
+        {
+          "assistantImageUrl": "http://lib.image.soushi88.com/1040/196f37681b61b2ec415303dc570b5bae.jpg?x-oss-process=style/gray-high",
+          "rank": 2,
+          "remark": "细节图"
+        },
+        {
+          "assistantImageUrl": "http://lib.image.soushi88.com/1040/03ca4313a8fabc5afa51126ad7423fad.jpg?x-oss-process=style/gray-high",
+          "rank": 3,
+          "remark": "大板图"
+        },
+        {
+          "assistantImageUrl": "http://lib.image.soushi88.com/1040/82a4c34dc06e6b4313ccd3847fe35f71.jpg?x-oss-process=style/gray-high",
+          "rank": 4,
+          "remark": "大板图"
+        }
+      ],
+      "basicFeature": "海冰蓝的矿山呈带状，开采难度较大，受气候影响大，如果遇到下雨天，开采工作不得不停下来；而巴西是典型的亚热带雨林气候，夏季多雨，这更加大了海冰蓝的开采。开采出来的海冰蓝不同矿层的料出来的质量不一，目前最好的几块海冰蓝荒料已被环球石材采购。",
+      "characteristic": "“天河石”是具有灵性的石头，在坊间，它的能量被认为可以在平稳渐进中改善运气。海冰蓝矿山是迄今为止全世界发现的唯一可以开采出荒料的“天河石”石矿，也是唯一带湖水蓝颜色玉石的石头，比一般蓝颜色的石头更稀有。\n\n",
+      "chineseName": "海冰蓝",
+      "color": 3,
+      "colorName": "蓝色",
+      "country": 250,
+      "countryName": "其他",
+      "createTime": 1492596678038,
+      "deleted": 0,
+      "density": "",
+      "englishName": "Amazonita",
+      "id": 1040,
+      "introduction": "海冰蓝 英文名Amazonita，海冰蓝其实是“天河石”， 颜色介于蓝色与绿色之间，中间带有白色纹理，质地明亮，透明度好，表面有丝质玻璃光泽。结构与翡翠非常相似，独特的双晶结构，优质品的“天河石”甚至可以做为翡翠的代用品。",
+      "kind": 2,
+      "kindName": "大理石",
+      "modifyTime": 1500601579009,
+      "price": "",
+      "priceDtoList": [
+        {
+          "highPrice": 0.0,
+          "kind": 1,
+          "kindName": "大理石A级",
+          "lowPrice": 0.0
+        },
+        {
+          "highPrice": 5000.0,
+          "kind": 2,
+          "kindName": "大理石B级",
+          "lowPrice": 4800.0
+        },
+        {
+          "highPrice": 0.0,
+          "kind": 3,
+          "kindName": "大理石C级",
+          "lowPrice": 0.0
+        }
+      ],
+      "province": 0,
+      "provinceName": "全部",
+      "qrCode": "http://lib.backend.soushi88.com/stoneLib/qrcodeImage?id=1040",
+      "radioactivity": "",
+      "spell": "hbl",
+      "standardImage": "http://lib.image.soushi88.com/1040/1040-20170721094618.jpg?x-oss-process=style/gray-high",
+      "stoneNo": "SM6005",
+      "strength": "",
+      "textureDtoList": [],
+      "usingDtoList": [],
+      "waterAbsorption": ""
+    },
+    "supplier": [
+      {
+        "address": "广东省云浮市河口镇石桥冲324国道侧云浮嘉兴创展有限公司",
+        "companyId": 3283,
+        "companyName": "云浮市嘉兴创展有限公司",
+        "contact": "范婉颜",
+        "image": "http://company.image.soushi88.com/3283/3283-20170426235855.jpg?x-oss-process=image/resize,m_fixed,h_300,w_400/quality,q_100",
+        "mobile": "13727140133 13542424087",
+        "products": "松香黄线条、奥特曼线条、古清玉线条",
+        "stoneLibId": 1040,
+        "tel": "0766-8817223",
+        "weight": 1
+      }
+    ]
+  }
+}

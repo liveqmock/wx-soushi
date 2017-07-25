@@ -13,6 +13,7 @@ import boutique from "./page/boutique/boutique";
 import search from "./page/search/search";
 import send from "./page/send/send";
 import mine from "./page/mine/mine";
+import galleryDetail from "./page/galleryDetail/galleryDetail";
 
 import rem from "./config/flexible";
 import ResetCss from "./style/reset.css";
@@ -44,6 +45,9 @@ const router = new VueRouter({
     },{
         path: "/mine",
         component: mine
+    },{
+        path: "/galleryDetail",
+        component: galleryDetail
     }]
 });
 
