@@ -232,6 +232,11 @@ export default {
 
 <style lang="sass" scoped>
     @import "../../style/mixin.scss";
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
 .selectMenu {
     background-color: #fff;
     position: relative;

@@ -2,7 +2,7 @@
     <div class="focus">
         <div class="swiper-container" ref="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item, index) in assistantImageList">
+                <div class="swiper-slide" v-for="(item, index) in assistantImageList" @click="showMakserSwiper(index)">
                     <img :src="item.assistantImageUrl" alt="">
                 </div>
             </div>
@@ -52,6 +52,9 @@ export default {
                 }
             });
             this.swiper = swiper;
+        },
+        showMakserSwiper (index) {
+            this.$emit("show-masker-swiper", index);
         }
     }
 }

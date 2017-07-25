@@ -35,7 +35,7 @@ module.exports = {
             }],
         }, {
             test: /\.js$/,
-            exclude: /(node_modules|plugins)/,
+            exclude: /(node_modules|plugins|common)/,
             include: /src/,
             enforce: "pre",
             use: [{
@@ -73,7 +73,6 @@ module.exports = {
                 loader: "url-loader",
                 options: {
                     limit: 8192,
-                    mimetype: "image/png",
                     prefix: "img"
                 }
             }]
