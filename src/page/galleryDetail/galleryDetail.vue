@@ -76,7 +76,7 @@
         <v-navguider @show-guider-masker="showGuiderMasker"></v-navguider>
         <v-maskerguider @hide-guider-masker="hideGuiderMasker" v-show="isShowGuiderMasker"></v-maskerguider>
         <v-maskerdetailerror v-show="isShowDetailErrorMasker"></v-maskerdetailerror>
-        <v-maskerswiper :assistantImageList="detail.assistantImageList" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" v-if="flag"></v-maskerswiper>
+        <v-maskerswiper :assistantImageList="detail.assistantImageList" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" v-if="isShowMaskerSwiper"></v-maskerswiper>
     </div>
 </template>
 

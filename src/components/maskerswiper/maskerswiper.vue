@@ -1,5 +1,5 @@
 <template>
-    <div class="masker-swiper" v-if="isShowMaskerSwiper">
+    <div class="masker-swiper">
         <div class="masker-show" @click="hideMaskerSwiper"></div>
         <div class="masker-container">
             <div class="m-box">
@@ -33,14 +33,6 @@ export default {
         assistantImageList: {
             type: Array,
             default: []
-        },
-        isShowMaskerSwiper: {
-            type: Boolean,
-            default: false
-        },
-        flag: {
-            type: Boolean,
-            default: false
         }
     },
     data () {
@@ -56,6 +48,7 @@ export default {
     },
     methods: {
         initSwiper () {
+            console.log(document.getElementById('slider'));
             const mySwipe = new Swipe(document.getElementById('slider'), {
                 speed: 400,
                 callback: function (index) {}
@@ -97,6 +90,9 @@ export default {
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 11;
+        li, img{
+            width: 750px;
+        }
     }
     .page {
         width: 750px;
