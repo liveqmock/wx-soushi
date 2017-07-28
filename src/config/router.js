@@ -4,6 +4,7 @@
 import index from "src/page/index/index";
 import gallery from "src/page/gallery/gallery";
 import boutique from "src/page/boutique/boutique";
+import boutiqueDetail from "src/page/boutiqueDetail/boutiqueDetail";
 import search from "src/page/search/search";
 import send from "src/page/send/send";
 import mine from "src/page/mine/mine";
@@ -30,6 +31,9 @@ const router = new VueRouter({
     },{
         path: "/boutique",
         component: boutique
+    },{
+        path: "/boutiqueDetail",
+        component: boutiqueDetail
     },{
         path: "/search",
         component: search

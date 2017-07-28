@@ -33,6 +33,10 @@ export default {
         assistantImageList: {
             type: Array,
             default: []
+        },
+        index: {
+            type: Number,
+            default: 0
         }
     },
     data () {
@@ -41,19 +45,19 @@ export default {
         }
     },
     mounted () {
-        this.$nextTick(()=>{
-            this.initPinchZoom();
-        });
         this.initSwiper();
+        this.initPinchZoom();
     },
     methods: {
         initSwiper () {
-            console.log(document.getElementById('slider'));
-            const mySwipe = new Swipe(document.getElementById('slider'), {
-                speed: 400,
-                callback: function (index) {}
-            });
-            this.mySwipe = mySwipe;
+            if(!this.mySwipe.length) {
+                const mySwipe = new Swipe(document.getElementById('slider'), {
+                    speed: 400,
+                    callback: function (index) {}
+                });
+                this.mySwipe = mySwipe;
+            }
+            this.mySwipe.slide(this.index);
         },
         initPinchZoom () {
             $("pinch-zoom").each( function (){

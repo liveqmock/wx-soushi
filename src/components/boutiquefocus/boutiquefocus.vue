@@ -2,7 +2,7 @@
     <div class="focus">
         <div class="swiper-container" ref="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item, index) in imageList" @click="showMakserSwiper(index)">
+                <div class="swiper-slide" v-for="(item, index) in imageUrlList" @click="showMakserSwiper(index)">
                     <img :src="item" alt="">
                 </div>
             </div>
@@ -18,27 +18,26 @@
     import Swiper from "src/plugins/swiper";
 export default {
     props: {
-        assistantImageList: {
-            type: Array,
-            default: []
-        },
         imageUrlList: {
             type: Array,
             default: []
+        },
+        flag: {
+            type: Boolean,
+            default: false
         }
     },
     data () {
         return {
             swiper: {},
             currentIndex: 0,
-            imageList: []
         }
     },
     components: {
 
     },
     created () {
-        this.fixImageList();
+
     },
     mounted () {
         this.initSwiper();
@@ -50,29 +49,13 @@ export default {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
                 onSlideChangeEnd: function (swiper) {
-                    let index = swiper.activeIndex;
-                    let total = swiper;
-//                    $(".count").html(index + 1 + '/' + '<i>' + swiper.imagesLoaded + '</i>');
-//                    $(".count span").text(index + 1);
+
                 }
             });
             this.swiper = swiper;
         },
         showMakserSwiper (index) {
             this.$emit("show-masker-swiper", index);
-        },
-        fixImageList () {
-            if(this.assistantImageList.length) {
-                for(var i = 0, l = this.assistantImageList.length; i < l; i++) {
-                    this.$set(this.imageList, i, this.assistantImageList[i].assistantImageUrl);
-                }
-            }
-
-            if(this.imageUrlList.length) {
-                for(var i = 0, l = this.imageUrlList.length; i < l; i++) {
-                    this.$set(this.imageList, i, this.imageUrlList[i]);
-                }
-            }
         }
     }
 }

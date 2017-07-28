@@ -12,7 +12,9 @@ module.exports = {
     gallery: "http://lib.backend.soushi88.com/stoneLibWx/search",
     galleryDetail: "http://lib.backend.soushi88.com/stoneLibWx/detail",
     boutique: "http://slab.backend.soushi88.com/onsale/query",
+    boutiqueDetail: "http://slab.backend.soushi88.com/onsale/detail",
     search: "http://slab.backend.soushi88.com/onsale/query",
+    searchDetail: "http://slab.backend.soushi88.com/onsale/detail",
 };
 
 if(local) {
@@ -24,6 +26,8 @@ if(local) {
         galleryDetail: dataPath + "/galleryDetail.json",
         gallery: dataPath + "/gallery.json",
         boutique: dataPath + "/boutique.json",
+        boutiqueDetail: dataPath + "/boutiqueDetail.json",
         search: dataPath + "/search.json",
+        searchDetail: dataPath + "/searchDetail.json",
     };
 }

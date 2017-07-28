@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="container" v-show="!isShowDetailErrorMasker">
-            <v-focus :assistantImageList="detail.assistantImageList" @show-masker-swiper="showMaskerSwiper" v-if="flag"></v-focus>
+            <v-focus :assistantImageList="detail.assistantImageList" :imageUrlList="[]" @show-masker-swiper="showMaskerSwiper" v-if="flag"></v-focus>
             <div class="place-info">
                 <div class="place-title">
                     {{detail.chineseName}}
@@ -76,7 +76,7 @@
         <v-navguider @show-guider-masker="showGuiderMasker"></v-navguider>
         <v-maskerguider @hide-guider-masker="hideGuiderMasker" v-show="isShowGuiderMasker"></v-maskerguider>
         <v-maskerdetailerror v-show="isShowDetailErrorMasker"></v-maskerdetailerror>
-        <v-maskerswiper :assistantImageList="detail.assistantImageList" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" v-if="isShowMaskerSwiper"></v-maskerswiper>
+        <v-maskerswiper :assistantImageList="detail.assistantImageList" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" :index="index" v-if="isShowMaskerSwiper"></v-maskerswiper>
     </div>
 </template>
 
@@ -106,7 +106,8 @@ export default {
             productorCurrentIndex: 0,
             isShowGuiderMasker: false,
             isShowDetailErrorMasker: false,
-            isShowMaskerSwiper: false
+            isShowMaskerSwiper: false,
+            index: 0
         }
     },
     components: {
@@ -163,6 +164,7 @@ export default {
             this.isShowGuiderMasker = true;
         },
         showMaskerSwiper (index) {
+            this.index = index;
             this.isShowMaskerSwiper = true;
         },
         hideMaskerSwiper () {

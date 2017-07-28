@@ -1,0 +1,313 @@
+{
+  "status": {
+    "message": "ok",
+    "code": 0
+  },
+  "data": {
+    "detail": {
+      "id": 14972580468983614,
+      "companyId": 5788,
+      "variety": "奥特曼",
+      "kind": 2,
+      "kindName": "大理石",
+      "color": 1,
+      "colorName": "红色",
+      "length": 2000.0,
+      "width": 1000.0,
+      "thickness": 200.0,
+      "area": 19.6,
+      "grade": 1,
+      "gradeName": "A级",
+      "minPrice": 0.0,
+      "maxPrice": 0.0,
+      "blockNo": "A002",
+      "saleMethod": 2,
+      "saleMethodName": "按件",
+      "imageUrlList": [
+        "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/8f82e83cd67d0187032377e8dca91fee.JPG",
+        "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/d909cd914cf4147141c47262ad682d68.JPG",
+        "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/0a218e038cd11d714ae95ac48dad6d19.JPG"
+      ],
+      "packetNum": 3,
+      "blockSliceNum": 10,
+      "packetInfos": [
+        {
+          "packetNo": "1",
+          "packetLength": 2000.0,
+          "packetWidth": 1000.0,
+          "packetThickness": 200.0,
+          "packetTotalArea": 5.88,
+          "packetSliceNum": 3,
+          "sliceImages": [],
+          "slicesInfo": [
+            {
+              "sliceId": 14972580469073288,
+              "sliceIdStr": "14972580469073288",
+              "packetIdStr": "14972580469034269",
+              "packetNo": "1",
+              "sliceNo": "2",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580469074589,
+              "sliceIdStr": "14972580469074589",
+              "packetIdStr": "14972580469034269",
+              "packetNo": "1",
+              "sliceNo": "3",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580469078924,
+              "sliceIdStr": "14972580469078924",
+              "packetIdStr": "14972580469034269",
+              "packetNo": "1",
+              "sliceNo": "1",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "packetNo": "2",
+          "packetLength": 2000.0,
+          "packetWidth": 1000.0,
+          "packetThickness": 200.0,
+          "packetTotalArea": 7.84,
+          "packetSliceNum": 4,
+          "sliceImages": [],
+          "slicesInfo": [
+            {
+              "sliceId": 14972580470104520,
+              "sliceIdStr": "14972580470104520",
+              "packetIdStr": "14972580469126924",
+              "packetNo": "2",
+              "sliceNo": "5",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580470107847,
+              "sliceIdStr": "14972580470107847",
+              "packetIdStr": "14972580469126924",
+              "packetNo": "2",
+              "sliceNo": "4",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580470107933,
+              "sliceIdStr": "14972580470107933",
+              "packetIdStr": "14972580469126924",
+              "packetNo": "2",
+              "sliceNo": "6",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580470108369,
+              "sliceIdStr": "14972580470108369",
+              "packetIdStr": "14972580469126924",
+              "packetNo": "2",
+              "sliceNo": "7",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "packetNo": "3",
+          "packetLength": 2000.0,
+          "packetWidth": 1000.0,
+          "packetThickness": 200.0,
+          "packetTotalArea": 5.88,
+          "packetSliceNum": 3,
+          "sliceImages": [],
+          "slicesInfo": [
+            {
+              "sliceId": 14972580470181476,
+              "sliceIdStr": "14972580470181476",
+              "packetIdStr": "14972580470152308",
+              "packetNo": "3",
+              "sliceNo": "8",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580470183734,
+              "sliceIdStr": "14972580470183734",
+              "packetIdStr": "14972580470152308",
+              "packetNo": "3",
+              "sliceNo": "10",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            },
+            {
+              "sliceId": 14972580470184179,
+              "sliceIdStr": "14972580470184179",
+              "packetIdStr": "14972580470152308",
+              "packetNo": "3",
+              "sliceNo": "9",
+              "sliceLength": 2000.0,
+              "sliceWidth": 1000.0,
+              "sliceThickness": 200.0,
+              "lostAngleLength": 200.0,
+              "lostAngleWidth": 200.0,
+              "totalLostAngleArea": 0.04,
+              "sliceArea": 1.96,
+              "totalLostAnglesArea": 0.04,
+              "lostAngleList": [
+                {
+                  "lostAngleLength": 200.0,
+                  "lostAngleWidth": 200.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "principal": "华仔",
+      "prinMobile": "18378400193"
+    },
+    "guider": {
+      "mobile": "0766-8520999",
+      "name": "梁经理",
+      "wxQrcode": "http://slab.backend.soushi88.com/public/images/guider/2.jpeg"
+    },
+    "similar": [
+      {
+        "id": 14972580468983614,
+        "idString": "14972580468983614",
+        "blockNo": "A002",
+        "companyId": 5788,
+        "variety": "奥特曼",
+        "kind": 2,
+        "kindName": "大理石",
+        "color": 1,
+        "colorName": "红色",
+        "length": 2000.0,
+        "width": 1000.0,
+        "thickness": 200.0,
+        "area": 19.6,
+        "grade": 1,
+        "gradeName": "A级",
+        "minPrice": 0.0,
+        "maxPrice": 0.0,
+        "imageUrlList": [
+          "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/8f82e83cd67d0187032377e8dca91fee.JPG?x-oss-process\u003dstyle/high",
+          "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/d909cd914cf4147141c47262ad682d68.JPG?x-oss-process\u003dstyle/high",
+          "http://soushi-test.oss-cn-shenzhen.aliyuncs.com/block/5788/14972580468983614/20170612/3/0a218e038cd11d714ae95ac48dad6d19.JPG?x-oss-process\u003dstyle/high"
+        ]
+      }
+    ]
+  }
+}
