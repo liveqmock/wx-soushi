@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dev"),
-        filename: "[name].[hash:8].js"
+        filename: "[name].[hash:8].js",
     },
     devServer: {
         hot: true,
@@ -28,8 +28,8 @@ module.exports = {
                 loader: "vue-loader",
                 options: {
                     loaders: {
-                        scss: "vue-style-loader!css-loader!postcss-loader!sass-loader",
-                        sass: "vue-style-loader!css-loader!postcss-loader!sass-loader"
+                        scss: "vue-style-loader!css-loader?sourceMap!postcss-loader!sass-loader",
+                        sass: "vue-style-loader!css-loader?sourceMap!postcss-loader!sass-loader"
                     }
                 }
             }],

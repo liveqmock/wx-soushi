@@ -15,6 +15,7 @@ module.exports = {
     boutiqueDetail: "http://slab.backend.soushi88.com/onsale/detail",
     search: "http://slab.backend.soushi88.com/onsale/query",
     searchDetail: "http://slab.backend.soushi88.com/onsale/detail",
+    send: "http://user.backend.soushi88.com/userDeliveryWx/getMyDelivery",
 };
 
 if(local) {
@@ -29,5 +30,6 @@ if(local) {
         boutiqueDetail: dataPath + "/boutiqueDetail.json",
         search: dataPath + "/search.json",
         searchDetail: dataPath + "/searchDetail.json",
+        send: dataPath + "/send.json",
     };
 }

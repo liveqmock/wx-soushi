@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
     @import "../../style/mixin.scss";
     .price {
         padding-left: 10px;

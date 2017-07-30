@@ -6,15 +6,14 @@
                 <div class="page">
                     <div class="slider" id="slider">
                         <ul>
-                            <li v-for="(item, index) in assistantImageList">
+                            <li v-for="(item, index) in imageList">
                                 <div class="pinch-zoom">
-                                    <img :src="item.assistantImageUrl" alt="">
+                                    <img :src="item" alt="">
                                 </div>
                             </li>
                         </ul>
                         <div class="text">
-                            {{mySwipe.index + 1}}/
-                            <i>{{mySwipe.length}}</i>
+                            {{mySwipe.index + 1}}/<i>{{mySwipe.length}}</i>
                         </div>
                     </div>
                 </div>
@@ -34,6 +33,10 @@ export default {
             type: Array,
             default: []
         },
+        imageUrlList: {
+            type: Array,
+            default: []
+        },
         index: {
             type: Number,
             default: 0
@@ -41,22 +44,27 @@ export default {
     },
     data () {
         return {
-            mySwipe: {}
+            mySwipe: {},
+            imageList: []
         }
+    },
+    created () {
+        this.fixImageList();
     },
     mounted () {
         this.initSwiper();
         this.initPinchZoom();
     },
+    destroyed () {
+
+    },
     methods: {
         initSwiper () {
-            if(!this.mySwipe.length) {
-                const mySwipe = new Swipe(document.getElementById('slider'), {
-                    speed: 400,
-                    callback: function (index) {}
-                });
-                this.mySwipe = mySwipe;
-            }
+            const mySwipe = new Swipe(document.getElementById('slider'), {
+                speed: 400,
+                callback: function (index) {}
+            });
+            this.mySwipe = mySwipe;
             this.mySwipe.slide(this.index);
         },
         initPinchZoom () {
@@ -66,6 +74,19 @@ export default {
         },
         hideMaskerSwiper () {
             this.$emit("hide-masker-swiper");
+        },
+        fixImageList () {
+            if(this.assistantImageList.length) {
+                for(var i = 0, l = this.assistantImageList.length; i < l; i++) {
+                    this.$set(this.imageList, i, this.assistantImageList[i].assistantImageUrl);
+                }
+            }
+
+            if(this.imageUrlList.length) {
+                for(var i = 0, l = this.imageUrlList.length; i < l; i++) {
+                    this.$set(this.imageList, i, this.imageUrlList[i]);
+                }
+            }
         }
     }
 }
@@ -96,11 +117,11 @@ export default {
         z-index: 11;
         li, img{
             width: 750px;
+            height: 562.5px
         }
     }
     .page {
         width: 750px;
-        height: 750px;
         position: relative;
     }
     .text{

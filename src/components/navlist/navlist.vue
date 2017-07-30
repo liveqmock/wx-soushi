@@ -44,30 +44,30 @@ export default {}
         padding: 34px 20px 24px 20px;
         .nav-item {
             flex: 1;
-        .icon {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            &.gallery {
-                 background:url("./icon/icon_gallery.png") no-repeat;
-                 background-size: 100% 100%;
-             }
-            &.boutique {
-                 background:url("./icon/icon_boutique.png") no-repeat;
-                 background-size: 100% 100%;
-             }
-            &.search {
-                 background:url("./icon/icon_search.png") no-repeat;
-                 background-size: 100% 100%;
-             }
-            &.send {
-                 background:url("./icon/icon_Send.png") no-repeat;
-                 background-size: 100% 100%;
-             }
-            &.photograph {
-                 background:url("./icon/icon_photograph.png") no-repeat;
-                 background-size: 100% 100%;
-             }
+            .icon {
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+                &.gallery {
+                     background:url("./icon/icon_gallery.png") no-repeat;
+                     background-size: 100% 100%;
+                 }
+                &.boutique {
+                     background:url("./icon/icon_boutique.png") no-repeat;
+                     background-size: 100% 100%;
+                 }
+                &.search {
+                     background:url("./icon/icon_search.png") no-repeat;
+                     background-size: 100% 100%;
+                 }
+                &.send {
+                     background:url("./icon/icon_Send.png") no-repeat;
+                     background-size: 100% 100%;
+                 }
+                &.photograph {
+                     background:url("./icon/icon_photograph.png") no-repeat;
+                     background-size: 100% 100%;
+                 }
             }
             .text {
                 font-size: 24px;

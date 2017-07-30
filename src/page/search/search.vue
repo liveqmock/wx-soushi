@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <v-piclist :pic-list-data="picListData" @get-data="getData" :refresh="refresh" v-if="flag" :search="true" :src="src" :search-pic="searchPic"></v-piclist>
+            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="searchPic"></v-piclist>
         </div>
     </div>
 </template>
@@ -146,15 +146,12 @@ export default {
             selectTextStatus: ["类别", "颜色", "等级", "规格", "价格"],
             isShowMasker: false,
             flag: false,
-            refresh: false,
             isNoData: false,
             isNoResult: false,
-            loadingStatus: {
-                loading: true,
-                loaded: false,
-            },
             src: "",
-            searchPic: false
+            searchPic: false,
+            page: "search",
+            time: 3
         }
     },
     created () {
@@ -162,7 +159,7 @@ export default {
     },
     mounted () {
         console.log("mounted");
-        this.getSearchPageData();
+        this.getData();
     },
     methods:{
         selectControl (index, ev) {
@@ -188,7 +185,9 @@ export default {
             this.$set(this.selectItemStatus, parentIndex, index);
             this.selectControl(parentIndex, ev);
             this.selectText(parentIndex, ev);
-            this.getSearchPageData(this.handleData());
+            this.getData(this.handleData(), {
+                clean: true
+            });
             this.hideMasker();
         },
         selectText (parentIndex, ev) {
@@ -200,11 +199,15 @@ export default {
             this.selectTextStatus[parentIndex] = text;
         },
         selectFormat () {
-            this.getSearchPageData(this.handleData());
+            this.getData(this.handleData(),{
+                clean: true
+            });
             this.hideMasker();
         },
         selectPrice () {
-            this.getSearchPageData(this.handleData());
+            this.getData(this.handleData(),{
+                clean: true
+            });
             this.hideMasker();
         },
         showMasker () {
@@ -234,17 +237,27 @@ export default {
                 orderBy: 0
             }
         },
-        getSearchPageData(data) {
+        getData(data, options) {
             let self = this;
-            this.flag = false;
-            this.$http.get(url.search, {
+            this.$http.get(url.boutique, {
                 params: data || this.handleData()
             }).then((response) => {
                 if(response.data.data.list.length == 0) {
                     this.isNoData = true;
                 }else {
+                    this.flag = false;
+                    if(options && options.clean) {
+                        this.$store.commit({
+                            type: "cleanDataList",
+                            key: this.page,
+                        });
+                    }
+                    this.$store.commit({
+                        type: "dataList",
+                        key: this.page,
+                        value: response.data
+                    });
                     self.$nextTick(()=> {
-                        this.picListData = response.data;
                         this.flag = true;
                     });
                 }
@@ -255,34 +268,17 @@ export default {
         },
         getSearchData (data) {
             this.hideMasker();
-            this.getSearchPageData(Object.assign({}, this.handleData(), data));
-        },
-        getData () {
-            this.$http.get(url.search, {
-                params: this.handleData()
-            }).then((response) => {
-                if(response.data.data.list.length == 0) {
-                    this.isNoData = true;
-                }else {
-                    this.flag = false;
-                    let list = this.picListData.data.list;
-                    list = list.concat(response.data.data.list);
-                    this.$nextTick(()=>{
-                        this.$set(this.picListData.data, "list", list);
-                        this.flag = true;
-                        this.refresh = true;
-                    });
-                }
-            }).catch((response) => {
-                console.log('fail');
-                this.isNoResult = true;
+            this.getData(Object.assign({}, this.handleData(), data), {
+                clean: true
             });
         },
         getUploadPicData (data, src) {
             this.hideMasker();
             this.src = src;
             this.searchPic = true;
-            this.getSearchPageData(data);
+            this.getData(data,{
+                clean: true
+            });
         }
     }
 }

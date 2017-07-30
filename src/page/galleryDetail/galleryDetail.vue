@@ -28,22 +28,7 @@
                 </div>
                 <div class="productor-content content-list" v-if="flag">
                     <div class="content-item" v-show="productorCurrentIndex == 0">
-                        <div class="pic-text-list">
-                            <div class="pic-text-item" v-for="(item, index) in galleryDetailData.data.supplier">
-                                <div class="pic">
-                                    <img :src="item.image" alt="">
-                                </div>
-                                <div class="text-wrapper">
-                                    <span class="title">{{item.companyName}}</span>
-                                    <span class="name">联系人：{{item.contact}}</span>
-                                    <span class="phone">手&nbsp;&nbsp;&nbsp;机：{{item.mobile}}</span>
-                                    <span class="address">
-                                        <i class="label">地&nbsp;&nbsp;&nbsp;址：</i>
-                                        <i class="text">{{item.address}}</i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <v-supplier :page="page"></v-supplier>
                     </div>
                     <div class="content-item" v-show="productorCurrentIndex == 1">
                         <div class="variety-list">
@@ -76,7 +61,7 @@
         <v-navguider @show-guider-masker="showGuiderMasker"></v-navguider>
         <v-maskerguider @hide-guider-masker="hideGuiderMasker" v-show="isShowGuiderMasker"></v-maskerguider>
         <v-maskerdetailerror v-show="isShowDetailErrorMasker"></v-maskerdetailerror>
-        <v-maskerswiper :assistantImageList="detail.assistantImageList" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" :index="index" v-if="isShowMaskerSwiper"></v-maskerswiper>
+        <v-maskerswiper :assistantImageList="detail.assistantImageList" :imageUrlList="[]" :isShowMaskerSwiper="isShowMaskerSwiper" @hide-masker-swiper="hideMaskerSwiper" :index="index" v-if="isShowMaskerSwiper"></v-maskerswiper>
     </div>
 </template>
 
@@ -87,6 +72,7 @@
     import maskerguider from "src/components/maskerguider/maskerguider";
     import maskerdetailerror from "src/components/maskerdetailerror/maskerdetailerror";
     import maskerswiper from "src/components/maskerswiper/maskerswiper";
+    import supplier from "src/components/supplier/supplier";
     import url from "src/config/url";
     import util from "src/common/util";
 export default {
@@ -94,8 +80,10 @@ export default {
 
     },
     data () {
+        console.log("data");
         return {
-            galleryDetailData: {},
+            page: "galleryDetail",
+            data: {},
             detail: {},
             flag: false,
             map: {
@@ -117,12 +105,17 @@ export default {
         "v-maskerguider": maskerguider,
         "v-maskerdetailerror": maskerdetailerror,
         "v-maskerswiper": maskerswiper,
+        "v-supplier": supplier,
     },
     created () {
-
+        console.log("created");
     },
     mounted () {
-        this.getGalleryDetailData();
+        console.log("mounted");
+        this.getData();
+    },
+    computed: {
+
     },
     methods: {
         handleData () {
@@ -130,16 +123,24 @@ export default {
                 stoneLibId: util.parseUrl(window.location.href).id
             }
         },
-        getGalleryDetailData () {
+        getData () {
             this.$http.get(url.galleryDetail, {
                 params: this.handleData()
             }).then((response) => {
                 if(response.data.status.code == 0) {
-                    this.galleryDetailData = response.data;
+                    console.log("galleryDetail");
+                    this.data = response.data;
+                    console.log(this.data.data.supplier);
+                    this.detail = this.data.data.detail;
+                    this.$store.commit({
+                        type: "data",
+                        key: "galleryDetail",
+                        value: response.data
+                    });
                     this.$nextTick(()=>{
-                        this.fixImageList();
                         this.flag = true;
                     });
+                    this.fixImageList();
                 }else {
                     this.isShowDetailErrorMasker = true;
                 }
@@ -148,7 +149,7 @@ export default {
             });
         },
         fixImageList () {
-            const detail = this.galleryDetailData.data.detail;
+            const detail = this.data.data.detail;
             let assistantImageList = detail.assistantImageList;
             let standardImage = detail.standardImage;
             this.$set(detail, "assistantImageList", [{assistantImageUrl: standardImage}, ...assistantImageList]);
@@ -250,37 +251,6 @@ export default {
     .productor-content{
         margin-top: 10px;
         .content-item{
-            .pic-text-list {
-                .pic-text-item{
-                    overflow: hidden;
-                    margin-top: 30px;
-                    display: flex;
-                    .pic{
-                        width: 280px;
-                    }
-                    .text-wrapper{
-                        flex: 1;
-                        margin-left: 30px;
-                        span{
-                            display: block;
-                            font-size: 22px;
-                            line-height: 42px;
-                        }
-                        .title{
-                            font-size: 28px;
-                        }
-                        .address{
-                            display: flex;
-                            .label{
-                                width: 85px;
-                            }
-                            .text{
-                                flex: 1;
-                            }
-                        }
-                    }
-                }
-            }
             .variety-list{
                 overflow: hidden;
                 .variety-item{

@@ -105,7 +105,7 @@ export default {
             picListData: {},
             src: "",
             searchPic: false,
-            page: "boutiqueDetail",
+            page: "searchDetail",
             time: 1,
             bar: "propose-price"
         }
@@ -163,19 +163,18 @@ export default {
         },
         getData () {
             console.log("getData");
-            this.$http.get(url.boutiqueDetail, {
+            this.$http.get(url[this.page], {
                 params: this.handleData()
             }).then((response) => {
                 if(response.data.status.code == 0) {
-                    this.boutiqueDetailData = response.data;
+                    this.searchDetailData = response.data;
                     console.log("boutiqueDetailData");
                     this.$store.commit({
                         type: "dataList",
                         key: this.page,
                         value: response.data
                     });
-                    this.detail = this.boutiqueDetailData.data.detail;
-//                    this.picListData = response.data.data.similar;
+                    this.detail = this.searchDetailData.data.detail;
                     this.initBundleControlSwiper();
                     this.$nextTick(()=>{
                         this.flag = true;
@@ -204,14 +203,10 @@ export default {
             this.controlItemCurrentIndex = index;
         },
         initBundleControlSwiper () {
-            console.log("initBundleControlSwiper");
-
-                console.log("initBundleControlSwiper-$nextTick");
-                let swiper2 = new Swiper('.swiper-container2', {
-                    slidesPerView: 'auto',
-                    grabCursor: true
-                });
-
+            let swiper2 = new Swiper('.swiper-container2', {
+                slidesPerView: 'auto',
+                grabCursor: true
+            });
         },
         packetIndex (index) {
             this.packetCurrentIndex = index;

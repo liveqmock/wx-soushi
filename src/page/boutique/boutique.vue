@@ -100,8 +100,7 @@
                     </div>
                 </div>
             </div>
-
-            <v-piclist :pic-list-data="picListData" @get-data="getData" :refresh="refresh" v-if="flag" :boutique="true" :src="src" :search-pic="searchPic"></v-piclist>
+            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="searchPic"></v-piclist>
         </div>
     </div>
 </template>
@@ -110,7 +109,7 @@
 import search from "src/components/search/search";
 import piclist from "src/components/piclist/piclist";
 import loadingbar from "src/components/loadingbar/loadingbar";
-import * as url from "src/config/url";
+import url from "src/config/url";
 
 export default {
     components: {
@@ -134,22 +133,19 @@ export default {
             selectTextStatus: ["品种", "颜色", "规格", "价格"],
             isShowMasker: false,
             flag: false,
-            refresh: false,
             isNoData: false,
             isNoResult: false,
-            loadingStatus: {
-                loading: true,
-                loaded: false,
-            },
             src: "",
-            searchPic: false
+            searchPic: false,
+            page: "boutique",
+            time: 3
         }
     },
     created () {
         console.log("created");
     },
     mounted () {
-        this.getBoutiqueData();
+        this.getData();
     },
     methods:{
         selectControl (index, ev) {
@@ -175,7 +171,10 @@ export default {
             this.$set(this.selectItemStatus, parentIndex, index);
             this.selectControl(parentIndex, ev);
             this.selectText(parentIndex, ev);
-            this.getBoutiqueData (this.handleData());
+            this.getData(this.handleData(), {
+                clean: true
+            });
+            this.hideMasker();
         },
         selectText (parentIndex, ev) {
             var arr = ["品种", "颜色", "规格", "价格"];
@@ -186,11 +185,15 @@ export default {
             this.selectTextStatus[parentIndex] = text;
         },
         selectFormat () {
-            this.getBoutiqueData (this.handleData());
+            this.getData(this.handleData(), {
+                clean: true
+            });
             this.hideMasker();
         },
         selectPrice () {
-            this.getBoutiqueData (this.handleData());
+            this.getData(this.handleData(),{
+                clean: true
+            });
             this.hideMasker();
         },
         showMasker () {
@@ -220,17 +223,27 @@ export default {
                 orderBy: 0
             }
         },
-        getBoutiqueData(data) {
+        getData(data, options) {
             let self = this;
-            this.flag = false;
-            this.$http.get(url.boutique, {
+            this.$http.get(url[this.page], {
                 params: data || this.handleData()
             }).then((response) => {
                 if(response.data.data.list.length == 0) {
                     this.isNoData = true;
                 }else {
+                    this.flag = false;
+                    if(options && options.clean) {
+                        this.$store.commit({
+                            type: "cleanDataList",
+                            key: this.page,
+                        });
+                    }
+                    this.$store.commit({
+                        type: "dataList",
+                        key: this.page,
+                        value: response.data
+                    });
                     self.$nextTick(()=> {
-                        this.picListData = response.data;
                         this.flag = true;
                     });
                 }
@@ -241,34 +254,17 @@ export default {
         },
         getSearchData (data) {
             this.hideMasker();
-            this.getBoutiqueData(Object.assign({}, this.handleData(), data));
-        },
-        getData () {
-            this.$http.get(url.boutique, {
-                params: this.handleData()
-            }).then((response) => {
-                if(response.data.data.list.length == 0) {
-                    this.isNoData = true;
-                }else {
-                    this.flag = false;
-                    let list = this.picListData.data.list;
-                    list = list.concat(response.data.data.list);
-                    this.$nextTick(()=>{
-                        this.$set(this.picListData.data, "list", list);
-                        this.flag = true;
-                        this.refresh = true;
-                    });
-                }
-            }).catch((response) => {
-                console.log('fail');
-                this.isNoResult = true;
+            this.getData(Object.assign({}, this.handleData(), data), {
+                clean: true
             });
         },
         getUploadPicData (data, src) {
             this.hideMasker();
             this.src = src;
             this.searchPic = true;
-            this.getBoutiqueData(data);
+            this.getData(data,{
+                clean: true
+            });
         }
     }
 }

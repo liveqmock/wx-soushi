@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <v-gallerypiclist :gallery-pic-list-data="galleryPicListData" :src="src" @get-data="getData" :refresh="refresh" :refreshCount="refreshCount" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
+            <v-gallerypiclist :time="time" :page="page" :src="src" @get-data="getData" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
         </div>
     </div>
 </template>
@@ -93,13 +93,12 @@ export default {
     },
     data () {
         return {
+            page: "gallery",
             selectControlStatus: [false, false, false],
             selectItemStatus: [0, 0, 0],
             selectTextStatus: ["类别", "颜色", "产地"],
             isShowMasker: false,
             flag: false,
-            refresh: false,
-            refreshCount: 0,
             isNoData: false,
             isNoResult: false,
             loadingStatus: {
@@ -107,15 +106,16 @@ export default {
                 loaded: false,
             },
             src: "",
-            searchPic: false
+            searchPic: false,
+            time: 3,
         }
     },
     created () {
-        console.log("created");
-        this.getGalleryData();
+        console.log("gallery-created");
+        this.getData();
     },
     mounted () {
-        console.log("mounted");
+        console.log("gallery-mounted");
     },
     methods: {
         selectControl (index, ev) {
@@ -141,10 +141,12 @@ export default {
             this.$set(this.selectItemStatus, parentIndex, index);
             this.selectControl(parentIndex, ev);
             this.selectText(parentIndex, ev);
-            this.getGalleryData({
+            this.getData({
                 kind: this.selectItemStatus[0],
                 color: this.selectItemStatus[1],
                 country: this.selectItemStatus[2]
+            }, {
+                clean: true
             });
         },
         selectText (parentIndex, ev) {
@@ -164,67 +166,57 @@ export default {
                 this.selectControlStatus[i] = false;
             }
         },
-        handleData () {
-            return {
+        handleData (data) {
+            return data || {
                 pageSize:8,
                 pageCurrent:1
             }
         },
-        getGalleryData(data) {
+        getData(data, options) {
             let self = this;
-            this.flag = false;
             this.$http.get(url.gallery, {
                 params: data || this.handleData()
-            }).then((response) => {
-                console.log("getGalleryData");
-                if(response.data.data.list.length == 0) {
-                    this.isNoData = true;
-                }else {
-                    self.$nextTick(()=> {
-                        this.galleryPicListData = response.data;
-                        this.flag = true;
-                    });
-                }
-            }).catch((response) => {
-                console.log('fail');
-                this.isNoResult = true;
-            });
-        },
-        getSearchData (data) {
-            this.hideMasker();
-            this.getGalleryData(Object.assign({}, data, {
-                kind: this.selectItemStatus[0],
-                color: this.selectItemStatus[1],
-                country: this.selectItemStatus[2]
-            }));
-        },
-        getData () {
-            this.$http.get(url.gallery, {
-                params: this.handleData()
             }).then((response) => {
                 if(response.data.data.list.length == 0) {
                     this.isNoData = true;
                 }else {
                     this.flag = false;
-                    let list = this.galleryPicListData.data.list;
-                    list = list.concat(response.data.data.list);
-                    this.$set(this.galleryPicListData.data, "list", list);
+                    if(options && options.clean) {
+                        this.$store.commit({
+                            type: "cleanDataList",
+                            key: this.page,
+                        });
+                    }
+                    this.$store.commit({
+                        type: "dataList",
+                        key: this.page,
+                        value: response.data
+                    });
                     this.$nextTick(()=>{
                         this.flag = true;
-                        this.refresh = true;
-                        this.refreshCount++;
-                    });
+                    })
                 }
             }).catch((response) => {
-                console.log('fail');
                 this.isNoResult = true;
+            });
+        },
+        getSearchData (data) {
+            this.hideMasker();
+            this.getData(Object.assign({}, data, {
+                kind: this.selectItemStatus[0],
+                color: this.selectItemStatus[1],
+                country: this.selectItemStatus[2]
+            }),{
+                clean: true
             });
         },
         getUploadPicData (data, src) {
             this.hideMasker();
             this.src = src;
             this.searchPic = true;
-            this.getGalleryData(data);
+            this.getData(data, {
+                clean: true
+            });
         }
     }
 }

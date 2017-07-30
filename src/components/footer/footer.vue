@@ -86,6 +86,11 @@ export default {
                 flex: 1;
                 text-align: center;
                 position: relative;
+                &.active{
+                    .text {
+                        color: #03A3E7;
+                    }
+                }
                 .icon {
                     display: inline-block;
                     width: 44px;

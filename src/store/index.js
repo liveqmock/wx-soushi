@@ -18,7 +18,7 @@ const store = new Vuex.Store({
         url: url
     },
     getters: {
-        islogin: state=> state.islogin
+
     },
     mutations: {
         login (state) {
@@ -29,6 +29,19 @@ const store = new Vuex.Store({
         },
         employVerify (state) {
             state.isEmployVerify = true;
+        },
+        data (state, obj) {
+            state.data[obj.key] = obj.value;
+        },
+        dataList (state, obj) {
+            if(!state.data[obj.key]) {
+                state.data[obj.key] = [];
+            }
+            state.data[obj.key].push(obj.value);
+        },
+        cleanDataList (state, obj) {
+            console.log("cleanDataList");
+            state.data[obj.key] = [];
         }
     },
     actions: {

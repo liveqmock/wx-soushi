@@ -31,20 +31,6 @@
     import showsearchpic from "src/components/showsearchpic/showsearchpic";
     export default {
         props: {
-            galleryPicListData: {
-                type: Object,
-                default () {
-                    return {}
-                }
-            },
-            refresh: {
-                type: Boolean,
-                default: false
-            },
-            refreshCount: {
-                type: Number,
-                default: 0
-            },
             src: {
                 type: String,
                 default: ""
@@ -52,11 +38,18 @@
             searchPic: {
                 type: Boolean,
                 default: false
+            },
+            page: {
+                type: String,
+                default: ""
+            },
+            time: {
+                type: Number,
+                default: 1
             }
         },
         data () {
             return {
-                list: this.galleryPicListData.data.list,
                 loading: false,
                 scroll: {},
                 loadingStatus: {
@@ -70,27 +63,31 @@
 
         },
         created () {
-            this.initList();
-            this.fixImageList();
             this.initSearchPic();
         },
         mounted () {
             this.initScroll();
-            if(this.refresh) {
-                let showSearchPicClientHeight = 0;
-                if(this.searchPic) {
-                    showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
+        },
+        computed: {
+            list () {
+                let dataList = this.$store.state.data[this.page];
+                let list = [];
+                for(let i = 0, l = dataList.length; i < l; i++) {
+                    list = list.concat(dataList[i].data.list);
                 }
-                this.scroll.refresh();
-                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
+
+                for(let i = 0, l = dataList[dataList.length - 1].data.list.length; i < l; i++) {
+                    let item = dataList[dataList.length - 1].data.list[i];
+                    let assistantImageList = item.assistantImageList;
+                    let standardImage = item.standardImage;
+                    item.currentIndex = 0;
+                    item.assistantImageList = [{assistantImageUrl: standardImage}, ...assistantImageList];
+                }
+
+                return list;
             }
         },
         methods: {
-            initList () {
-                this.list.forEach((item, index) => {
-                    this.$set(item, 'currentIndex', 0)
-                })
-            },
             initScroll () {
                 let picList = this.$refs["pic-list"];
                 let scroll = new IScroll(picList, {
@@ -104,11 +101,23 @@
                 var self = this;
                 scroll.on("scrollEnd", function () {
                     if(this.y <= this.maxScrollY) {
-                        console.log(this.y, this.maxScrollY);
-                        self.$set(self.loadingStatus, "loading", false);
-                        self.$set(self.loadingStatus, "loaded", true);
-                        self.reloadData();
-                        self.loading = false;
+                        let length = self.$store.state.data[self.page].length;
+                        if(self.time == 1 || length == self.time){
+                            self.$set(self.loadingStatus, "loading", false);
+                            self.$set(self.loadingStatus, "loaded", true);
+                        }
+                        setTimeout(()=>{
+                            if(self.time == 1 || length == self.time) {
+                                self.scroll.refresh();
+                                self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - (document.querySelector(".nav-footer") && document.querySelector(".nav-footer").clientHeight || 0) - 20, 500);
+                            }else{
+                                self.reloadData();
+                            }
+                            setTimeout(()=>{
+                                self.$set(self.loadingStatus, "loading", true);
+                                self.$set(self.loadingStatus, "loaded", false);
+                            }, 500);
+                        }, 300);
                     }
                 });
 
@@ -119,20 +128,24 @@
                 });
 
                 this.scroll = scroll;
+
+                let length = this.$store.state.data[this.page].length;
+                if(length > 1 && length <= this.time) {
+                    let showSearchPicClientHeight = 0;
+                    if(this.searchPic) {
+                        showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
+                    }
+                    this.scroll.refresh();
+                    this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
+                }
             },
             reloadData () {
-                this.$emit("get-data", {});
+                this.$emit("get-data", {
+                    refresh: true
+                });
             },
             selectSmallPic(index_imageUrlList, index, ev) {
                 this.list[index].currentIndex = index_imageUrlList
-            },
-            fixImageList () {
-                const list = this.list;
-                for(let i = this.refreshCount * 8, l = list.length; i < l; i++) {
-                    let assistantImageList = list[i].assistantImageList;
-                    let standardImage = list[i].standardImage;
-                    this.$set(list[i], "assistantImageList", [{assistantImageUrl: standardImage}, ...assistantImageList]);
-                }
             },
             initSearchPic () {
                 let list = this.list;

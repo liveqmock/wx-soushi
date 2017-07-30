@@ -1,23 +1,9 @@
 <template>
     <div>
         <div class="header">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="./icon/banner_01.jpg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./icon/banner_02.jpg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./icon/banner_03.jpg" alt="">
-                    </div>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
+            <v-swiperfocus></v-swiperfocus>
         </div>
-        <div class="wraper">
+        <div class="wrapper">
             <div class="container">
                 <v-navlist></v-navlist>
                 <v-divider></v-divider>
@@ -31,7 +17,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <v-piclist :pic-list-data="picListData" @get-data="getData" v-if="flag" :refresh="refresh" :index="true"></v-piclist>
+                    <v-piclist :bar="bar" :time="time" :page="page" @get-data="getData" v-if="flag"></v-piclist>
                 </div>
             </div>
         </div>
@@ -46,6 +32,7 @@
     import footer from 'src/components/footer/footer';
     import piclist from 'src/components/piclist/piclist';
     import divider from 'src/components/divider/divider';
+    import swiperfocus from 'src/components/swiperfocus/swiperfocus';
     import Vue from 'vue';
     import * as url from "src/config/url";
     import { mapMutations } from "vuex";
@@ -53,37 +40,30 @@
     export default {
         data() {
             return {
-                picListData: {},
                 flag: false,
-                refresh: false,
+                page: "index",
+                time: 1,
+                bar: "nav-footer"
             }
         },
         created () {
-
+            console.log("index-created");
         },
         components: {
             'v-navlist': navlist,
             'v-footer': footer,
             'v-piclist': piclist,
             'v-divider': divider,
+            'v-swiperfocus': swiperfocus,
         },
         mounted () {
-            this.$nextTick(()=> {
-                console.log(1);
-                this.initSwiper();
-                this.getMyProfileData();
-            });
+            console.log("index-mounted");
+            this.getMyProfileData();
+        },
+        destroyed() {
+            console.log("index-destroyed");
         },
         methods: {
-            initSwiper () {
-                const swiper = new Swiper('.swiper-container', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-//                    loop: true,
-//                    autoplay: 2000,
-//                    speed: 1000
-                })
-            },
             handleData () {
                 return {
                     kind: 0,
@@ -114,62 +94,39 @@
                             this.$store.commit("employVerify");
                         }
                     }
-                    this.getQueryData();
+                    this.getData();
                 }).catch((response) => {
                     console.log('fail');
                 });
             },
-            getQueryData() {
+            getData() {
                 this.$http.get(url.index, {
                     params: this.handleData()
                 }).then((response) => {
-                    console.log("data");
-                    this.picListData = response.data;
                     this.flag = true;
+                    console.log("getData");
+                    this.$store.commit({
+                        type: "dataList",
+                        key: this.page,
+                        value: response.data
+                    });
                 }).catch((response) => {
                     console.log('fail');
                 });
-            },
-            getData () {
-
             },
         }
     }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
     @import "../../style/mixin.scss";
     html, body {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
-    .header {
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-            .swiper-slide {
-                font-size: 18px;
-                display: flex;
-                height: 328px;
-                img {
-                    width: 100%;
-                }
-            }
-            .swiper-pagination-bullet {
-                width: 10px;
-                height: 10px;
-                background: #fff;
-            }
-            .swiper-pagination-bullet-active {
-                background: #fff;
-                width: 20px;
-                border-radius: 5px;
-            }
-        }
-    }
 
-    .wraper {
+    .wrapper {
         .container {
             .boutique-title {
                 padding: 20px 20px;
