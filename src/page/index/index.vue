@@ -87,7 +87,7 @@
                     params: {}
                 }).then((response) => {
                     var data = response.data;
-                    if(data.status.code == 10) {
+                    if(data.status.code == 0) {
                         this.$store.commit("login");
                         this.$store.commit("showPrice");
                         if(data.employVerify == 2 || data.employVerify == 5) {

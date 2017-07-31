@@ -3,13 +3,13 @@
         <div class="container">
             <div class="upload">
                 <div class="upload-wrapper">
-                    <div class="pic">
-                        <img src="" alt="">
-                        <div class="close"></div>
+                    <div class="pic" v-show="src">
+                        <img :src="src" alt="">
+                        <div class="close" @click="closeUpload"></div>
                     </div>
-                    <div class="upload-area">
+                    <div class="upload-area" v-show="!src">
                         <img src="./icon/icon_photos.png" width="100%" height="100%" alt="">
-                        <input type="file" id="fileInput" class="file" accept="image/jpeg,image/png,image/jpg">
+                        <input type="file" id="fileInput" @change="upload($event)" class="file" accept="image/jpeg,image/png,image/jpg">
                     </div>
                 </div>
             </div>
@@ -35,13 +35,7 @@
                     </div>
                     <div class="number">
                         <span class="label">数&nbsp;&nbsp;&nbsp;量：</span>
-                        <div class="count">
-                            <i class="min">-</i>
-                            <span>
-                                <input type="text" placeholder="0">
-                            </span>
-                            <i class="add">+</i>
-                        </div>
+                        <v-count @min="min" @add="add" :num="1" :counter="counter1" @change="change"></v-count>
                     </div>
                     <div class="custom">
                         <span class="label">定&nbsp;&nbsp;&nbsp;制：</span>
@@ -54,17 +48,12 @@
                                 <input type="text" placeholder="300">
                             </div>
                         </div>
-                        <div class="count">
-                            <i class="min">-</i>
-                            <span>
-                                <input type="text" placeholder="0">
-                            </span>
-                            <i class="add">+</i>
-                        </div>
+                        <v-count @min="min" @add="add" :num="2" :counter="counter2"></v-count>
                     </div>
                 </div>
                 <v-divider></v-divider>
                 <v-receiveinfo :page="page" v-if="flag"></v-receiveinfo>
+                <v-maskertips :tips="tips" v-show="tips"></v-maskertips>
                 <v-submit :text="'提交'"></v-submit>
             </div>
         </div>
@@ -75,18 +64,27 @@
     import divider from "src/components/divider/divider";
     import receiveinfo from "src/components/receiveinfo/receiveinfo";
     import submit from "src/components/submit/submit";
+    import maskertips from "src/components/maskertips/maskertips";
+    import count from "src/components/count/count";
+    import compressImg from "src/plugins/processImg";
     import url from "src/config/url";
 export default{
     data () {
         return {
             page: "send",
             flag: false,
+            tips: "",
+            src: "",
+            counter1: "",
+            counter2: "",
         }
     },
     components: {
         "v-divider": divider,
         "v-receiveinfo": receiveinfo,
         "v-submit": submit,
+        "v-maskertips": maskertips,
+        "v-count": count,
     },
     created() {
 
@@ -116,6 +114,38 @@ export default{
                 this.isNoResult = true;
             });
         },
+        upload (ev) {
+            let self = this;
+            this.tips = "上传中...";
+            compressImg(960, function(resizeData, src){
+                let $form_data = '';
+                //重新赋值
+                $form_data = new FormData();
+                $form_data.append("searchImage", resizeData);
+                $form_data.append("pageSize", 8);
+
+                self.src = src;
+                self.tips = "";
+            }, ev.target);
+        },
+        closeUpload () {
+            this.src = "";
+        },
+        min (index) {
+            this["counter" + index]--;
+            if(this["counter" + index] <= 0) {
+                this["counter" + index ] = 0;
+            }
+        },
+        add (index) {
+            this["counter" + index]++;
+        },
+        change(index, counter) {
+            this["counter" + index] = counter;
+        },
+        submit () {
+
+        }
     }
 }
 </script>
@@ -127,6 +157,13 @@ export default{
             background: #f7f7f7;
             height: 560px;
             position: relative;
+            .pic {
+                height: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
             .close{
                 @include background("icon_delete.png");
                 width: 54px;
@@ -202,42 +239,12 @@ export default{
         .number {
             display: flex;
             margin-bottom: 30px;
-            .count {
-                font-size: 26px;
-                color: #999;
-                line-height: 63px;
-                .min, .add{
-                    display: inline-block;
-                    width: 40px;
-                    height: 40px;
-                    border: 1px solid #e2e2e2;
-                    border-radius: 50%;
-                    text-align: center;
-                    background: #fff;
-                    vertical-align: middle;
-                    line-height: 40px;
-                    padding: 5px;
-                }
-                span {
-                    display: inline-block;
-                    width: 80px;
-                    border-bottom: 1px solid #9a9a9a;
-                    color: #333;
-                    text-align: center;
-                    input {
-                        display: inline-block;
-                        width: 80px;
-                        color: #333;
-                        text-align: center;
-                        border: 0;
-                    }
-                }
-            }
         }
         .custom {
             display: flex;
             margin-bottom: 30px;
             .custom-list{
+                margin-right: 75px;
                 width: 286px;
                 display: flex;
                 .text{
@@ -254,43 +261,13 @@ export default{
                     font-size: 28px;
                     line-height: 28px;
                     text-align: center;
-                    height: 64px;
+                    height: 62px;
                     width: 100%;
-                }
-            }
-            .count {
-                font-size: 26px;
-                color: #999;
-                line-height: 63px;
-                margin-left: 75px;
-                .min, .add{
-                    display: inline-block;
-                    width: 40px;
-                    height: 40px;
-                    border: 1px solid #e2e2e2;
-                    border-radius: 50%;
-                    text-align: center;
-                    background: #fff;
-                    vertical-align: middle;
-                    line-height: 40px;
-                    padding: 5px;
-                }
-                span {
-                    display: inline-block;
-                    width: 80px;
-                    border-bottom: 1px solid #9a9a9a;
-                    color: #333;
-                    text-align: center;
-                    input {
-                        display: inline-block;
-                        width: 80px;
-                        color: #333;
-                        text-align: center;
-                        border: 0;
-                    }
                 }
             }
         }
     }
-
+    ::-webkit-input-placeholder{
+        color: #999;
+    }
 </style>
