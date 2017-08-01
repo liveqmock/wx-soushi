@@ -1,5 +1,5 @@
 <template>
-    <div class="button">{{text}}</div>
+    <div class="button" @click="submit">{{text}}</div>
 </template>
 
 <script>
@@ -8,6 +8,11 @@ export default {
         text: {
             type: String,
             default: ""
+        }
+    },
+    methods: {
+        submit() {
+            this.$emit("submit");
         }
     }
 }

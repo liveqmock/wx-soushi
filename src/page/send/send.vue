@@ -17,7 +17,7 @@
                 <div class="send-info">
                     <div class="name">
                         <span class="label">品&nbsp;&nbsp;&nbsp;种：</span>
-                        <input type="text" placeholder="请输入品种">
+                        <input type="text" placeholder="请输入品种" ref="name-input">
                     </div>
                     <div class="format">
                         <span class="label">规&nbsp;&nbsp;&nbsp;格：</span>
@@ -35,26 +35,27 @@
                     </div>
                     <div class="number">
                         <span class="label">数&nbsp;&nbsp;&nbsp;量：</span>
-                        <v-count @min="min" @add="add" :num="1" :counter="counter1" @change="change"></v-count>
+                        <v-count :num="1" @change="change"></v-count>
                     </div>
                     <div class="custom">
                         <span class="label">定&nbsp;&nbsp;&nbsp;制：</span>
                         <div class="custom-list">
                             <div class="custom-item">
-                                <input type="text" placeholder="300">
+                                <input type="text" placeholder="300" ref="width">
                             </div>
                             <span class="text">×</span>
                             <div class="custom-item">
-                                <input type="text" placeholder="300">
+                                <input type="text" placeholder="300" ref="length">
                             </div>
                         </div>
-                        <v-count @min="min" @add="add" :num="2" :counter="counter2"></v-count>
+                        <v-count :num="2" @change="change"></v-count>
                     </div>
                 </div>
                 <v-divider></v-divider>
-                <v-receiveinfo :page="page" v-if="flag"></v-receiveinfo>
+                <v-receiveinfo :page="page" v-if="flag" @changeTextArea="changeTextArea" @defaultAddress="defaultAddress"></v-receiveinfo>
                 <v-maskertips :tips="tips" v-show="tips"></v-maskertips>
-                <v-submit :text="'提交'"></v-submit>
+                <v-maskersuccess v-show="isSuccess"></v-maskersuccess>
+                <v-submit :text="'提交'" @submit="submit"></v-submit>
             </div>
         </div>
     </div>
@@ -66,8 +67,10 @@
     import submit from "src/components/submit/submit";
     import maskertips from "src/components/maskertips/maskertips";
     import count from "src/components/count/count";
+    import maskersuccess from "src/components/maskersuccess/maskersuccess";
     import compressImg from "src/plugins/processImg";
     import url from "src/config/url";
+    import util from "src/common/util";
 export default{
     data () {
         return {
@@ -77,6 +80,10 @@ export default{
             src: "",
             counter1: "",
             counter2: "",
+            textareaValue: "",
+            defaultAddressCurrentIndex: -1,
+            deliveryId: "",
+            isSuccess: false,
         }
     },
     components: {
@@ -85,6 +92,7 @@ export default{
         "v-submit": submit,
         "v-maskertips": maskertips,
         "v-count": count,
+        "v-maskersuccess": maskersuccess,
     },
     created() {
 
@@ -131,20 +139,73 @@ export default{
         closeUpload () {
             this.src = "";
         },
-        min (index) {
-            this["counter" + index]--;
-            if(this["counter" + index] <= 0) {
-                this["counter" + index ] = 0;
-            }
-        },
-        add (index) {
-            this["counter" + index]++;
-        },
         change(index, counter) {
             this["counter" + index] = counter;
         },
         submit () {
+            let image = this.src;
+            let stoneName = this.$refs["name-input"].value;
+            let remark = this.textareaValue;
+            let deliveryId = this.id;
+            let counter1 = this.counter1;
+            let counter2 = this.counter2;
+            let list = [];
+            if(!image && !stoneName) {
+                util.toast(util.tips.uploadPicOrWriteTemplate, this);
+                return;
+            }
 
+            if(this.defaultAddressCurrentIndex < 0) {
+                util.toast(util.tips.chooseAddress, this);
+                return;
+            }
+
+            if(!counter1 && !counter2) {
+                util.toast(util.tips.templateNumber, this);
+                return;
+            }
+
+            if(counter1 > -1) {
+                list.push({
+                    amount: counter1,
+                    length: 150,
+                    width: 150
+                });
+            }
+
+            if(counter2 > -1) {
+                list.push({
+                    amount: counter1,
+                    length: this.$refs.length.value,
+                    width: this.$refs.width.value
+                });
+            }
+
+            this.$http.get(url.delivery, {
+                params: JSON.stringify({
+                    deliveryId: deliveryId,
+                    image: image,
+                    list: list,
+                    remark: remark,
+                    stoneName: stoneName
+                })
+            }).then((response) => {
+                if(response.data.status.code == 0) {
+                    util.toastSuccess(function () {
+
+                    }, this);
+                }
+            }).catch((response) => {
+                util.toast(util.tips.errorConnect);
+            });
+        },
+        changeTextArea (value) {
+            console.log(value);
+            this.textareaValue = value;
+        },
+        defaultAddress (index, id) {
+            this.defaultAddressCurrentIndex = index;
+            this.id = id;
         }
     }
 }

@@ -7,7 +7,7 @@
             </span>
         </div>
         <div class="address-list">
-            <div class="address-item" v-for="(item ,index) in list">
+            <div class="address-item" v-for="(item ,index) in list" @click="defaultAddress(index, item.id)">
                 <div class="address-item-wrapper">
                     <p v-show="item.defaulted">默认地址</p>
                     <p class="info">
@@ -28,7 +28,7 @@
                 </span>
             </div>
             <div class="textarea">
-                <textarea placeholder="请输入备注"></textarea>
+                <textarea placeholder="请输入备注" v-model="textareaValue"></textarea>
             </div>
         </div>
     </div>
@@ -38,11 +38,49 @@
 export default {
     props:{
         page: String,
-        default: ""
+        default: "",
     },
     data () {
         return {
-            list: this.$store.state.data[this.page].data.list
+            list: this.$store.state.data[this.page].data.list,
+            textareaValue: "",
+            defaultAddressCurrentIndex: -1,
+        }
+    },
+    watch: {
+        textareaValue (val, oldVal) {
+            this.$emit("changeTextArea", val);
+        }
+    },
+    created () {
+        this.countDefaultAddressCurrentIndex();
+    },
+    methods:{
+        countDefaultAddressCurrentIndex () {
+            for(let i = 0, l = this.list.length; i < l; i ++) {
+                let item = this.list[i];
+                if(item.defaulted) {
+                    this.defaultAddressCurrentIndex = i;
+                    break;
+                }
+            }
+            this.$emit("defaultAddress", this.defaultAddressCurrentIndex);
+        },
+        defaultAddress (index, id) {
+            let sortItem = {};
+            for(let i = 0, l = this.list.length; i < l; i ++) {
+                let item = this.list[i];
+                if(i == index) {
+                    item.defaulted = true;
+                    this.defaultAddressCurrentIndex = index;
+                    sortItem = item;
+                }else if(item.defaulted){
+                    item.defaulted = false;
+                }
+            }
+//            this.list.unshift(sortItem);
+//            this.list.splice(index + 1, 1);
+            this.$emit("defaultAddress", this.defaultAddressCurrentIndex, id);
         }
     }
 }

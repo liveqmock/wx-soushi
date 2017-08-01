@@ -12,7 +12,7 @@ export default {
             return target;
         }
         // 如果最后的参数是布尔值，则从参数数组args中删除。设置为数组applyParam的第三个元素
-        if (typeof (deep = args[len - 1]) === 'boolean') {
+        if (typeof (deep = args[len - 1]) === "boolean") {
             args.pop();
             applyParam[2] = deep;
         }
@@ -28,7 +28,7 @@ export default {
         } else {
             for (var key in src) {           // 遍历源对象src, 检测它的自定义属性key。如果deep为true，表示支持拷贝对象最底层的属性值，并且key值为对象，调用this.extend(target, src, deep)方法。否则将源对象属性/值深度拷贝到目标对象上。
                 if (src.hasOwnProperty(key)) {
-                    if (deep === true && Object.prototype.toString.call(src[key]) === '[object Object]') {
+                    if (deep === true && Object.prototype.toString.call(src[key]) === "[object Object]") {
                         this.extend(target, src[key], true);
                     } else {
                         target[key] = src[key];
@@ -54,7 +54,7 @@ export default {
 
         for (var i = 0, l = list.length; i < l; i++) {
 
-            item = list[i].split('=');
+            item = list[i].split("=");
             prop[item[0]] = item[1];
         }
 
@@ -67,23 +67,23 @@ export default {
 
     setUrlParams: function (url, key, value) {
         var hasSymbol, origin = url, prop = {},
-            symbol = '?';
+            symbol = "?";
 
-        hasSymbol = ~url.indexOf('?');
+        hasSymbol = ~url.indexOf("?");
 
         if (hasSymbol) {
             url = url.match(/(.+?)\?/)[1];
         }
 
-        if (typeof key === 'string') {
+        if (typeof key === "string") {
             prop[key] = value;
         }
 
-        if (typeof key === 'object') {
+        if (typeof key === "object") {
             prop = key;
         }
 
-        if (Object.prototype.toString.call(prop) === '[object Object]') {
+        if (Object.prototype.toString.call(prop) === "[object Object]") {
 
             target = this.parseUrl(origin);
 
@@ -91,13 +91,13 @@ export default {
 
             for (var i in prop) {
                 if (prop.hasOwnProperty(i)) {
-                    hasSymbol = ~url.indexOf('?');
+                    hasSymbol = ~url.indexOf("?");
 
                     if (hasSymbol) {
-                        symbol = '&';
+                        symbol = "&";
                     }
 
-                    url += symbol + i + '=' + prop[i];
+                    url += symbol + i + "=" + prop[i];
                 }
             }
         }
@@ -110,8 +110,8 @@ export default {
     },
 
     checkConnect: function () {
-        var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {type: 'unknown'};
-        var type_text = ['unknown', 'ethernet', 'wifi', '2g', '3g', '4g', 'none'];
+        var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {type: "unknown"};
+        var type_text = ["unknown", "ethernet", "wifi", "2g", "3g", "4g", "none"];
 
         if (typeof(connection.type) == "number") {
             connection.type_text = type_text[connection.type];
@@ -120,15 +120,15 @@ export default {
         }
         if (typeof(connection.bandwidth) == "number") {
             if (connection.bandwidth > 10) {
-                connection.type = 'wifi';
+                connection.type = "wifi";
             } else if (connection.bandwidth > 2) {
-                connection.type = '3g';
+                connection.type = "3g";
             } else if (connection.bandwidth > 0) {
-                connection.type = '2g';
+                connection.type = "2g";
             } else if (connection.bandwidth == 0) {
-                connection.type = 'none';
+                connection.type = "none";
             } else {
-                connection.type = 'unknown';
+                connection.type = "unknown";
             }
         }
         return connection.type;
@@ -165,34 +165,49 @@ export default {
     timeout: 10000,
 
     tips: {
-        readProtocol: '请阅读《搜石网用户注册协议》',
-        loginSuccess: '登录成功',
-        submitSuccess: '提交成功',
-        submitFail: '提交失败',
-        emptyUserName: '请输入用户名',
-        emptyContact: '请输入联系人',
-        emptyPhone: '请输入手机号',
-        emptyPassword: '请输入密码',
-        emptyCode: '请输入验证码',
-        emptyCompanyName: '请输入公司名',
-        emptyName: '请输入姓名',
-        emptyStreet: '请输入街道',
-        emptyOldPassword: '请输入原密码',
-        emptyNewPassword: '请输入新密码',
-        correctPhone: '请输入正确的手机号',
-        atLeastSixPhoneNumber: '密码至少6位字符',
-        comprisePassword: '密码由字母，数字，下划线组成',
-        differentPassword: '两次输入密码不一致',
-        errorPhoneOrUserName: '用户名或密码错误',
-        errorConnect: '网络或者服务出错，请稍后再试',
-        loadingFail: '没有网络，加载失败',
-        unLoginUser: '请先登录',
-        deleteSuccess: '删除成功',
-        selectProvince: '请选择省份',
-        selectCity: '请选择地级市',
-        please: '功能暂未开放，敬请期待',
-        templateNumber: '请填写样板数量',
-        uploadPicOrWriteTemplate: '请上传图片或填写品种',
-        chooseAddress: '请选择收货地址'
+        readProtocol: "请阅读《搜石网用户注册协议》",
+        loginSuccess: "登录成功",
+        submitSuccess: "提交成功",
+        submitFail: "提交失败",
+        emptyUserName: "请输入用户名",
+        emptyContact: "请输入联系人",
+        emptyPhone: "请输入手机号",
+        emptyPassword: "请输入密码",
+        emptyCode: "请输入验证码",
+        emptyCompanyName: "请输入公司名",
+        emptyName: "请输入姓名",
+        emptyStreet: "请输入街道",
+        emptyOldPassword: "请输入原密码",
+        emptyNewPassword: "请输入新密码",
+        correctPhone: "请输入正确的手机号",
+        atLeastSixPhoneNumber: "密码至少6位字符",
+        comprisePassword: "密码由字母，数字，下划线组成",
+        differentPassword: "两次输入密码不一致",
+        errorPhoneOrUserName: "用户名或密码错误",
+        errorConnect: "网络或者服务出错，请稍后再试",
+        loadingFail: "没有网络，加载失败",
+        unLoginUser: "请先登录",
+        deleteSuccess: "删除成功",
+        selectProvince: "请选择省份",
+        selectCity: "请选择地级市",
+        please: "功能暂未开放，敬请期待",
+        templateNumber: "请填写样板数量",
+        uploadPicOrWriteTemplate: "请上传图片或填写品种",
+        chooseAddress: "请选择收货地址"
+    },
+
+    toast (tips, context) {
+        context.tips = tips;
+        setTimeout(()=>{
+            context.tips = "";
+        }, this.loadDataTime);
+    },
+
+    toastSuccess (callback, context) {
+        context.isSuccess = true;
+        setTimeout(()=>{
+            callback();
+            context.isSuccess = false;
+        }, this.loadDataTime);
     }
-}
+};

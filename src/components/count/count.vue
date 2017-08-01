@@ -2,7 +2,7 @@
     <div class="count">
         <i class="min" :class="{active: minActive}" @click="min">-</i>
         <span>
-            <input type="text" placeholder="0" ref="input" v-model="copyCounter"/>
+            <input type="text" placeholder="0" ref="input" v-model="counter"/>
         </span>
         <i class="add" :class="{active: addActive}" @click="add">+</i>
     </div>
@@ -13,40 +13,36 @@ export default {
     props: {
         num: {
             type: Number
-        },
-        counter: {
-            type: [Number, String]
         }
     },
     data () {
         return {
             minActive: false,
             addActive: false,
-            copyCounter: this.counter
+            counter: "",
         }
     },
     watch: {
         counter (val, oldVal){
-            this.copyCounter = val;
-        },
-        copyCounter (val, oldVal) {
             this.$emit("change", this.num, val);
-        }
+        },
     },
     created () {
-        console.log(this.counter);
-        console.log(this.num);
+
     },
     methods: {
         min () {
-            this.$emit("min", this.num);
-            this["minActive"] = true;
-            this["addActive"] = false;
+            this.counter--;
+            if(this.counter <= 0) {
+                this.counter = 0;
+            }
+            this.minActive = true;
+            this.addActive = false;
         },
         add () {
-            this.$emit("add", this.num);
-            this["minActive"] = false;
-            this["addActive"] = true;
+            this.counter++;
+            this.minActive = false;
+            this.addActive = true;
         }
     }
 }
@@ -87,5 +83,8 @@ export default {
                 border: 0;
             }
         }
+    }
+    ::-webkit-input-placeholder {
+        color: #999;
     }
 </style>
