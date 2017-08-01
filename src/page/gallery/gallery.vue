@@ -84,7 +84,8 @@
     import search from "src/components/search/search";
     import gallerypiclist from "src/components/gallerypiclist/gallerypiclist";
     import loadingbar from "src/components/loadingbar/loadingbar";
-    import * as url from "src/config/url";
+    import url from "src/config/url";
+    import util from "src/common/util";
 export default {
     components: {
         "v-search": search,
@@ -108,14 +109,24 @@ export default {
             src: "",
             searchPic: false,
             time: 3,
+            prevId: "",
+            loadPrevIdOnce: false,
         }
     },
     created () {
-        console.log("gallery-created");
-        this.getData();
+        this.getPrevId();
+        if(this.prevId) {
+            this.getData({
+                pageSize:8,
+                pageCurrent:1,
+                prevId: this.prevId
+            });
+        }else {
+            this.getData();
+        }
     },
     mounted () {
-        console.log("gallery-mounted");
+
     },
     methods: {
         selectControl (index, ev) {
@@ -192,6 +203,15 @@ export default {
                         key: this.page,
                         value: response.data
                     });
+
+                    if(this.prevId && !this.loadPrevIdOnce) {
+                        this.src = response.data.data.searchImageUrl;
+                        this.searchPic = true;
+                    }else {
+                        this.src = "";
+                        this.searchPic = false;
+                    }
+
                     this.$nextTick(()=>{
                         this.flag = true;
                     })
@@ -217,6 +237,12 @@ export default {
             this.getData(data, {
                 clean: true
             });
+        },
+        getPrevId () {
+            let prevId = util.parseUrl(window.location.href).prevId;
+            if(prevId) {
+                this.prevId = prevId;
+            }
         }
     }
 }

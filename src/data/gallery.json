@@ -1,180 +1,102 @@
 {
   "page": {
-    "lastPage": false,
+    "lastPage": true,
     "pageCurrent": 1,
     "pageSize": 8,
     "firstPage": true,
-    "totalRow": 1883,
-    "totalPage": 236
+    "totalRow": 8,
+    "totalPage": 1
   },
   "status": {
     "message": "ok",
     "code": 0
   },
   "data": {
+    "searchImageUrl": "http://lib.backend.soushi88.com/stoneLibWx/searchImage?prevId=15015998535592035",
     "list": [
       {
-        "id": 1040,
+        "id": 211,
         "kind": 2,
         "kindName": "大理石",
         "country": 250,
         "countryName": "其他",
         "province": 0,
         "provinceName": "全部",
-        "color": 3,
-        "colorName": "蓝色",
-        "stoneNo": "SM6005",
-        "chineseName": "海冰蓝",
-        "englishName": "Amazonita",
-        "basicFeature": "海冰蓝的矿山呈带状，开采难度较大，受气候影响大，如果遇到下雨天，开采工作不得不停下来；而巴西是典型的亚热带雨林气候，夏季多雨，这更加大了海冰蓝的开采。开采出来的海冰蓝不同矿层的料出来的质量不一，目前最好的几块海冰蓝荒料已被环球石材采购。",
-        "characteristic": "“天河石”是具有灵性的石头，在坊间，它的能量被认为可以在平稳渐进中改善运气。海冰蓝矿山是迄今为止全世界发现的唯一可以开采出荒料的“天河石”石矿，也是唯一带湖水蓝颜色玉石的石头，比一般蓝颜色的石头更稀有。\n\n",
-        "introduction": "海冰蓝 英文名Amazonita，海冰蓝其实是“天河石”， 颜色介于蓝色与绿色之间，中间带有白色纹理，质地明亮，透明度好，表面有丝质玻璃光泽。结构与翡翠非常相似，独特的双晶结构，优质品的“天河石”甚至可以做为翡翠的代用品。",
-        "standardImage": "http://lib.image.soushi88.com/1040/1040-20170721094618.jpg?x-oss-process\u003dstyle/gray-low",
+        "color": 8,
+        "colorName": "黑色",
+        "stoneNo": "211",
+        "chineseName": "海贝化石",
+        "englishName": "Fossil seashells ",
+        "basicFeature": "",
+        "characteristic": "",
+        "introduction": "",
+        "standardImage": "http://lib.image.soushi88.com/211/211.JPG?x-oss-process\u003dstyle/white-low",
         "assistantImageList": [
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/1040/b87ecfe8863d2f95d151b8b17aaaaa49.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/211/6821e933bdcbb538f2f7e0fc3725b070.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 1,
             "remark": "细节图"
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/1040/196f37681b61b2ec415303dc570b5bae.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/211/da4cfb843f26427bed1d077cad6ae79e.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 2,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/1040/03ca4313a8fabc5afa51126ad7423fad.jpg?x-oss-process\u003dstyle/gray-low",
-            "rank": 3,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/1040/82a4c34dc06e6b4313ccd3847fe35f71.jpg?x-oss-process\u003dstyle/gray-low",
-            "rank": 4,
             "remark": "大板图"
           }
         ],
-        "alias": "蓝海",
+        "alias": "",
         "density": "",
         "strength": "",
         "waterAbsorption": "",
         "radioactivity": "",
-        "spell": "hbl",
-        "createTime": 1492596678038,
-        "modifyTime": 1500601579009,
+        "spell": "hbhs",
+        "createTime": 1491988409067,
+        "modifyTime": 1494493082016,
         "deleted": 0,
         "orderNo": 1,
         "price": "",
         "usingDtoList": [],
-        "textureDtoList": []
+        "textureDtoList": [],
+        "similarity": 28
       },
       {
-        "id": 2265,
+        "id": 59,
         "kind": 2,
         "kindName": "大理石",
-        "country": 250,
-        "countryName": "其他",
+        "country": 5,
+        "countryName": "土耳其",
         "province": 0,
         "provinceName": "全部",
         "color": 1,
         "colorName": "红色",
-        "stoneNo": "ww131",
-        "chineseName": "玛瑙红",
-        "englishName": "Agate Red",
+        "stoneNo": "SM1001",
+        "chineseName": "紫罗红",
+        "englishName": "Rosa Levanto",
         "basicFeature": "",
         "characteristic": "",
         "introduction": "",
-        "standardImage": "http://lib.image.soushi88.com/2265/2265-20170718173020.jpg?x-oss-process\u003dstyle/white-low",
+        "standardImage": "http://lib.image.soushi88.com/59/59-20170510235237.jpg?x-oss-process\u003dstyle/white-low",
         "assistantImageList": [
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2265/ea9c3574f6dfb6f0b404cdcf74424291.jpg?x-oss-process\u003dstyle/white-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/59/66e3c6a2b0a3b349a62e35be1ac455b2.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 1,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2265/2f5e0ee1eaf9882df67009e62d3f0999.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 2,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2265/5271760f0069b6ef29fc3ee12d4e89ca.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 3,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2265/6155d22b939f6b8fd3c8a922d1e3ac31.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 4,
-            "remark": "大板图"
+            "remark": ""
           }
         ],
-        "alias": "皇家冰花",
-        "density": "",
-        "strength": "",
-        "waterAbsorption": "",
+        "alias": "",
+        "density": "2.69g/cm3",
+        "strength": "75.3Mpa",
+        "waterAbsorption": "0.25%",
         "radioactivity": "",
-        "spell": "mnh",
-        "createTime": 1500370220806,
-        "modifyTime": 1500370315513,
+        "spell": "zlh",
+        "createTime": 1491795305149,
+        "modifyTime": 1495513444825,
         "deleted": 0,
         "orderNo": 2,
         "price": "",
-        "usingDtoList": [],
-        "textureDtoList": []
-      },
-      {
-        "id": 616,
-        "kind": 2,
-        "kindName": "大理石",
-        "country": 250,
-        "countryName": "其他",
-        "province": 0,
-        "provinceName": "全部",
-        "color": 5,
-        "colorName": "灰色",
-        "stoneNo": "616",
-        "chineseName": "布朗灰",
-        "englishName": "Brown gray",
-        "basicFeature": "",
-        "characteristic": "",
-        "introduction": "布朗灰-天然大理石板材为高饰面材料，主要用于建筑装饰等级要求高的建筑物，如 用做纪念性建筑、宾馆、展览馆、影剧院、商场、图书馆、机场、车站等大型公共建筑的室内墙面、柱面、地面、楼梯踏步等处的饰面材料也可用于楼梯栏杆、服务台、门脸、墙裙、窗台板、踢脚板等",
-        "standardImage": "http://lib.image.soushi88.com/616/616-20170511101338.JPG?x-oss-process\u003dstyle/white-low",
-        "assistantImageList": [
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/616/379570e3bd8179fd8508687eb354e6b2.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 1,
-            "remark": "局部图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/616/7321e32c1a2fe58c32d59af03589f76f.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 2,
-            "remark": "大板图"
-          }
-        ],
-        "alias": "亚马逊灰",
-        "density": "2.6680 g/cm3",
-        "strength": "262.2968 MPa",
-        "waterAbsorption": "",
-        "radioactivity": "",
-        "spell": "blh",
-        "createTime": 1492367016114,
-        "modifyTime": 1500368353418,
-        "deleted": 0,
-        "orderNo": 3,
-        "price": "",
         "usingDtoList": [
-          {
-            "value": 10,
-            "name": "其他"
-          },
           {
             "value": 12,
             "name": "洗手盆"
-          },
-          {
-            "value": 9,
-            "name": "雕塑"
-          },
-          {
-            "value": 8,
-            "name": "壁炉"
           },
           {
             "value": 7,
@@ -203,47 +125,37 @@
         ],
         "textureDtoList": [
           {
-            "texture": 12,
-            "textureName": "其他"
+            "texture": 4,
+            "textureName": "乱纹"
+          },
+          {
+            "texture": 3,
+            "textureName": "网纹"
           }
-        ]
+        ],
+        "similarity": 5
       },
       {
-        "id": 2264,
+        "id": 1822,
         "kind": 2,
         "kindName": "大理石",
         "country": 250,
         "countryName": "其他",
         "province": 0,
         "provinceName": "全部",
-        "color": 5,
-        "colorName": "灰色",
-        "stoneNo": "ww130",
-        "chineseName": "奥朗灰",
-        "englishName": "Brown ash",
+        "color": 9,
+        "colorName": "其他",
+        "stoneNo": "1822",
+        "chineseName": "墨西哥玉",
+        "englishName": "Mexico jade",
         "basicFeature": "",
         "characteristic": "",
         "introduction": "",
-        "standardImage": "http://lib.image.soushi88.com/2264/2264-20170717145322.jpg?x-oss-process\u003dstyle/white-low",
+        "standardImage": "http://lib.image.soushi88.com/1822/1822-20170506150012.JPG?x-oss-process\u003dstyle/white-low",
         "assistantImageList": [
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2264/240c9a571d6625866b6defb1b185eaef.jpg?x-oss-process\u003dstyle/white-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/1822/22ac16a656e86f8515bfa5545d6d45b4.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 1,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2264/4ca692956f3772d397a619bb847898c9.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 2,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2264/e478347d4d0ea2055c30ca68be5f79cc.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 3,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/2264/7e5cdf059e4d41dcedacc042d68e01bb.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 4,
             "remark": "大板图"
           }
         ],
@@ -252,127 +164,217 @@
         "strength": "",
         "waterAbsorption": "",
         "radioactivity": "",
-        "spell": "alh",
-        "createTime": 1500274402820,
-        "modifyTime": 1500274695406,
+        "spell": "mxgy",
+        "createTime": 1494054012755,
+        "modifyTime": 1495851223468,
+        "deleted": 0,
+        "orderNo": 3,
+        "price": "",
+        "usingDtoList": [],
+        "textureDtoList": [],
+        "similarity": 5
+      },
+      {
+        "id": 363,
+        "kind": 2,
+        "kindName": "大理石",
+        "country": 1,
+        "countryName": "中国",
+        "province": 28,
+        "provinceName": "江西",
+        "color": 8,
+        "colorName": "黑色",
+        "stoneNo": "363",
+        "chineseName": "金镶玉",
+        "englishName": "Gold Jade ",
+        "basicFeature": "",
+        "characteristic": "",
+        "introduction": "金镶玉石材富有大自然之色彩、质感浓厚、高雅大方、防滑便清洗，大大提高建筑产品的装饰效果和档次，使其更具高贵价值和设计魅力，超值无限；并具有足底按摩的保健之功效，一举多得。",
+        "standardImage": "http://lib.image.soushi88.com/363/363-20170522161910.JPG?x-oss-process\u003dstyle/white-low",
+        "assistantImageList": [
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/7d06f1d1b53e90f99678948d121af6c8.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 1,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/73d9323c92b0ad95763ea34abc6649c1.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 2,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/8f7b50ba59768fbb001df76cbb6eeb02.jpg?x-oss-process\u003dstyle/white-low",
+            "rank": 3,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/b570622ab26929a24b5aa43db8c81e10.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 4,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/d5d3f10abd2578f3801b422d5f2a8900.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 5,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/97914f9876451de46c798833c252a265.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 6,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/ef63b06232da45727446a5a4533d20f0.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 7,
+            "remark": "细节图"
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/363/17fdd3f7082576802411703c23ad3c1c.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 8,
+            "remark": "大板图"
+          }
+        ],
+        "alias": "法国黑",
+        "density": "2.669 g/cm3",
+        "strength": "91.9 Mpa",
+        "waterAbsorption": "0.23%",
+        "radioactivity": "",
+        "spell": "jxy",
+        "createTime": 1492136578008,
+        "modifyTime": 1495782289885,
         "deleted": 0,
         "orderNo": 4,
-        "price": "",
-        "usingDtoList": [],
-        "textureDtoList": []
-      },
-      {
-        "id": 664,
-        "kind": 2,
-        "kindName": "大理石",
-        "country": 250,
-        "countryName": "其他",
-        "province": 0,
-        "provinceName": "全部",
-        "color": 5,
-        "colorName": "灰色",
-        "stoneNo": "664",
-        "chineseName": "维多利亚",
-        "englishName": "Venice grey",
-        "basicFeature": "",
-        "characteristic": "",
-        "introduction": "",
-        "standardImage": "http://lib.image.soushi88.com/664/664.JPG?x-oss-process\u003dstyle/white-low",
-        "assistantImageList": [
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/1c468ae7b21a50cb81f11633a47e9882.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 1,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/84b4e382ca70301d3c225dd30186b55a.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 2,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/b96bc7f29d203d94eafcdb44d0e2a097.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 3,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/7d3659b702573d7d6fd6876fe5106596.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 4,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/67aca2f490982be0e5e2a67983c77b59.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 5,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/664/170cbdf5cfdb91afdf6635062737546f.jpg?x-oss-process\u003dstyle/white-low",
-            "rank": 6,
-            "remark": "大板图"
-          }
-        ],
-        "alias": "",
-        "density": "",
-        "strength": "",
-        "waterAbsorption": "",
-        "radioactivity": "",
-        "spell": "wdly",
-        "createTime": 1492433151880,
-        "modifyTime": 1500266978293,
-        "deleted": 0,
-        "orderNo": 5,
-        "price": "",
-        "usingDtoList": [],
-        "textureDtoList": []
-      },
-      {
-        "id": 446,
-        "kind": 2,
-        "kindName": "大理石",
-        "country": 250,
-        "countryName": "其他",
-        "province": 0,
-        "provinceName": "全部",
-        "color": 5,
-        "colorName": "灰色",
-        "stoneNo": "446",
-        "chineseName": "诺贝尔灰",
-        "englishName": "Nobel gray",
-        "basicFeature": "",
-        "characteristic": "",
-        "introduction": "",
-        "standardImage": "http://lib.image.soushi88.com/446/446.JPG?x-oss-process\u003dstyle/white-low",
-        "assistantImageList": [
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/446/ef235195e42754fdcdbbe59057884d72.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 1,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/446/561ca1d5a29683f43b0ebb305c71eba8.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 2,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/446/d6961eff1297613ccab2bac34f7cc089.JPG?x-oss-process\u003dstyle/white-low",
-            "rank": 3,
-            "remark": "大板图"
-          }
-        ],
-        "alias": "",
-        "density": "",
-        "strength": "",
-        "waterAbsorption": "",
-        "radioactivity": "",
-        "spell": "nbeh",
-        "createTime": 1492177481187,
-        "modifyTime": 1500263993342,
-        "deleted": 0,
-        "orderNo": 6,
         "price": "",
         "usingDtoList": [
           {
             "value": 10,
             "name": "其他"
+          }
+        ],
+        "textureDtoList": [
+          {
+            "texture": 4,
+            "textureName": "乱纹"
+          }
+        ],
+        "similarity": 5
+      },
+      {
+        "id": 360,
+        "kind": 2,
+        "kindName": "大理石",
+        "country": 250,
+        "countryName": "其他",
+        "province": 0,
+        "provinceName": "全部",
+        "color": 2,
+        "colorName": "白色",
+        "stoneNo": "360",
+        "chineseName": "巴玉",
+        "englishName": "light greenish white jade",
+        "basicFeature": "",
+        "characteristic": "",
+        "introduction": "天然大理石板材为高饰面材料，主要用于建筑装饰等级要求高的建筑物，如 用做纪念性建筑、宾馆、展览馆、影剧院、商场、图书馆、机场、车站等大型公共建筑的室内墙面、柱面、地面、楼梯踏步等处的饰面材料也可用于楼梯栏杆、服务台、门脸、墙裙、窗台板、踢脚板等",
+        "standardImage": "http://lib.image.soushi88.com/360/360.JPG?x-oss-process\u003dstyle/gray-low",
+        "assistantImageList": [
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/360/f20288f13a064a2fd0b26dcfb85b8b15.JPG?x-oss-process\u003dstyle/gray-low",
+            "rank": 1,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/360/8c9642ce8f5df49ad29d710d70288bbb.JPG?x-oss-process\u003dstyle/gray-low",
+            "rank": 1,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/360/77609186480652ddbb216eda26d08ccb.JPG?x-oss-process\u003dstyle/gray-low",
+            "rank": 1,
+            "remark": ""
+          }
+        ],
+        "alias": "青白玉",
+        "density": "",
+        "strength": "",
+        "waterAbsorption": "",
+        "radioactivity": "",
+        "spell": "by",
+        "createTime": 1492096302425,
+        "modifyTime": 1493280693529,
+        "deleted": 0,
+        "orderNo": 5,
+        "price": "",
+        "usingDtoList": [
+          {
+            "value": 10,
+            "name": "其他"
+          },
+          {
+            "value": 7,
+            "name": "柱子"
+          },
+          {
+            "value": 5,
+            "name": "楼梯"
+          },
+          {
+            "value": 3,
+            "name": "室外地面"
+          }
+        ],
+        "textureDtoList": [],
+        "similarity": 3
+      },
+      {
+        "id": 265,
+        "kind": 2,
+        "kindName": "大理石",
+        "country": 2,
+        "countryName": "意大利",
+        "province": 0,
+        "provinceName": "全部",
+        "color": 3,
+        "colorName": "蓝色",
+        "stoneNo": "265",
+        "chineseName": "蓝金沙",
+        "englishName": "Palissandro blue",
+        "basicFeature": "",
+        "characteristic": "",
+        "introduction": "",
+        "standardImage": "http://lib.image.soushi88.com/265/265-20170521000715.jpg?x-oss-process\u003dstyle/gray-low",
+        "assistantImageList": [
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/265/5526b13bb280af24f840a6b12280fc5d.jpg?x-oss-process\u003dstyle/gray-low",
+            "rank": 0,
+            "remark": ""
+          }
+        ],
+        "alias": "",
+        "density": "",
+        "strength": "99",
+        "waterAbsorption": "",
+        "radioactivity": "",
+        "spell": "ljs",
+        "createTime": 1492093378650,
+        "modifyTime": 1495442631798,
+        "deleted": 0,
+        "orderNo": 6,
+        "price": "",
+        "usingDtoList": [
+          {
+            "value": 12,
+            "name": "洗手盆"
+          },
+          {
+            "value": 7,
+            "name": "柱子"
+          },
+          {
+            "value": 6,
+            "name": "台面板"
+          },
+          {
+            "value": 5,
+            "name": "楼梯"
           },
           {
             "value": 4,
@@ -385,149 +387,161 @@
         ],
         "textureDtoList": [
           {
-            "texture": 12,
-            "textureName": "其他"
-          },
-          {
             "texture": 4,
             "textureName": "乱纹"
+          },
+          {
+            "texture": 2,
+            "textureName": "斜纹"
+          },
+          {
+            "texture": 1,
+            "textureName": "直纹"
           }
-        ]
+        ],
+        "similarity": 2
       },
       {
-        "id": 245,
+        "id": 374,
         "kind": 2,
         "kindName": "大理石",
-        "country": 250,
-        "countryName": "其他",
-        "province": 0,
-        "provinceName": "全部",
-        "color": 2,
-        "colorName": "白色",
-        "stoneNo": "245",
-        "chineseName": "蓝牙白",
-        "englishName": "Bluetooth white",
-        "basicFeature": "",
+        "country": 1,
+        "countryName": "中国",
+        "province": 5,
+        "provinceName": "广西",
+        "color": 8,
+        "colorName": "黑色",
+        "stoneNo": "374",
+        "chineseName": "银白龙",
+        "englishName": "Silver Dragon",
+        "basicFeature": "银白龙-天然大理石板材为高饰面材料，主要用于建筑装饰等级要求高的建筑物，如 用做纪念性建筑、宾馆、展览馆、影剧院、商场、图书馆、机场、车站等大型公共建筑的室内墙面、柱面、地面、等处的饰面材料也可用于楼梯栏杆、服务台、门脸、墙裙、窗台板、踢脚板等",
         "characteristic": "",
-        "introduction": "",
-        "standardImage": "http://lib.image.soushi88.com/245/245-20170506111230.JPG?x-oss-process\u003dstyle/gray-low",
+        "introduction": "银白龙是黑色致密结构大理石，带有白色筋络，产地为广西和湖北，其为广西为主，广西桂林所生产的银白龙大理石底色黑，光度好，花纹白，耐久性、抗冻性、耐磨性、硬度在质量指标上达国际标准,放射性指标均符合国家A类标准。",
+        "standardImage": "http://lib.image.soushi88.com/374/374-20170426120030.jpg?x-oss-process\u003dstyle/white-low",
         "assistantImageList": [
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/716b0a0f38d753c68e2813e8778ee72c.JPG?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/ae8b09122ff0e0833561ae3c8bf783ca.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 1,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/898661b0f63f6ae7b01e7e126feff802.JPG?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/b36478d0f7de6d76d9a9d1a5b2cd177b.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 2,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/21b5aafcf4614c0ee24f515847a51227.JPG?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/f52abe0267aa67654d7ec80704ad26c8.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 3,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/fbe9dde78df303cd9f420ea1d5d4de44.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/fc28792d475de0e3dab0466cefc4e5f0.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 4,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/546f9526d91ae44b037067e0d8343a70.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/188f3d5ecf0f51ebfa549f31c5a7e2be.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 5,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/16cd5109ef7f4c5f1bdd0d6002b2032b.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/2160684df3acb59eb7a328d1ed574555.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 6,
-            "remark": "细节图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/f787f2f723c7d1af591fe8ccb04bd623.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/a8c6afa0b6cea5b4e1541ccc4d401548.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 7,
-            "remark": "大板图"
+            "remark": ""
           },
           {
-            "assistantImageUrl": "http://lib.image.soushi88.com/245/ca99b48b9d4cd0c58371ee4c1efed6fb.jpg?x-oss-process\u003dstyle/gray-low",
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/f35313448071769c20f8acdc8d016d83.JPG?x-oss-process\u003dstyle/white-low",
             "rank": 8,
-            "remark": "蓝牙白"
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/fbacd69240f3fff5edd231845d6c9e83.jpg?x-oss-process\u003dstyle/white-low",
+            "rank": 9,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/fb8180cc14f825e3930feab060b952fd.jpg?x-oss-process\u003dstyle/white-low",
+            "rank": 10,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/368c444ad3796cdb50bdfdb0bfd464f7.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 11,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/a479efe4265574f6d5b0b35be37a9d45.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 12,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/525b0319734400be958b7b01edd42904.JPG?x-oss-process\u003dstyle/white-low",
+            "rank": 13,
+            "remark": ""
+          },
+          {
+            "assistantImageUrl": "http://lib.image.soushi88.com/374/cc92c06bca73535d367d264a38c9c25a.jpg?x-oss-process\u003dstyle/white-low",
+            "rank": 14,
+            "remark": ""
           }
         ],
         "alias": "",
-        "density": "",
-        "strength": "",
-        "waterAbsorption": "",
+        "density": "2.69 g/cm3",
+        "strength": "62.9 Mpa",
+        "waterAbsorption": " 0.17%",
         "radioactivity": "",
-        "spell": "lyb",
-        "createTime": 1492091993396,
-        "modifyTime": 1500019833913,
+        "spell": "ybl",
+        "createTime": 1492140578195,
+        "modifyTime": 1494488123179,
         "deleted": 0,
         "orderNo": 7,
         "price": "",
-        "usingDtoList": [],
-        "textureDtoList": []
-      },
-      {
-        "id": 76,
-        "kind": 2,
-        "kindName": "大理石",
-        "country": 5,
-        "countryName": "土耳其",
-        "province": 0,
-        "provinceName": "全部",
-        "color": 7,
-        "colorName": "黄色",
-        "stoneNo": "76",
-        "chineseName": "白玫瑰",
-        "englishName": "White Rose",
-        "basicFeature": "1.色泽均匀，板面光亮照人，高贵亮丽，无色差；\n2.能抵御二十年以上的阳光照射，在200摄氏度高温条件下不变色，是大、中型装修的首选最佳材料。",
-        "characteristic": "",
-        "introduction": "黄色与白色的搭配既符合现代的简约干净风格，又能打造优雅高贵的金碧辉煌效果。",
-        "standardImage": "http://lib.image.soushi88.com/76/76.JPG?x-oss-process\u003dstyle/gray-low",
-        "assistantImageList": [
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/76/b9e2198e2bfad4a43302f0f41e54ce25.JPG?x-oss-process\u003dstyle/gray-low",
-            "rank": 1,
-            "remark": "细节图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/76/d2e142e8a00cd0bfcbe454e36dc715f3.JPG?x-oss-process\u003dstyle/gray-low",
-            "rank": 2,
-            "remark": "大板图"
-          },
-          {
-            "assistantImageUrl": "http://lib.image.soushi88.com/76/de5b7ae35515b3d1277c4014cc2dcba3.jpg?x-oss-process\u003dstyle/gray-low",
-            "rank": 3,
-            "remark": "大板图"
-          }
-        ],
-        "alias": "",
-        "density": "",
-        "strength": "",
-        "waterAbsorption": "",
-        "radioactivity": "",
-        "spell": "bmg",
-        "createTime": 1491806075905,
-        "modifyTime": 1500019441936,
-        "deleted": 0,
-        "orderNo": 8,
-        "price": "",
         "usingDtoList": [
+          {
+            "value": 12,
+            "name": "洗手盆"
+          },
+          {
+            "value": 8,
+            "name": "壁炉"
+          },
+          {
+            "value": 7,
+            "name": "柱子"
+          },
           {
             "value": 6,
             "name": "台面板"
+          },
+          {
+            "value": 4,
+            "name": "室外墙面"
+          },
+          {
+            "value": 3,
+            "name": "室外地面"
           }
         ],
         "textureDtoList": [
           {
-            "texture": 12,
-            "textureName": "其他"
+            "texture": 6,
+            "textureName": "波浪纹"
           },
           {
-            "texture": 4,
-            "textureName": "乱纹"
+            "texture": 2,
+            "textureName": "斜纹"
+          },
+          {
+            "texture": 1,
+            "textureName": "直纹"
           }
-        ]
+        ],
+        "similarity": 2
       }
     ]
   }

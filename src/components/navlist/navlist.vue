@@ -18,11 +18,9 @@
             <span class="text">搜现货</span>
             </router-link>
         </div>
-        <div class="nav-item">
-            <router-link to="/send">
-                <i class="icon send"></i>
-                <span class="text">样板寄送</span>
-            </router-link>
+        <div class="nav-item" @click="checkLogin('send')">
+            <i class="icon send"></i>
+            <span class="text">样板寄送</span>
         </div>
         <div class="nav-item">
             <a href="http://www.soushi88.com/index.php?s=/Supply/wx">
@@ -34,7 +32,14 @@
 </template>
 
 <script>
-export default {}
+    import util from "src/common/util";
+export default {
+    methods: {
+        checkLogin (path) {
+            util.checkLogin(path, this);
+        }
+    }
+}
 </script>
 
 <style lang="sass" scoped>

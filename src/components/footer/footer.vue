@@ -2,11 +2,15 @@
     <div class="nav-footer" ref="footer">
         <div class="nav-footer-list">
             <div class="nav-item" :class="{active: item.isActive}" v-for="(item, item_index) in navObj" :key="item.id">
-                <div v-if="item_index === 2" class="photo-wrapper">
+                <div v-if="item_index == 2" class="photo-wrapper">
                     <router-link :to="{path: item.name}">
                         <i class="icon" :class="item.name"></i>
                         <span class="text">{{item.text}}</span>
                     </router-link>
+                </div>
+                <div v-else-if="item_index == 4" :to="{path: item.name}" @click.stop.prevent="checkLogin('mine')">
+                    <i class="icon" :class="item.name"></i>
+                    <span class="text">{{item.text}}</span>
                 </div>
                 <router-link v-else :to="{path: item.name}">
                     <i class="icon" :class="item.name"></i>
@@ -19,6 +23,7 @@
 
 <script>
     import Vue from "vue";
+    import util from "src/common/util";
 export default {
     props: {
         index: {
@@ -64,6 +69,9 @@ export default {
                     this.$set(item, 'isActive', true);
                 }
             }, this);
+        },
+        checkLogin (path) {
+            util.checkLogin(path, this);
         }
     }
 }

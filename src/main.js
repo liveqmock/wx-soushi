@@ -13,7 +13,7 @@ import CommonCss from "./style/common.scss";
 
 Vue.use(VueResource);
 
-const app = new Vue({
+export const app = new Vue({
     el: "#app",
     store,
     render: x => x(App),

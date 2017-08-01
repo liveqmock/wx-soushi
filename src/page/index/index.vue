@@ -34,8 +34,8 @@
     import divider from 'src/components/divider/divider';
     import swiperfocus from 'src/components/swiperfocus/swiperfocus';
     import Vue from 'vue';
-    import * as url from "src/config/url";
-    import { mapMutations } from "vuex";
+    import url from "src/config/url";
+    import util from "src/common/util";
 
     export default {
         data() {
@@ -113,8 +113,8 @@
                 }).catch((response) => {
                     console.log('fail');
                 });
-            },
-        }
+            }
+        },
     }
 </script>
 

@@ -11,6 +11,7 @@ import send from "src/page/send/send";
 import mine from "src/page/mine/mine";
 import galleryDetail from "src/page/galleryDetail/galleryDetail";
 import gallerySend from "src/page/gallerySend/gallerySend";
+import photo from "src/page/photo/photo";
 
 // 个人中心
 import addAddress from "src/page/addAddress/addAddress";
@@ -57,8 +58,10 @@ const router = new VueRouter({
     },{
         path: "/gallerySend",
         component: gallerySend
-    },
-    {
+    },{
+        path: "/photo",
+        component: photo
+    },{
         path: "/addAddress",
         component: addAddress
     },{

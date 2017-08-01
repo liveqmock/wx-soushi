@@ -5,7 +5,7 @@
             <div class="stars-wrapper" v-show="!islogin">
                 <i class="star-item"></i>
                 <i class="icon-ym2"></i>
-                <span class="s-text">
+                <span class="s-text" @click.stop.prevent="checkLogin('')">
                     <i class="icon-ask"></i>
                     价格
                 </span>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    import util from "src/common/util";
 export default {
     data () {
         return {
@@ -32,6 +33,11 @@ export default {
         this.isShowPrice = this.$store.state.isShowPrice;
         this.isEmployVerify = this.$store.state.isEmployVerify;
     },
+    methods: {
+        checkLogin (path) {
+            util.checkLogin(path, this);
+        }
+    }
 }
 </script>
 

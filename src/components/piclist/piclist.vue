@@ -26,6 +26,7 @@
     import showsearchpic from "src/components/showsearchpic/showsearchpic";
     import IScroll from "src/plugins/iscroll-probe";
     import loadingbar from "src/components/loadingbar/loadingbar";
+
 export default {
     props:{
         src: {

@@ -11,19 +11,14 @@
 </template>
 
 <script>
+    import util from "src/common/util";
 export default {
     methods: {
         showGuiderMasker () {
             this.$emit("show-guider-masker");
         },
         checkLogin () {
-            const router = this.$store.state.router;
-            const islogin = this.$store.state.islogin;
-            if(!islogin) {
-                router.push({path: "login"});
-            }else{
-                router.push({path: "gallerySend"});
-            }
+            util.checkLogin("gallerySend");
         }
     }
 }

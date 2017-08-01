@@ -193,7 +193,8 @@ export default {
         please: "功能暂未开放，敬请期待",
         templateNumber: "请填写样板数量",
         uploadPicOrWriteTemplate: "请上传图片或填写品种",
-        chooseAddress: "请选择收货地址"
+        chooseAddress: "请选择收货地址",
+        uploading: "上传中..."
     },
 
     toast (tips, context) {
@@ -209,5 +210,17 @@ export default {
             callback();
             context.isSuccess = false;
         }, this.loadDataTime);
+    },
+
+    checkLogin (path, vue) {
+        console.log(path);
+        const router = vue.$store.state.router;
+        const islogin = vue.$store.state.islogin;
+        if(!islogin || !path) {
+            path = "login";
+        }
+        router.push({
+            path: path
+        });
     }
 };
