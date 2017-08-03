@@ -8,7 +8,7 @@ import boutiqueDetail from "src/page/boutiqueDetail/boutiqueDetail";
 import search from "src/page/search/search";
 import searchDetail from "src/page/searchDetail/searchDetail";
 import send from "src/page/send/send";
-import mine from "src/page/mine/mine";
+import personal from "src/page/personal/personal";
 import galleryDetail from "src/page/galleryDetail/galleryDetail";
 import gallerySend from "src/page/gallerySend/gallerySend";
 import photo from "src/page/photo/photo";
@@ -50,8 +50,8 @@ const router = new VueRouter({
         path: "/send",
         component: send
     },{
-        path: "/mine",
-        component: mine
+        path: "/personal",
+        component: personal
     },{
         path: "/galleryDetail",
         component: galleryDetail

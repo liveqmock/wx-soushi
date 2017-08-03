@@ -18,6 +18,7 @@ module.exports = {
     send: "http://user.backend.soushi88.com/userDeliveryWx/getMyDelivery",
     delivery: "http://template.backend.soushi88.com/templateWx/delivery",
     searchPrev: "http://lib.backend.soushi88.com/stoneLibWx/searchPrev",
+    setShowPrice: "http://user.backend.soushi88.com/userWx/setShowPrice",
 };
 
 if(local) {
@@ -35,5 +36,6 @@ if(local) {
         send: dataPath + "/send.json",
         delivery: dataPath + "/delivery.json",
         searchPrev: dataPath + "/searchPrev.json",
+        setShowPrice: dataPath + "/setShowPrice.json",
     };
 }

@@ -8,7 +8,7 @@
                         <span class="text">{{item.text}}</span>
                     </router-link>
                 </div>
-                <div v-else-if="item_index == 4" :to="{path: item.name}" @click.stop.prevent="checkLogin('mine')">
+                <div v-else-if="item_index == 4" @click.stop.prevent="checkLogin('personal')">
                     <i class="icon" :class="item.name"></i>
                     <span class="text">{{item.text}}</span>
                 </div>
@@ -46,7 +46,7 @@ export default {
                 name: "search",
                 text: "现货",
             },{
-                name: "mine",
+                name: "personal",
                 text: "我的",
             }]
         }
@@ -145,10 +145,10 @@ export default {
                 &.active .search {
                      @include background("icon_search_1.png");
                  }
-                .mine {
+                .personal {
                     @include background("icon_me.png");
                 }
-                &.active .mine {
+                &.active .personal {
                     @include background("icon_me_1.png");
                  }
                 &:nth-child(3) {
