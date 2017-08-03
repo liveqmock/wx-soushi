@@ -8,23 +8,38 @@
                 <p class="text">{{data.name}}</p>
             </div>
             <div class="person-options">
-                <div class="company icon-nextpage">
-                    <span class="label">企业认证</span>
-                    <span class="name">{{data.companyName}}</span>
-                    <i class="authorized" v-if="data.employVerify == 2">认证</i>
-                    <i class="unauthorized" v-if="data.employVerify != 2">未认证</i>
-                </div>
+                <router-link :to="{path: 'authorized'}">
+                    <div class="company icon-nextpage">
+                        <span class="label">企业认证</span>
+                        <span class="name">{{data.companyName}}</span>
+                        <i class="authorized" v-if="data.employVerify == 2">认证</i>
+                        <i class="unauthorized" v-if="data.employVerify != 2">未认证</i>
+                    </div>
+                </router-link>
                 <v-divider></v-divider>
                 <div class="price icon-showprice" :class="{active: isShowPrice}" @click="showPrice">
                     {{isShowPrice ? '显示' : '隐藏'}}产品价格
                 </div>
+                <router-link :to="'manageAddress'">
+                    <div class="address icon-nextpage">
+                        收货地址
+                    </div>
+                </router-link>
+                <div class="password icon-nextpage">
+                    修改密码
+                </div>
+            </div>
+            <div class="submit">
+                <div class="button">退出登录</div>
             </div>
         </div>
+        <v-footer :index="4"></v-footer>
     </div>
 </template>
 
 <script>
     import divider from "src/components/divider/divider";
+    import footer from "src/components/footer/footer";
     import util from "src/common/util";
     import url from "src/config/url";
     export default {
@@ -33,6 +48,7 @@
         },
         components: {
             "v-divider": divider,
+            "v-footer": footer,
         },
         data () {
             return {
@@ -47,12 +63,12 @@
             };
         },
         created () {
-            console.log("created");
             this.pageShow();
             this.getData();
         },
         mounted () {
             console.log("mounted");
+            util.setDocumentClientHeight(".wrapper");
         },
         methods: {
             pageShow () {
@@ -102,10 +118,10 @@
         }
     }
 </script>
-
 <style lang="sass" scoped>
     @import "../../style/mixin.scss";
     .wrapper{
+        background: #f9f9f9;
         .personal-panel{
             width: 100%;
             height: 435px;
@@ -129,13 +145,15 @@
             }
         }
         .person-options{
+            background: #fff;
+            margin-bottom: 50px;
             .icon-nextpage:after{
                 content: '';
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
                 position: absolute;
                 top: 50%;
-                right: 25px;
+                right: 20px;
                 display: block;
                 margin-top: -14px;
                 width: 14px;
@@ -143,7 +161,7 @@
                 @include background("icon_nextpage.png");
             }
             .company  {
-                padding:36px 0 36px 25px;
+                padding:36px 0 36px 20px;
                 position: relative;
                 font-size: 28px;
                 line-height: 28px;
@@ -162,15 +180,16 @@
                     background: #d2d2d2;
                 }
             }
-            .price{
+            .price, .address, .password {
                 padding-top: 31px;
                 padding-bottom: 31px;
                 background-color: #fff;
                 position: relative;
-                display: block;
                 font-size: 28px;
                 line-height: 28px;
-                margin-left: 25px;
+                margin-left: 20px;
+            }
+            .price{
                 border-bottom: 1px solid #ddd;
                 &.icon-showprice:after{
                      content: '';
@@ -186,6 +205,22 @@
                     @include background("icon_selected_1.png");
                  }
             }
+            .address {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+        .submit {
+            padding: 0 25px;
+            .button {
+                background-color: #fff;
+                text-align: center;
+                color: #03A3E7;
+                font-size: 30px;
+                border-radius: 10px;
+                line-height: 30px;
+                padding: 28px 0;
+            }
         }
     }
+
 </style>

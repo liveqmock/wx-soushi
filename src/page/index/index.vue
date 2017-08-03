@@ -83,35 +83,40 @@
                 }
             },
             getMyProfileData () {
-                this.$http.get(url.getMyProfile_fail, {
+                this.$http.get(url.getMyProfile, {
                     params: {}
                 }).then((response) => {
                     var data = response.data;
                     if(data.status.code == 0) {
                         this.$store.commit("login");
                         this.$store.commit("showPrice");
-                        if(data.employVerify == 2 || data.employVerify == 5) {
+                        if(data.data.employVerify == 2 || data.data.employVerify == 5) {
+                            console.log("94");
                             this.$store.commit("employVerify");
+                        }
+                        if(data.data.employVerify == 1) {
+                            this.$store.commit("unchecked");
                         }
                     }
                     this.getData();
                 }).catch((response) => {
-                    console.log('fail');
+                    util.toast(response.message, this);
                 });
             },
             getData() {
                 this.$http.get(url.index, {
                     params: this.handleData()
                 }).then((response) => {
-                    this.flag = true;
-                    console.log("getData");
-                    this.$store.commit({
-                        type: "dataList",
-                        key: this.page,
-                        value: response.data
-                    });
+                    if(response.data.status.code == 0) {
+                        this.flag = true;
+                        this.$store.commit({
+                            type: "dataList",
+                            key: this.page,
+                            value: response.data
+                        });
+                    }
                 }).catch((response) => {
-                    console.log('fail');
+                    util.toast(response.message, this);
                 });
             }
         },
@@ -120,12 +125,6 @@
 
 <style lang="sass" scoped>
     @import "../../style/mixin.scss";
-    html, body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
     .wrapper {
         .container {
             .boutique-title {

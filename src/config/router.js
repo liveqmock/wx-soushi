@@ -12,6 +12,8 @@ import personal from "src/page/personal/personal";
 import galleryDetail from "src/page/galleryDetail/galleryDetail";
 import gallerySend from "src/page/gallerySend/gallerySend";
 import photo from "src/page/photo/photo";
+import authorized from "src/page/authorized/authorized";
+import manageAddress from "src/page/manageAddress/manageAddress";
 
 // 个人中心
 import addAddress from "src/page/addAddress/addAddress";
@@ -67,6 +69,12 @@ const router = new VueRouter({
     },{
         path: "/login",
         component: login
+    },{
+        path: "/authorized",
+        component: authorized
+    },{
+        path: "/manageAddress",
+        component: manageAddress
     }]
 });
 

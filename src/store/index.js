@@ -13,6 +13,7 @@ const store = new Vuex.Store({
         islogin: false,
         isShowPrice: false,
         isEmployVerify: false,
+        isUnchecked: false,
         data: {},
         router: router,
         url: url
@@ -29,6 +30,9 @@ const store = new Vuex.Store({
         },
         employVerify (state) {
             state.isEmployVerify = true;
+        },
+        unchecked (state) {
+            state.isUnchecked = true;
         },
         data (state, obj) {
             state.data[obj.key] = obj.value;
@@ -53,6 +57,9 @@ const store = new Vuex.Store({
         },
         employVerify (context) {
             context.commit("employVerify");
+        },
+        unchecked (context) {
+            context.commit("unchecked");
         }
     }
 });

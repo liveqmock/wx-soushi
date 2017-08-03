@@ -205,10 +205,18 @@ export default {
     },
 
     toastSuccess (callback, context) {
-        context.isSuccess = true;
+        context.isToastSuccess = true;
         setTimeout(()=>{
             callback();
-            context.isSuccess = false;
+            context.isToastSuccess = false;
+        }, this.loadDataTime);
+    },
+
+    toastFail (callback, context) {
+        context.isToastFail = true;
+        setTimeout(()=>{
+            callback();
+            context.isToastFail = false;
         }, this.loadDataTime);
     },
 
@@ -222,5 +230,18 @@ export default {
         router.push({
             path: path
         });
+    },
+
+    setDocumentClientHeight (selectors) {
+        let doc = window.document;
+        let docW = (doc.documentElement || doc.body).clientWidth;
+        let docH = (doc.documentElement || doc.body).clientHeight;
+        let els = document.querySelectorAll(selectors);
+
+        for(let i = 0, l = els.length; i < l; i++) {
+            let item = els[i];
+            item.style.width = docW + "px";
+            item.style.height = docH + "px";
+        }
     }
 };

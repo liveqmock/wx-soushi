@@ -1,10 +1,10 @@
 <template>
-<div class="masker-success">
+<div class="masker-fail">
     <div class="masker-container">
         <div class="m-box">
-            <p class="success">
+            <p class="fail">
                 <i class="icon"></i>
-                <span class="text">提交成功</span>
+                <span class="text">提交失败</span>
             </p>
             <p v-show="text">
                 {{text}}
@@ -25,9 +25,9 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
     @import "../../style/mixin.scss";
-.masker-success{
+.masker-fail{
     position: fixed;
     left: 0;
     top: 0;
@@ -54,7 +54,7 @@ export default {
                     display: inline-block;
                     width: 43px;
                     height: 43px;
-                    @include background("icon_right.png");
+                    @include background("icon_fail.png");
                     margin-right: 10px;
                     vertical-align: middle;
                 }

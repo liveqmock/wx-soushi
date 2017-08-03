@@ -54,8 +54,9 @@
                 <v-divider></v-divider>
                 <v-receiveinfo :page="page" v-if="flag" @changeTextArea="changeTextArea" @defaultAddress="defaultAddress"></v-receiveinfo>
                 <v-maskertips :tips="tips" v-show="tips"></v-maskertips>
-                <v-maskersuccess v-show="isSuccess"></v-maskersuccess>
-                <v-submit :text="'提交'" @submit="submit"></v-submit>
+                <v-maskersuccess v-show="isToastSuccess" :text="'我们将尽快与您联系'"></v-maskersuccess>
+                <v-maskerFail v-show="isToastFail" :failmessage="failmessage"></v-maskerFail>
+                <v-submit :text="'提交'" @submit="submit" v-if="flag"></v-submit>
             </div>
         </div>
     </div>
@@ -68,6 +69,7 @@
     import maskertips from "src/components/maskertips/maskertips";
     import count from "src/components/count/count";
     import maskersuccess from "src/components/maskersuccess/maskersuccess";
+    import maskerfail from "src/components/maskerfail/maskerfail";
     import compressImg from "src/plugins/processImg";
     import url from "src/config/url";
     import util from "src/common/util";
@@ -83,7 +85,9 @@ export default{
             textareaValue: "",
             defaultAddressCurrentIndex: -1,
             deliveryId: "",
-            isSuccess: false,
+            isToastSuccess: false,
+            isToastFail: false,
+            failmessage: "",
         }
     },
     components: {
@@ -93,6 +97,7 @@ export default{
         "v-maskertips": maskertips,
         "v-count": count,
         "v-maskersuccess": maskersuccess,
+        "v-maskerfail": maskerfail,
     },
     created() {
 
@@ -191,9 +196,10 @@ export default{
                 })
             }).then((response) => {
                 if(response.data.status.code == 0) {
-                    util.toastSuccess(function () {
-
-                    }, this);
+                    util.toastSuccess(function () {}, this);
+                }else {
+                    util.toastFail(function () {}, this);
+                    this.failmessage = response.message;
                 }
             }).catch((response) => {
                 util.toast(util.tips.errorConnect);
