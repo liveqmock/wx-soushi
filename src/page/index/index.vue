@@ -18,6 +18,7 @@
                 </div>
                 <div class="content">
                     <v-piclist :bar="bar" :time="time" :page="page" @get-data="getData" v-if="flag"></v-piclist>
+                    <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
                 </div>
             </div>
         </div>
@@ -33,6 +34,7 @@
     import piclist from 'src/components/piclist/piclist';
     import divider from 'src/components/divider/divider';
     import swiperfocus from 'src/components/swiperfocus/swiperfocus';
+    import loadingbar from 'src/components/loadingbar/loadingbar';
     import Vue from 'vue';
     import url from "src/config/url";
     import util from "src/common/util";
@@ -43,7 +45,12 @@
                 flag: false,
                 page: "index",
                 time: 1,
-                bar: "nav-footer"
+                bar: "nav-footer",
+                loadingStatus: {
+                    loading: true,
+                    loaded: false,
+                    show: false,
+                }
             }
         },
         created () {
@@ -55,6 +62,7 @@
             'v-piclist': piclist,
             'v-divider': divider,
             'v-swiperfocus': swiperfocus,
+            'v-loadingbar': loadingbar,
         },
         mounted () {
             console.log("index-mounted");
@@ -109,11 +117,17 @@
                 });
             },
             getData() {
+                this.loadingStatus.show = true;
                 this.$http.get(url.index, {
                     params: this.handleData()
                 }).then((response) => {
+                    console.log("response");
                     if(response.data.status.code == 0) {
-                        this.flag = true;
+                        setTimeout(()=>{
+                            this.loadingStatus.show = false;
+                            this.flag = true;
+                        }, util.loadPicListTime);
+
                         this.$store.commit({
                             type: "dataList",
                             key: this.page,

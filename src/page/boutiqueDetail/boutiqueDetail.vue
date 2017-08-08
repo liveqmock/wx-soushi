@@ -63,7 +63,8 @@
                         </div>
                     </div>
                     <div class="content-item slab" v-show="controlItemCurrentIndex == 1">
-                        <v-piclist :page="page" :bar="bar" :time="time" @get-data="getData" v-if="flag"></v-piclist>
+                        <v-piclist :page="page" :bar="bar" :time="time" @get-data="getData" v-if="piclistFlag"></v-piclist>
+                        <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
                     </div>
                     <div class="content-item supplier" v-show="controlItemCurrentIndex == 2">
                         <v-supplier :page="page" v-if="flag"></v-supplier>
@@ -85,6 +86,7 @@
     import piclist from "src/components/piclist/piclist";
     import supplier from "src/components/supplier/supplier";
     import proposeprice from "src/components/proposeprice/proposeprice";
+    import loadingbar from "src/components/loadingbar/loadingbar";
     import url from "src/config/url";
     import util from "src/common/util";
 export default {
@@ -107,7 +109,13 @@ export default {
             searchPic: false,
             page: "boutiqueDetail",
             time: 1,
-            bar: "propose-price"
+            bar: "propose-price",
+            loadingStatus: {
+                loading: true,
+                loaded: false,
+                show: false,
+            },
+            piclistFlag: false
         }
     },
     components: {
@@ -119,6 +127,7 @@ export default {
         "v-piclist": piclist,
         "v-supplier": supplier,
         "v-proposeprice": proposeprice,
+        "v-loadingbar": loadingbar,
     },
     computed: {
         number () {
@@ -138,6 +147,7 @@ export default {
     created () {
         console.log("created");
         this.initBundleControlSwiper();
+        this.loadingStatus.show = true;
     },
     beforeUpdate () {
         console.log("beforeUpdata");
@@ -180,9 +190,7 @@ export default {
                     this.detail = this.boutiqueDetailData.data.detail;
                     this.initBundleControlSwiper();
                     this.title();
-                    this.$nextTick(()=>{
-                        this.flag = true;
-                    });
+                    this.flag = true;
                 }else {
                     this.isShowDetailErrorMasker = true;
                 }
@@ -205,16 +213,18 @@ export default {
         },
         controlItemIndex (index) {
             this.controlItemCurrentIndex = index;
+            if(index === 1) {
+                setTimeout(()=>{
+                    this.piclistFlag = true;
+                    this.loadingStatus.show = false;
+                }, util.loadPicListTime);
+            }
         },
         initBundleControlSwiper () {
-            console.log("initBundleControlSwiper");
-
-                console.log("initBundleControlSwiper-$nextTick");
-                let swiper2 = new Swiper('.swiper-container2', {
-                    slidesPerView: 'auto',
-                    grabCursor: true
-                });
-
+            let swiper2 = new Swiper('.swiper-container2', {
+                slidesPerView: 'auto',
+                grabCursor: true
+            });
         },
         packetIndex (index) {
             this.packetCurrentIndex = index;

@@ -62,22 +62,25 @@
                     loading: true,
                     loaded: false,
                 },
-                text: ""
+                text: "",
+                list: []
             }
         },
         beforeCreate() {
 
         },
         created () {
+            this.initList();
             this.initSearchPic();
         },
         mounted () {
             this.initScroll();
         },
-        computed: {
-            list () {
+        methods: {
+            initList () {
                 let dataList = this.$store.state.data[this.page];
                 let list = [];
+
                 for(let i = 0, l = dataList.length; i < l; i++) {
                     list = list.concat(dataList[i].data.list);
                 }
@@ -90,10 +93,8 @@
                     item.assistantImageList = [{assistantImageUrl: standardImage}, ...assistantImageList];
                 }
 
-                return list;
-            }
-        },
-        methods: {
+                this.list = list;
+            },
             initScroll () {
                 let picList = this.$refs["pic-list"];
                 let scroll = new IScroll(picList, {
@@ -104,16 +105,16 @@
                     probeType: 3,
                     click:false
                 });
-                var self = this;
+                let self = this;
                 scroll.on("scrollEnd", function () {
                     if(this.y <= this.maxScrollY) {
                         let length = self.$store.state.data[self.page].length;
-                        if(self.time == 1 || length == self.time){
+                        if(self.time === 1 || length === self.time){
                             self.$set(self.loadingStatus, "loading", false);
                             self.$set(self.loadingStatus, "loaded", true);
                         }
                         setTimeout(()=>{
-                            if(self.time == 1 || length == self.time) {
+                            if(self.time === 1 || length === self.time) {
                                 self.scroll.refresh();
                                 self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - (document.querySelector(".nav-footer") && document.querySelector(".nav-footer").clientHeight || 0) - 20, 500);
                             }else{

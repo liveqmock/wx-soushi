@@ -244,6 +244,8 @@ const util = {
 
     loadDataTime: 750,
 
+    loadPicListTime: 250,
+
     timeout: 10000,
 
     tips: {

@@ -69,10 +69,12 @@ export default {
                 "searchDetail": "searchDetail",
             },
             barHeight: 0,
+            list: [],
         }
     },
     created () {
         console.log("created");
+        this.initList();
     },
     mounted () {
         console.log("mounted");
@@ -82,7 +84,12 @@ export default {
         console.log("destroyed");
     },
     computed: {
-        list () {
+        linkPage () {
+            return this.linkPageMap[this.page];
+        },
+    },
+    methods: {
+        initList () {
             let dataList = this.$store.state.data[this.page];
             let list = [];
             let listStr = "list";
@@ -99,13 +106,8 @@ export default {
                 item.currentIndex = 0;
             }
 
-            return list;
+            this.list = list;
         },
-        linkPage () {
-            return this.linkPageMap[this.page];
-        },
-    },
-    methods: {
         initScroll () {
             this.getBarHeight();
             let picList = this.$refs["pic-list"];
@@ -117,16 +119,16 @@ export default {
                 probeType: 3,
                 click:false
             });
-            var self = this;
+            let self = this;
             scroll.on("scrollEnd", function () {
                 if(this.y <= this.maxScrollY) {
                     let length = self.$store.state.data[self.page].length;
-                    if(self.time == 1 || length == self.time){
+                    if(self.time === 1 || length === self.time){
                         self.$set(self.loadingStatus, "loading", false);
                         self.$set(self.loadingStatus, "loaded", true);
                     }
                     setTimeout(()=>{
-                        if(self.time == 1 || length == self.time) {
+                        if(self.time === 1 || length === self.time) {
                             self.scroll.refresh();
                             console.log(self.barHeight);
                             self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - self.barHeight - 20, 500);

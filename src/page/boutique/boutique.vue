@@ -101,6 +101,7 @@
                 </div>
             </div>
             <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="searchPic"></v-piclist>
+            <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
 </template>
@@ -110,6 +111,7 @@ import search from "src/components/search/search";
 import piclist from "src/components/piclist/piclist";
 import loadingbar from "src/components/loadingbar/loadingbar";
 import url from "src/config/url";
+import util from "src/common/util";
 
 export default {
     components: {
@@ -135,6 +137,11 @@ export default {
             flag: false,
             isNoData: false,
             isNoResult: false,
+            loadingStatus: {
+                loading: true,
+                loaded: false,
+                show: false,
+            },
             src: "",
             searchPic: false,
             page: "boutique",
@@ -143,6 +150,7 @@ export default {
     },
     created () {
         console.log("created");
+        this.loadingStatus.show = true;
     },
     mounted () {
         this.getData();
@@ -225,6 +233,9 @@ export default {
         },
         getData(data, options) {
             let self = this;
+            if(!data || options && options.clean) {
+                this.loadingStatus.show = true;
+            }
             this.$http.get(url[this.page], {
                 params: data || this.handleData()
             }).then((response) => {
@@ -243,9 +254,19 @@ export default {
                         key: this.page,
                         value: response.data
                     });
-                    self.$nextTick(()=> {
-                        this.flag = true;
-                    });
+
+                    if(!data || options && options.clean) {
+                        this.$nextTick(()=>{
+                            setTimeout(()=>{
+                                this.loadingStatus.show = false;
+                                this.flag = true;
+                            }, util.loadPicListTime);
+                        });
+                    }else {
+                        this.$nextTick(()=>{
+                            this.flag = true;
+                        });
+                    }
                 }
             }).catch((response) => {
                 console.log('fail');

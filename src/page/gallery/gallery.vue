@@ -75,6 +75,7 @@
                 </div>
             </div>
             <v-gallerypiclist :time="time" :page="page" :src="src" @get-data="getData" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
+            <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
 </template>
@@ -105,6 +106,7 @@ export default {
             loadingStatus: {
                 loading: true,
                 loaded: false,
+                show: false,
             },
             src: "",
             searchPic: false,
@@ -115,6 +117,7 @@ export default {
     },
     created () {
         this.getPrevId();
+        this.loadingStatus.show = true;
         if(this.prevId) {
             this.getData({
                 pageSize:8,
@@ -185,10 +188,13 @@ export default {
         },
         getData(data, options) {
             let self = this;
+            if(!data || options && options.clean) {
+                this.loadingStatus.show = true;
+            }
             this.$http.get(url.gallery, {
                 params: data || this.handleData()
             }).then((response) => {
-                if(response.data.data.list.length == 0) {
+                if(response.data.data.list.length === 0) {
                     this.isNoData = true;
                 }else {
                     this.flag = false;
@@ -212,9 +218,18 @@ export default {
                         this.searchPic = false;
                     }
 
-                    this.$nextTick(()=>{
-                        this.flag = true;
-                    })
+                    if(!data || options && options.clean) {
+                        this.$nextTick(()=>{
+                            setTimeout(()=>{
+                                this.loadingStatus.show = false;
+                                this.flag = true;
+                            }, util.loadPicListTime);
+                        });
+                    }else {
+                        this.$nextTick(()=>{
+                            this.flag = true;
+                        });
+                    }
                 }
             }).catch((response) => {
                 this.isNoResult = true;
