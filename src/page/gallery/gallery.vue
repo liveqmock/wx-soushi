@@ -74,7 +74,6 @@
                     </div>
                 </div>
             </div>
-
             <v-gallerypiclist :time="time" :page="page" :src="src" @get-data="getData" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
         </div>
     </div>
@@ -84,6 +83,7 @@
     import search from "src/components/search/search";
     import gallerypiclist from "src/components/gallerypiclist/gallerypiclist";
     import loadingbar from "src/components/loadingbar/loadingbar";
+    import circliful from "src/components/circliful/circliful";
     import url from "src/config/url";
     import util from "src/common/util";
 export default {
@@ -110,7 +110,7 @@ export default {
             searchPic: false,
             time: 3,
             prevId: "",
-            loadPrevIdOnce: false,
+            loadPrevIdOnce: false
         }
     },
     created () {

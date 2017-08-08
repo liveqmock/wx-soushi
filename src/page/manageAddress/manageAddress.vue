@@ -18,11 +18,11 @@
                             <i class="icon"></i>
                              默认地址
                         </span>
-                            <span class="editor">
+                        <span class="editor" @click="editorAddress(item.id)">
                             <i class="icon"></i>
                             编辑
                         </span>
-                            <span class="delete">
+                        <span class="delete" @click="deleteAddress(item.id)">
                             <i class="icon"></i>
                             删除
                         </span>
@@ -33,9 +33,10 @@
             </div>
         </div>
         <router-link :to="'addAddress'">
-            <v-submit :text="'添加新地址'" v-if="flag"></v-submit>
+            <v-submit :text="'添加新地址'" v-if="flag" @submit="submit"></v-submit>
         </router-link>
-        <v-maskerconfirm></v-maskerconfirm>
+        <v-maskerconfirm v-show="isShowConfirmMasker" :text="'是否确认删除收货地址'" @cancel="cancel" @confirm="confirm"></v-maskerconfirm>
+        <v-maskertips v-show="tips" :tips="tips"></v-maskertips>
     </div>
 </template>
 
@@ -43,6 +44,7 @@
     import divider from "src/components/divider/divider";
     import submit from "src/components/submit/submit";
     import maskerconfirm from "src/components/maskerconfirm/maskerconfirm";
+    import maskertips from "src/components/maskertips/maskertips";
     import util from "src/common/util";
     import url from "src/config/url";
 export default {
@@ -50,11 +52,15 @@ export default {
         "v-divider": divider,
         "v-submit": submit,
         "v-maskerconfirm": maskerconfirm,
+        "v-maskertips": maskertips,
     },
     data () {
         return {
             flag: false,
             data: {},
+            isShowConfirmMasker: false,
+            id: 0,
+            tips: "",
         }
     },
     created () {
@@ -82,6 +88,55 @@ export default {
                 }
             }).catch((response) => {
                 util.toast(response.message, this);
+            });
+        },
+        editorAddress (id) {
+            let router = this.$store.state.router;
+            router.push({
+                path: 'editorAddress',
+                query: {
+                    id: id,
+                    url: window.location.href
+                }
+            })
+        },
+        deleteAddress(id) {
+            this.isShowConfirmMasker = true;
+            this.id = id;
+        },
+        cancel () {
+            this.isShowConfirmMasker = false;
+        },
+        confirm () {
+            console.log(this.id);
+            this.isShowConfirmMasker = false;
+            this.$http.get(url.deleteDelivery, {
+                params: {
+                    id: this.id
+                }
+            }).then((response) => {
+                if(response.data.status.code == 0) {
+                    this.data = response.data.data;
+                    this.$store.commit({
+                        type: "data",
+                        key: "deleteDelivery",
+                        value: response.data
+                    });
+                    util.toast(util.tips.deleteSuccess, this);
+                }else {
+                    util.toast(response.data.status.message, this);
+                }
+            }).catch((response) => {
+                util.toast(response.message, this);
+            });
+        },
+        submit() {
+            let router = this.$store.state.router;
+            router.push({
+                path: 'addAddress',
+                query: {
+                    url: window.location.href
+                }
             });
         }
     }

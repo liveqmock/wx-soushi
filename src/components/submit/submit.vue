@@ -1,6 +1,6 @@
 <template>
     <div class="submit" ref="submit">
-        <div class="button" @click="submit">{{text}}</div>
+        <div class="button" @click.stop.prevent="submit">{{text}}</div>
     </div>
 </template>
 

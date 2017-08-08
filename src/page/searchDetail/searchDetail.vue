@@ -136,7 +136,6 @@ export default {
         }
     },
     created () {
-        console.log("created");
         this.initBundleControlSwiper();
     },
     beforeUpdate () {
@@ -156,6 +155,9 @@ export default {
         console.log("destroyed");
     },
     methods: {
+        title () {
+            document.title = this.detail.variety;
+        },
         handleData () {
             return {
                 stoneLibId: util.parseUrl(window.location.href).id
@@ -176,6 +178,7 @@ export default {
                     });
                     this.detail = this.searchDetailData.data.detail;
                     this.initBundleControlSwiper();
+                    this.title();
                     this.$nextTick(()=>{
                         this.flag = true;
                     });

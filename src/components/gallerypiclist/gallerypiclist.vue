@@ -16,6 +16,7 @@
                             </div>
                         </div>
                         <p class="text">{{item.chineseName}}</p>
+                        <v-circliful :similarity="item.similarity" v-show="searchPic"></v-circliful>
                     </div>
                 </router-link>
             </li>
@@ -29,6 +30,7 @@
     import IScroll from "src/plugins/iscroll-probe";
     import loadingbar from "src/components/loadingbar/loadingbar";
     import showsearchpic from "src/components/showsearchpic/showsearchpic";
+    import circliful from "src/components/circliful/circliful";
     export default {
         props: {
             src: {
@@ -46,6 +48,10 @@
             time: {
                 type: Number,
                 default: 1
+            },
+            flag: {
+                type: Boolean,
+                default: false,
             }
         },
         data () {
@@ -154,7 +160,8 @@
         },
         components: {
             "v-loadingbar": loadingbar,
-            "v-showsearchpic": showsearchpic
+            "v-showsearchpic": showsearchpic,
+            "v-circliful": circliful,
         }
     }
 </script>

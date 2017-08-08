@@ -118,6 +118,9 @@ export default {
 
     },
     methods: {
+        title () {
+            document.title = this.detail.chineseName;
+        },
         handleData () {
             return {
                 stoneLibId: util.parseUrl(window.location.href).id
@@ -141,6 +144,7 @@ export default {
                         this.flag = true;
                     });
                     this.fixImageList();
+                    this.title();
                 }else {
                     this.isShowDetailErrorMasker = true;
                 }

@@ -747,12 +747,12 @@ var $ = require("jquery");
         return PinchZoom;
     };
 
-    if ( typeof module != 'undefined' && module.exports) {
+    if ( typeof module !== "undefined" && module.exports) {
         module.exports = {
             PinchZoom: definePinchZoom($)
         };
-    }else if (typeof define !== 'undefined' && define.amd) {
-        define(['jquery'], function ($) {
+    }else if (typeof define !== "undefined" && define.amd) {
+        define(["jquery"], function ($) {
             return definePinchZoom($);
         });
     }

@@ -264,10 +264,10 @@ Swipe.prototype = {
 
     }
 };
-console.log(module);
-if ( typeof module != 'undefined' && module.exports) {
+
+if ( typeof module !== "undefined" && module.exports) {
     module.exports = Swipe;
-} else if ( typeof define == 'function' && define.amd ) {
+} else if ( typeof define === "function" && define.amd ) {
     define( function () { return Swipe; } );
 } else {
     window.Swipe = Swipe;

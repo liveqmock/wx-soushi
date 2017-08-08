@@ -25,13 +25,16 @@
                         收货地址
                     </div>
                 </router-link>
-                <div class="password icon-nextpage">
-                    修改密码
-                </div>
+                <router-link :to="'modifyPassword'">
+                    <div class="password icon-nextpage">
+                        修改密码
+                    </div>
+                </router-link>
             </div>
             <div class="submit">
-                <div class="button">退出登录</div>
+                <div class="button" @click="logout">退出登录</div>
             </div>
+            <v-maskerconfirm v-show="isShowConfirmMasker" :text="'是否退出登录?'" @cancel="cancel" @confirm="confirm"></v-maskerconfirm>
         </div>
         <v-footer :index="4"></v-footer>
     </div>
@@ -40,6 +43,7 @@
 <script>
     import divider from "src/components/divider/divider";
     import footer from "src/components/footer/footer";
+    import maskerconfirm from "src/components/maskerconfirm/maskerconfirm";
     import util from "src/common/util";
     import url from "src/config/url";
     export default {
@@ -49,6 +53,7 @@
         components: {
             "v-divider": divider,
             "v-footer": footer,
+            "v-maskerconfirm": maskerconfirm,
         },
         data () {
             return {
@@ -59,7 +64,8 @@
                     1: 'src/page/personal/icon/man.png',
                     2: 'src/page/personal/icon/lady.png'
                 },
-                isShowPrice: false
+                isShowPrice: false,
+                isShowConfirmMasker: false,
             };
         },
         created () {
@@ -108,6 +114,35 @@
                 }).then((response) => {
                     if(response.data.status.code == 0) {
                         this.isShowPrice = !this.isShowPrice;
+                    }else {
+                        util.toast(response.data.status.message, this);
+                    }
+                }).catch((response) => {
+                    util.toast(response.message, this);
+                });
+            },
+            logout () {
+                this.isShowConfirmMasker = true;
+            },
+            cancel () {
+                this.isShowConfirmMasker = false;
+            },
+            confirm () {
+                this.isShowConfirmMasker = false;
+                let router = this.$store.state.router;
+                this.$http.get(url.logout, {
+                    params: {}
+                }).then((response) => {
+                    if(response.data.status.code == 0) {
+                        this.data = response.data.data;
+                        this.$store.commit({
+                            type: "data",
+                            key: "logout",
+                            value: response.data
+                        });
+                        router.push({
+                            path: 'login'
+                        });
                     }else {
                         util.toast(response.data.status.message, this);
                     }

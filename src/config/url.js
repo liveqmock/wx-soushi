@@ -21,7 +21,22 @@ module.exports = {
     setShowPrice: "http://user.backend.soushi88.com/userWx/setShowPrice",
     updateMyProfile: "http://user.backend.soushi88.com/userWx/updateMyProfile",
     getMyDelivery: "http://user.backend.soushi88.com/userWx/getMyDelivery",
+    deleteDelivery: "http://user.backend.soushi88.com/userDeliveryWx/del",
+    addDelivery: "http://user.backend.soushi88.com/userDeliveryWx/add",
+    getDelivery: "http://user.backend.soushi88.com/userDeliveryWx/get",
+    updateDelivery: "http://user.backend.soushi88.com/userDeliveryWx/update",
+    changePassword: "http://user.backend.soushi88.com/userWx/changePassword",
+    logout: "http://user.backend.soushi88.com/userWx/logout",
+    login: "http://user.backend.soushi88.com/accountWx/login",
+    sendRegCode: "http://user.backend.soushi88.com/accountWx/sendRegCode",
+    register: "http://user.backend.soushi88.com/accountWx/register",
+    resetPasswordPre: "http://user.backend.soushi88.com/accountWx/resetPasswordPre",
+    resetPassword: "http://user.backend.soushi88.com/accountWx/resetPassword",
 };
+
+if(process.env.NODE_ENV === "production") {
+    dataPath = "assets/data";
+}
 
 if(local) {
     module.exports = {
@@ -41,5 +56,17 @@ if(local) {
         setShowPrice: dataPath + "/setShowPrice.json",
         updateMyProfile: dataPath + "/updateMyProfile.json",
         getMyDelivery: dataPath + "/getMyDelivery.json",
+        deleteDelivery: dataPath + "/deleteDelivery.json",
+        addDelivery: dataPath + "/addDelivery.json",
+        getDelivery: dataPath + "/getDelivery.json",
+        updateDelivery: dataPath + "/updateDelivery.json",
+        changePassword: dataPath + "/changePassword.json",
+        logout: dataPath + "/logout.json",
+        login: dataPath + "/login.json",
+        sendRegCode: dataPath + "/sendRegCode.json",
+        register: dataPath + "/register.json",
+        resetPasswordPre: dataPath + "/resetPasswordPre.json",
+        resetPassword: dataPath + "/resetPassword.json",
     };
 }
+

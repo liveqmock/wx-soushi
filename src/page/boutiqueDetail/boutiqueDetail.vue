@@ -156,6 +156,9 @@ export default {
         console.log("destroyed");
     },
     methods: {
+        title () {
+            document.title = this.detail.variety;
+        },
         handleData () {
             return {
                 stoneLibId: util.parseUrl(window.location.href).id
@@ -175,8 +178,8 @@ export default {
                         value: response.data
                     });
                     this.detail = this.boutiqueDetailData.data.detail;
-//                    this.picListData = response.data.data.similar;
                     this.initBundleControlSwiper();
+                    this.title();
                     this.$nextTick(()=>{
                         this.flag = true;
                     });

@@ -13,6 +13,7 @@
                         </div>
                         <p class="text">{{item.variety}}-{{item.gradeName}}</p>
                         <v-price></v-price>
+                        <v-circliful :similarity="item.similarity" v-show="searchPic"></v-circliful>
                     </div>
                 </router-link>
             </li>
@@ -24,6 +25,7 @@
 <script>
     import price from "src/components/price/price";
     import showsearchpic from "src/components/showsearchpic/showsearchpic";
+    import circliful from "src/components/circliful/circliful";
     import IScroll from "src/plugins/iscroll-probe";
     import loadingbar from "src/components/loadingbar/loadingbar";
 
@@ -84,7 +86,7 @@ export default {
             let dataList = this.$store.state.data[this.page];
             let list = [];
             let listStr = "list";
-            if(this.page == "boutiqueDetail" || this.page == "searchDetail") {
+            if(this.page === "boutiqueDetail" || this.page === "searchDetail") {
                 listStr = "similar";
             }
 
@@ -174,6 +176,7 @@ export default {
         "v-price": price,
         "v-loadingbar": loadingbar,
         "v-showsearchpic": showsearchpic,
+        "v-circliful": circliful,
     }
 }
 </script>
@@ -186,7 +189,7 @@ export default {
             width: 100%;
             overflow: hidden;
             &.index {
-                 top: 640px;
+                 top: 625px;
                 .pic-wrapper {
                     padding-bottom: 95px;
                 }

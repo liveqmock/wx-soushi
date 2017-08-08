@@ -19,7 +19,7 @@ module.exports = {
         inline: true,
         port: 9000,
     },
-    devtool: "source-map",
+    devtool: "cheap-module-inline-source-map",
     module: {
         rules: [{
             test: /\.vue$/,
@@ -39,8 +39,10 @@ module.exports = {
             include: /src/,
             enforce: "pre",
             use: [{
+                loader: "source-map-loader"
+            },{
                 loader: "babel-loader"
-            }, {
+            },{
                 loader: "eslint-loader"
             }]
         }, {

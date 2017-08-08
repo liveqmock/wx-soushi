@@ -55,7 +55,7 @@
                 <v-receiveinfo :page="page" v-if="flag" @changeTextArea="changeTextArea" @defaultAddress="defaultAddress"></v-receiveinfo>
                 <v-maskertips :tips="tips" v-show="tips"></v-maskertips>
                 <v-maskersuccess v-show="isToastSuccess" :text="'我们将尽快与您联系'"></v-maskersuccess>
-                <v-maskerFail v-show="isToastFail" :failmessage="failmessage"></v-maskerFail>
+                <v-maskerfail v-show="isToastFail" :failmessage="failmessage"></v-maskerfail>
                 <v-submit :text="'提交'" @submit="submit" v-if="flag"></v-submit>
             </div>
         </div>

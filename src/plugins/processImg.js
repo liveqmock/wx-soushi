@@ -156,7 +156,7 @@
     } else if ( typeof define == 'function' && define.amd ) {
         define( function () { return compressImg; } );
     } else {
-        window.IScroll = compressImg;
+        window.compressImg = compressImg;
     }
 
 })();

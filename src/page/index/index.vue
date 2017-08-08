@@ -98,6 +98,11 @@
                             this.$store.commit("unchecked");
                         }
                     }
+                    this.$store.commit({
+                        type: "data",
+                        key: "getMyProfile",
+                        value: response.data
+                    });
                     this.getData();
                 }).catch((response) => {
                     util.toast(response.message, this);
