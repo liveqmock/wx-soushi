@@ -198,7 +198,7 @@ export default {
                 top: 190px;
              }
             &.boutiqueDetail, &.searchDetail {
-                top: 1040px;
+                top: 0px;
                 height: 782px;
                 .pic-wrapper{
                     padding-bottom: 80px;
@@ -246,5 +246,4 @@ export default {
                 }
             }
         }
-
 </style>

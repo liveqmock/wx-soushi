@@ -258,6 +258,7 @@ export default {
     }
     .content-list {
         .content-item {
+            position: relative;
         }
     }
 }

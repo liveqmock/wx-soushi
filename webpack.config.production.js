@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].[hash:8].js",
+        filename: "./js/[name].[hash:8].js",
         publicPath: "./",
     },
     devServer: {
@@ -23,7 +23,7 @@ module.exports = {
         inline: true,
         port: 9000,
     },
-    devtool: "hidden-source-map",
+    devtool: "cheap-module-inline-source-map",
     module: {
         rules: [{
             test: /\.vue$/,
@@ -49,18 +49,20 @@ module.exports = {
             include: /src/,
             enforce: "pre",
             use: [{
+                loader: "source-map-loader"
+            },{
                 loader: "babel-loader"
             },{
                 loader: "eslint-loader"
             }]
-        }, {
+        },{
             test: /\.css$/,
             exclude: /node_modules/,
             include: /src/,
             use: ExtractTextPlugin.extract({
                 use: "css-loader"
             })
-        }, {
+        },{
             test: /\.(sass|scss)$/,
             exclude: /node_modules/,
             include: /src/,
@@ -68,7 +70,7 @@ module.exports = {
                 use: "postcss-loader!sass-loader",
                 fallback: "css-loader"
             })
-        }, {
+        },{
             test: /\.(jpg|jpeg|png|svg|gif)$/,
             exclude: /node_modules/,
             include: /src/,
@@ -76,7 +78,7 @@ module.exports = {
                 loader: "url-loader",
                 options: {
                     limit: 8192,
-                    prefix: "img"
+                    name: "images/[name].[hash:8].[ext]",
                 }
             }]
         }]
@@ -93,11 +95,17 @@ module.exports = {
             favicon: "./src/images/logo.ico",
             template: "index.html",
             filename: "index.html",
-            inject: "body"
+            inject: "body",
+            minify: {
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments: true
+            }
         }),
         new CleanWebpackPlugin([path.resolve(__dirname, "dist")]),
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin("style.css"),
+        new ExtractTextPlugin("./style/style.css"),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: "'production'"
@@ -114,7 +122,8 @@ module.exports = {
                 toplevel: true,
                 properties: true
             },
-            sourceMap: false
+            sourcemap: true,
+            mangle: true,
         }),
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, "src/data"),
