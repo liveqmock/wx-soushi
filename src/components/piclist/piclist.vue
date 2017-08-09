@@ -131,7 +131,7 @@ export default {
                         if(self.time === 1 || length === self.time) {
                             self.scroll.refresh();
                             console.log(self.barHeight);
-                            self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - self.barHeight - 20, 500);
+                            self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - self.barHeight, 500);
                         }else{
                             self.reloadData();
                         }
@@ -157,6 +157,7 @@ export default {
                 if(this.searchPic) {
                     showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
                 }
+
                 this.scroll.refresh();
                 this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
             }

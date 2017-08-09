@@ -112,7 +112,7 @@ export default {
             searchPic: false,
             time: 3,
             prevId: "",
-            loadPrevIdOnce: false
+            loadPrevIdOnce: false,
         }
     },
     created () {
@@ -213,7 +213,7 @@ export default {
                     if(this.prevId && !this.loadPrevIdOnce) {
                         this.src = response.data.data.searchImageUrl;
                         this.searchPic = true;
-                    }else {
+                    }else if(data && !data.append){
                         this.src = "";
                         this.searchPic = false;
                     }
@@ -246,9 +246,10 @@ export default {
             });
         },
         getUploadPicData (data, src) {
+            console.log(data);
             this.hideMasker();
             this.src = src;
-            this.searchPic = true;
+            this.searchPic = true
             this.getData(data, {
                 clean: true
             });

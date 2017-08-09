@@ -1,7 +1,7 @@
 <template>
     <div class="pic-list" ref="pic-list">
         <ul class="pic-wrapper">
-            <v-showsearchpic :src="src" :text="text" v-if="searchPic"></v-showsearchpic>
+            <v-showsearchpic :src="src" :text="text" v-show="searchPic"></v-showsearchpic>
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <router-link :to="{path: 'galleryDetail', query: {id: item.id}}">
                     <div class="box">
@@ -116,7 +116,7 @@
                         setTimeout(()=>{
                             if(self.time === 1 || length === self.time) {
                                 self.scroll.refresh();
-                                self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - (document.querySelector(".nav-footer") && document.querySelector(".nav-footer").clientHeight || 0) - 20, 500);
+                                self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - (document.querySelector(".show-search-pic") && document.querySelector(".show-search-pic").clientHeight || 0) - 20, 500);
                             }else{
                                 self.reloadData();
                             }
@@ -143,6 +143,7 @@
                         showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
                     }
                     this.scroll.refresh();
+                    console.log(showSearchPicClientHeight);
                     this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
                 }
             },
