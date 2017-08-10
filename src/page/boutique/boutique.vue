@@ -100,7 +100,8 @@
                     </div>
                 </div>
             </div>
-            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="searchPic"></v-piclist>
+            <v-showsearchpic :src="src" :text="text" v-if="src"></v-showsearchpic>
+            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="src"></v-piclist>
             <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
@@ -110,6 +111,7 @@
 import search from "src/components/search/search";
 import piclist from "src/components/piclist/piclist";
 import loadingbar from "src/components/loadingbar/loadingbar";
+import showsearchpic from "src/components/showsearchpic/showsearchpic";
 import url from "src/config/url";
 import util from "src/common/util";
 
@@ -118,6 +120,7 @@ export default {
         "v-search": search,
         "v-piclist": piclist,
         "v-loadingbar": loadingbar,
+        "v-showsearchpic": showsearchpic,
     },
     data () {
         return {
@@ -143,7 +146,6 @@ export default {
                 show: false,
             },
             src: "",
-            searchPic: false,
             page: "boutique",
             time: 3
         }
@@ -282,7 +284,6 @@ export default {
         getUploadPicData (data, src) {
             this.hideMasker();
             this.src = src;
-            this.searchPic = true;
             this.getData(data,{
                 clean: true
             });

@@ -38,7 +38,6 @@ export default {
     methods: {
         init () {
             $(this.$refs.circliful).circliful();
-            console.log(this.$refs.circliful);
         },
         addPercent () {
             this.similarityPercent = this.similarity + "%";

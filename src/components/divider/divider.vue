@@ -10,5 +10,7 @@
 .divider{
     background: #f9f9f9;
     height: 20px;
+    position:relative;
+    z-index:10;
 }
 </style>

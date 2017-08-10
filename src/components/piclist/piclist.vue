@@ -1,7 +1,7 @@
 <template>
     <div class="pic-list" :class="page" ref="pic-list">
         <ul class="pic-wrapper">
-            <v-showsearchpic :src="src" :text="text" v-if="searchPic"></v-showsearchpic>
+
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <router-link :to="{path: linkPage, query: {blockId: item.idString, companyId: item.companyId}}">
                     <div class="box">
@@ -13,7 +13,7 @@
                         </div>
                         <p class="text">{{item.variety}}-{{item.gradeName}}</p>
                         <v-price></v-price>
-                        <v-circliful :similarity="item.similarity" v-show="searchPic"></v-circliful>
+                        <v-circliful :similarity="item.similarity" v-show="src && index == 0 && islogin"></v-circliful>
                     </div>
                 </router-link>
             </li>
@@ -70,6 +70,7 @@ export default {
             },
             barHeight: 0,
             list: [],
+            islogin: this.$store.state.islogin
         }
     },
     created () {

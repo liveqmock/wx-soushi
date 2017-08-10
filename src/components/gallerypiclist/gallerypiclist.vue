@@ -1,7 +1,6 @@
 <template>
-    <div class="pic-list" ref="pic-list">
+    <div class="pic-list" ref="pic-list" :class="{'show-pic': src}">
         <ul class="pic-wrapper">
-            <v-showsearchpic :src="src" :text="text" v-show="searchPic"></v-showsearchpic>
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <router-link :to="{path: 'galleryDetail', query: {id: item.id}}">
                     <div class="box">
@@ -16,7 +15,7 @@
                             </div>
                         </div>
                         <p class="text">{{item.chineseName}}</p>
-                        <v-circliful :similarity="item.similarity" v-show="searchPic"></v-circliful>
+                        <v-circliful :similarity="item.similarity" v-show="src && index == 0"></v-circliful>
                     </div>
                 </router-link>
             </li>
@@ -29,17 +28,12 @@
 <script>
     import IScroll from "src/plugins/iscroll-probe";
     import loadingbar from "src/components/loadingbar/loadingbar";
-    import showsearchpic from "src/components/showsearchpic/showsearchpic";
     import circliful from "src/components/circliful/circliful";
     export default {
         props: {
             src: {
                 type: String,
                 default: ""
-            },
-            searchPic: {
-                type: Boolean,
-                default: false
             },
             page: {
                 type: String,
@@ -62,7 +56,6 @@
                     loading: true,
                     loaded: false,
                 },
-                text: "",
                 list: []
             }
         },
@@ -116,7 +109,7 @@
                         setTimeout(()=>{
                             if(self.time === 1 || length === self.time) {
                                 self.scroll.refresh();
-                                self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - (document.querySelector(".show-search-pic") && document.querySelector(".show-search-pic").clientHeight || 0) - 20, 500);
+                                self.scroll.scrollTo(0, -self.$refs["pic-item"][0].clientHeight * (Math.ceil(self.$refs["pic-item"].length / 2)) + self.scroll.wrapperHeight - 20, 500);
                             }else{
                                 self.reloadData();
                             }
@@ -138,18 +131,13 @@
 
                 let length = this.$store.state.data[this.page].length;
                 if(length > 1 && length <= this.time) {
-                    let showSearchPicClientHeight = 0;
-                    if(this.searchPic) {
-                        showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
-                    }
                     this.scroll.refresh();
-                    console.log(showSearchPicClientHeight);
-                    this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
+                    this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight);
                 }
             },
             reloadData () {
                 this.$emit("get-data", {
-                    refresh: true
+                    pullDown: true
                 });
             },
             selectSmallPic(index_imageUrlList, index, ev) {
@@ -157,12 +145,11 @@
             },
             initSearchPic () {
                 let list = this.list;
-                this.text = list[0].chineseName;
+                this.$emit("text", list[0].chineseName);
             },
         },
         components: {
             "v-loadingbar": loadingbar,
-            "v-showsearchpic": showsearchpic,
             "v-circliful": circliful,
         }
     }
@@ -176,36 +163,35 @@
         top: 190px;
         bottom: 0px;
         width: 100%;
+        overflow: hidden;
+        &.show-pic{
+            top: 430px;
+         }
         .pic-wrapper {
             overflow: hidden;
             padding: 0 10px;
             .pic-item {
-                padding: 20px 10px 0;
+                padding: 20px 10px 0px;
                 box-sizing: border-box;
                 width: 50%;
                 float: left;
-
                 .box {
                     width: 100%;
                     background: #fff;
                     position: relative;
                     box-shadow: 0px 1px 5px rgba(0, 0, 0, .1);
-
                     .big-pic {
                         width: 100%;
                         height: 260px;
                     }
-
                     .small-pic-item-wrapper {
                         padding: 10px 5px 0;
                         overflow: hidden;
-
                         .small-pic-item {
                             padding: 0px 5px;
                             box-sizing: border-box;
                             float: left;
                             width: 25%;
-
                             img {
                                 width: 73px;
                                 height: 55px;

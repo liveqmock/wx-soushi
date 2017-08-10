@@ -29,6 +29,9 @@ export default {
 .show-search-pic{
     padding: 20px;
     overflow: hidden;
+    position: relative;
+    z-index: 10;
+    background: #fff;
     .pic{
         float: left;
         img {

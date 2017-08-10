@@ -74,7 +74,9 @@
                     </div>
                 </div>
             </div>
-            <v-gallerypiclist :time="time" :page="page" :src="src" @get-data="getData" v-if="flag" :search-pic="searchPic"></v-gallerypiclist>
+            <v-showsearchpic :src="src" :text="text" v-show="src"></v-showsearchpic>
+            <v-divider></v-divider>
+            <v-gallerypiclist :time="time" :page="page" :src="src" @get-data="getData" @text="getText" v-if="flag" :search-pic="src"></v-gallerypiclist>
             <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
@@ -85,13 +87,17 @@
     import gallerypiclist from "src/components/gallerypiclist/gallerypiclist";
     import loadingbar from "src/components/loadingbar/loadingbar";
     import circliful from "src/components/circliful/circliful";
+    import showsearchpic from "src/components/showsearchpic/showsearchpic";
+    import divider from "src/components/divider/divider";
     import url from "src/config/url";
     import util from "src/common/util";
 export default {
     components: {
         "v-search": search,
         "v-gallerypiclist": gallerypiclist,
-        "v-loadingbar": loadingbar
+        "v-loadingbar": loadingbar,
+        "v-showsearchpic": showsearchpic,
+        "v-divider": divider,
     },
     data () {
         return {
@@ -109,10 +115,10 @@ export default {
                 show: false,
             },
             src: "",
-            searchPic: false,
             time: 3,
             prevId: "",
             loadPrevIdOnce: false,
+            text: ""
         }
     },
     created () {
@@ -187,10 +193,39 @@ export default {
             }
         },
         getData(data, options) {
-            let self = this;
-            if(!data || options && options.clean) {
+            let initLoad = false;
+            let condition = false;
+            let searchPic = false;
+            let photoSearchPic = false;
+            let pullDown = false;
+
+            if(data === undefined) {
+                initLoad = true;
+            }
+
+            if(data && data.append) {
+                searchPic = true;
+            }
+
+            if(options && options.clean) {
+                condition = true;
+                if(searchPic) {
+                    condition = false;
+                }
+            }
+
+            if(this.prevId && !this.loadPrevIdOnce) {
+                photoSearchPic = true;
+            }
+
+            if(data && data.pullDown) {
+                pullDown = true;
+            }
+
+            if(initLoad || condition || searchPic || photoSearchPic) {
                 this.loadingStatus.show = true;
             }
+
             this.$http.get(url.gallery, {
                 params: data || this.handleData()
             }).then((response) => {
@@ -198,34 +233,35 @@ export default {
                     this.isNoData = true;
                 }else {
                     this.flag = false;
-                    if(options && options.clean) {
+                    if(condition || searchPic) {
                         this.$store.commit({
                             type: "cleanDataList",
                             key: this.page,
                         });
                     }
+
                     this.$store.commit({
                         type: "dataList",
                         key: this.page,
                         value: response.data
                     });
 
-                    if(this.prevId && !this.loadPrevIdOnce) {
+                    if(photoSearchPic) {
                         this.src = response.data.data.searchImageUrl;
-                        this.searchPic = true;
-                    }else if(data && !data.append){
-                        this.src = "";
-                        this.searchPic = false;
                     }
 
-                    if(!data || options && options.clean) {
+                    if(condition){
+                        this.src = "";
+                    }
+
+                    if(initLoad || condition || searchPic || photoSearchPic) {
                         this.$nextTick(()=>{
                             setTimeout(()=>{
                                 this.loadingStatus.show = false;
                                 this.flag = true;
                             }, util.loadPicListTime);
                         });
-                    }else {
+                    }else if(pullDown){
                         this.$nextTick(()=>{
                             this.flag = true;
                         });
@@ -249,7 +285,6 @@ export default {
             console.log(data);
             this.hideMasker();
             this.src = src;
-            this.searchPic = true
             this.getData(data, {
                 clean: true
             });
@@ -259,6 +294,9 @@ export default {
             if(prevId) {
                 this.prevId = prevId;
             }
+        },
+        getText (text) {
+            this.text = text;
         }
     }
 }
