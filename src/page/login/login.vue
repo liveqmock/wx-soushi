@@ -94,7 +94,6 @@ export default {
                 }
             }).then((response) => {
                 let data = response.data;
-                let router = this.$store.state.router;
                 if(response.data.status.code == 0) {
                     this.data = response.data.data;
                     this.$store.commit({
@@ -102,7 +101,7 @@ export default {
                         key: "login",
                         value: response.data
                     });
-                    router.push({
+                    this.$router.push({
                         path: 'index'
                     });
                 }else {

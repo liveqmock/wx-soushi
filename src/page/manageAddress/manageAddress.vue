@@ -91,8 +91,7 @@ export default {
             });
         },
         editorAddress (id) {
-            let router = this.$store.state.router;
-            router.push({
+            this.$router.push({
                 path: 'editorAddress',
                 query: {
                     id: id,
@@ -131,8 +130,7 @@ export default {
             });
         },
         submit() {
-            let router = this.$store.state.router;
-            router.push({
+            this.$router.push({
                 path: 'addAddress',
                 query: {
                     url: window.location.href

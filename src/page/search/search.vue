@@ -113,24 +113,30 @@
                 </div>
             </div>
 
-            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="searchPic"></v-piclist>
+            <v-showsearchpic :src="src" :text="text" v-show="src"></v-showsearchpic>
+            <v-divider></v-divider>
+            <v-piclist :time="time" :page="page" @get-data="getData" @text="getText" v-if="flag" :src="src" :search-pic="src"></v-piclist>
             <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
 </template>
 
 <script>
-import search from "src/components/search/search";
-import piclist from "src/components/piclist/piclist";
-import loadingbar from "src/components/loadingbar/loadingbar";
-import url from "src/config/url";
-import util from "src/common/util";
+    import search from "src/components/search/search";
+    import piclist from "src/components/piclist/piclist";
+    import loadingbar from "src/components/loadingbar/loadingbar";
+    import showsearchpic from "src/components/showsearchpic/showsearchpic";
+    import divider from "src/components/divider/divider";
+    import url from "src/config/url";
+    import util from "src/common/util";
 
 export default {
     components: {
         "v-search": search,
         "v-piclist": piclist,
         "v-loadingbar": loadingbar,
+        "v-showsearchpic": showsearchpic,
+        "v-divider": divider,
     },
     data () {
         return {
@@ -156,9 +162,9 @@ export default {
                 show: false,
             },
             src: "",
-            searchPic: false,
             page: "search",
-            time: 3
+            time: 3,
+            text: ""
         }
     },
     created () {
@@ -167,7 +173,9 @@ export default {
     },
     mounted () {
         console.log("mounted");
-        this.getData();
+        this.$nextTick(()=> {
+            this.getData();
+        });
     },
     methods:{
         selectControl (index, ev) {
@@ -296,10 +304,12 @@ export default {
         getUploadPicData (data, src) {
             this.hideMasker();
             this.src = src;
-            this.searchPic = true;
             this.getData(data,{
                 clean: true
             });
+        },
+        getText (text) {
+            this.text = text;
         }
     }
 }

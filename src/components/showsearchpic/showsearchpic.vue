@@ -30,7 +30,7 @@ export default {
     padding: 20px;
     overflow: hidden;
     position: relative;
-    z-index: 10;
+    z-index: 11;
     background: #fff;
     .pic{
         float: left;

@@ -100,8 +100,9 @@
                     </div>
                 </div>
             </div>
-            <v-showsearchpic :src="src" :text="text" v-if="src"></v-showsearchpic>
-            <v-piclist :time="time" :page="page" @get-data="getData" v-if="flag" :src="src" :search-pic="src"></v-piclist>
+            <v-showsearchpic :src="src" :text="text" v-show="src"></v-showsearchpic>
+            <v-divider></v-divider>
+            <v-piclist :time="time" :page="page" @get-data="getData" @text="getText" v-if="flag" :src="src" :search-pic="src"></v-piclist>
             <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
         </div>
     </div>
@@ -112,6 +113,7 @@ import search from "src/components/search/search";
 import piclist from "src/components/piclist/piclist";
 import loadingbar from "src/components/loadingbar/loadingbar";
 import showsearchpic from "src/components/showsearchpic/showsearchpic";
+import divider from "src/components/divider/divider";
 import url from "src/config/url";
 import util from "src/common/util";
 
@@ -121,6 +123,7 @@ export default {
         "v-piclist": piclist,
         "v-loadingbar": loadingbar,
         "v-showsearchpic": showsearchpic,
+        "v-divider": divider,
     },
     data () {
         return {
@@ -147,7 +150,8 @@ export default {
             },
             src: "",
             page: "boutique",
-            time: 3
+            time: 3,
+            text: ""
         }
     },
     created () {
@@ -155,7 +159,9 @@ export default {
         this.loadingStatus.show = true;
     },
     mounted () {
-        this.getData();
+        this.$nextTick(()=> {
+            this.getData();
+        });
     },
     methods:{
         selectControl (index, ev) {
@@ -235,9 +241,39 @@ export default {
         },
         getData(data, options) {
             let self = this;
-            if(!data || options && options.clean) {
+            let initLoad = false;
+            let condition = false;
+            let searchPic = false;
+            let photoSearchPic = false;
+            let pullDown = false;
+
+            if(data === undefined) {
+                initLoad = true;
+            }
+
+            if(data && data.append) {
+                searchPic = true;
+            }
+
+            if(options && options.clean) {
+                condition = true;
+                if(searchPic) {
+                    condition = false;
+                }
+            }
+
+            if(this.prevId && !this.loadPrevIdOnce) {
+                photoSearchPic = true;
+            }
+
+            if(data && data.pullDown) {
+                pullDown = true;
+            }
+
+            if(initLoad || condition || searchPic || photoSearchPic) {
                 this.loadingStatus.show = true;
             }
+
             this.$http.get(url[this.page], {
                 params: data || this.handleData()
             }).then((response) => {
@@ -245,7 +281,7 @@ export default {
                     this.isNoData = true;
                 }else {
                     this.flag = false;
-                    if(options && options.clean) {
+                    if(condition || searchPic) {
                         this.$store.commit({
                             type: "cleanDataList",
                             key: this.page,
@@ -257,14 +293,14 @@ export default {
                         value: response.data
                     });
 
-                    if(!data || options && options.clean) {
+                    if(initLoad || condition || searchPic || photoSearchPic) {
                         this.$nextTick(()=>{
                             setTimeout(()=>{
                                 this.loadingStatus.show = false;
                                 this.flag = true;
                             }, util.loadPicListTime);
                         });
-                    }else {
+                    }else if(pullDown){
                         this.$nextTick(()=>{
                             this.flag = true;
                         });
@@ -287,6 +323,9 @@ export default {
             this.getData(data,{
                 clean: true
             });
+        },
+        getText (text) {
+            this.text = text;
         }
     }
 }

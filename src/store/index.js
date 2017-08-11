@@ -3,8 +3,6 @@
  */
 import Vue from "vue";
 import Vuex from "vuex";
-import router from "src/config/router";
-import url from "src/config/url";
 
 Vue.use(Vuex);
 
@@ -14,9 +12,7 @@ const store = new Vuex.Store({
         isShowPrice: false,
         isEmployVerify: false,
         isUnchecked: false,
-        data: {},
-        router: router,
-        url: url
+        data: {}
     },
     getters: {
 

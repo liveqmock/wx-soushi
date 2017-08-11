@@ -37,7 +37,6 @@ export default {
     methods: {
         upload (ev) {
             let self = this;
-            let router = this.$store.state.router;
             this.tips = util.tips.uploading;
             compressImg(960, function(resizeData, src){
                 let $form_data = '';
@@ -53,11 +52,9 @@ export default {
                         key: self.page,
                         value: response.data
                     })
-                    console.log(response);
                     if(response.data.status.code == 0) {
-                        console.log("tips");
                         self.tips = "";
-                        router.push({
+                        this.$router.push({
                             path: "gallery",
                             query: {
                                 prevId: response.data.data.prevId

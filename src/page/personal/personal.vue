@@ -129,7 +129,6 @@
             },
             confirm () {
                 this.isShowConfirmMasker = false;
-                let router = this.$store.state.router;
                 this.$http.get(url.logout, {
                     params: {}
                 }).then((response) => {
@@ -140,7 +139,7 @@
                             key: "logout",
                             value: response.data
                         });
-                        router.push({
+                        this.$router.push({
                             path: 'login'
                         });
                     }else {

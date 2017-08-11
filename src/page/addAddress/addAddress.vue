@@ -138,12 +138,8 @@ export default {
                     defaulted: defaulted
                 }
             }).then((response) => {
-                console.log(response);
-                let router = this.$store.state.router;
                 let parse = util.getUrlDetail(window.location.href);
-                console.log(parse);
                 let path = "";
-
                 function getPath(parse) {
                     if(parse.parse) {
                         parse = parse.parse;
@@ -153,7 +149,6 @@ export default {
                     }
                 }
                 getPath(parse);
-                console.log(path);
                 if(response.data.status.code == 0) {
                     this.data = response.data.data;
                     this.$store.commit({
@@ -162,9 +157,9 @@ export default {
                         value: response.data
                     });
                     util.toastSuccess(()=>{
-                        router.push({
+                        this.$router.push({
                             path: path
-                        })
+                        });
                     }, this);
                 }else {
                     util.toast(response.data.status.message, this);

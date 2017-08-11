@@ -84,7 +84,6 @@
                     }
                 }).then((response) => {
                     let data = response.data;
-                    let router = this.$store.state.router;
                     if(response.data.status.code === 0) {
                         this.data = response.data.data;
                         this.$store.commit({
@@ -134,7 +133,6 @@
                     }
                 }).then((response) => {
                     let data = response.data;
-                    let router = this.$store.state.router;
                     if(response.data.status.code === 0) {
                         this.data = response.data.data;
                         this.$store.commit({
@@ -142,7 +140,7 @@
                             key: "resetPasswordPre",
                             value: response.data
                         });
-                        router.push({
+                        this.$router.push({
                             path: 'findPassword'
                         });
                     }else {

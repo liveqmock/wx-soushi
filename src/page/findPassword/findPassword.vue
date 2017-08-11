@@ -106,7 +106,6 @@
                     }
                 }).then((response) => {
                     let data = response.data;
-                    let router = this.$store.state.router;
                     if(response.data.status.code === 0) {
                         this.data = response.data.data;
                         this.$store.commit({
@@ -115,7 +114,7 @@
                             value: response.data
                         });
                         util.toastSuccess(()=>{
-                            router.push({
+                            this.$router.push({
                                 path: 'login'
                             });
                         }, this);

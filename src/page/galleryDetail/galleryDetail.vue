@@ -112,7 +112,9 @@ export default {
     },
     mounted () {
         console.log("mounted");
-        this.getData();
+        this.$nextTick(()=>{
+            this.getData();
+        });
     },
     computed: {
 
@@ -208,7 +210,6 @@ export default {
                 }
                 .place {
                     color: #fe5104;
-                    margin-left: 20px;
                     position: relative;
                     font-size: 28px;
                     line-height: 28px;

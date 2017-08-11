@@ -2,15 +2,15 @@
 <div class="wrapper">
     <div class="container">
         <div class="password">
-            <span class="label">原密码</span>
+            <span class="label">原密码：</span>
             <input type="password" placeholder="请输入原密码" ref="password">
         </div>
         <div class="new-password">
-            <span class="label">新密码</span>
+            <span class="label">新密码：</span>
             <input type="password" placeholder="建议输入8位以上包含数字字母符号等" ref="new-password">
         </div>
         <div class="confirm">
-            <span class="label">确认密码</span>
+            <span class="label">确认密码：</span>
             <input type="password" placeholder="请再次确认" ref="confirm">
         </div>
         <v-submit :text="'确认修改'" @submit="submit"></v-submit>
@@ -105,7 +105,6 @@ export default {
                 }
             }).then((response) => {
                 if(response.data.status.code == 0) {
-                    let router = this.$store.state.router;
                     this.data = response.data.data;
                     this.$store.commit({
                         type: "data",
@@ -113,7 +112,7 @@ export default {
                         value: response.data
                     });
                     util.toastSuccess(function () {
-                        router.push({
+                        this.$router.push({
                             path: 'login'
                         });
                     }, this);
@@ -141,12 +140,11 @@ export default {
         line-height: 28px;
         margin-left: 20px;
         .label{
-            margin-right: 30px;
             display: inline-block;
             color: #666;
         }
         input{
-            width: 550px;
+            width: 530px;
         }
     }
 }

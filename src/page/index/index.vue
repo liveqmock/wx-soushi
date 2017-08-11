@@ -17,6 +17,7 @@
                     </div>
                 </div>
                 <div class="content">
+                    <v-divider></v-divider>
                     <v-piclist :bar="bar" :time="time" :page="page" @get-data="getData" v-if="flag"></v-piclist>
                     <v-loadingbar :loadingStatus="loadingStatus" ref="loading-bar" v-show="loadingStatus.show"></v-loadingbar>
                 </div>
@@ -35,7 +36,6 @@
     import divider from 'src/components/divider/divider';
     import swiperfocus from 'src/components/swiperfocus/swiperfocus';
     import loadingbar from 'src/components/loadingbar/loadingbar';
-    import Vue from 'vue';
     import url from "src/config/url";
     import util from "src/common/util";
 

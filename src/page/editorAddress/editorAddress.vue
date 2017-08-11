@@ -164,11 +164,8 @@ export default {
                     defaulted: defaulted
                 }
             }).then((response) => {
-                let router = this.$store.state.router;
                 let parse = util.getUrlDetail(window.location.href);
-                console.log(parse);
                 let path = "";
-
                 function getPath(parse) {
                     if(parse.parse) {
                         parse = parse.parse;
@@ -187,7 +184,7 @@ export default {
                         value: response.data
                     });
                     util.toastSuccess(()=>{
-                        router.push({
+                        this.$router.push({
                             path: path
                         })
                     }, this);

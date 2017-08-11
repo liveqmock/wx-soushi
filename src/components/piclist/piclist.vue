@@ -1,7 +1,6 @@
 <template>
-    <div class="pic-list" :class="page" ref="pic-list">
+    <div class="pic-list" :class="[page,{'show-pic': src}]" ref="pic-list">
         <ul class="pic-wrapper">
-
             <li class="pic-item" v-for="(item, index) in list" :key="item.id" ref="pic-item">
                 <router-link :to="{path: linkPage, query: {blockId: item.idString, companyId: item.companyId}}">
                     <div class="box">
@@ -34,10 +33,6 @@ export default {
         src: {
             type: String,
             default: ""
-        },
-        searchPic: {
-            type: Boolean,
-            default: false
         },
         page: {
             type: String,
@@ -76,10 +71,13 @@ export default {
     created () {
         console.log("created");
         this.initList();
+        this.initSearchPic();
     },
     mounted () {
         console.log("mounted");
-        this.initScroll();
+        this.$nextTick(()=> {
+            this.initScroll();
+        });
     },
     destroyed() {
         console.log("destroyed");
@@ -154,17 +152,14 @@ export default {
 
             let length = this.$store.state.data[this.page].length;
             if(length > 1 && length <= this.time) {
-                let showSearchPicClientHeight = 0;
-                if(this.searchPic) {
-                    showSearchPicClientHeight = document.querySelector(".show-search-pic").clientHeight;
-                }
-
                 this.scroll.refresh();
-                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight - showSearchPicClientHeight);
+                this.scroll.scrollTo(0, -this.$refs["pic-item"][0].clientHeight * (Math.ceil(this.$refs["pic-item"].length / 2) - 4) + this.scroll.wrapperHeight  - this.$refs["loading-bar"].$el.clientHeight);
             }
         },
         reloadData () {
-            this.$emit("get-data", {});
+            this.$emit("get-data", {
+                pullDown: true
+            });
         },
         selectSmallPic(index_imageUrlList, index, ev) {
             this.list[index].currentIndex = index_imageUrlList;
@@ -174,7 +169,11 @@ export default {
             if(this.bar) {
                 this.barHeight = document.querySelector("." + this.bar).clientHeight + 10;
             }
-        }
+        },
+        initSearchPic () {
+            let list = this.list;
+            this.$emit("text", list[0].variety);
+        },
     },
     components: {
         "v-price": price,
@@ -208,6 +207,9 @@ export default {
                     padding-bottom: 80px;
                 }
             }
+            &.show-pic{
+                 top: 430px;
+             }
         }
         .pic-wrapper{
             overflow: hidden;

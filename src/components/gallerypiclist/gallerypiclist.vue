@@ -67,7 +67,9 @@
             this.initSearchPic();
         },
         mounted () {
-            this.initScroll();
+            this.$nextTick(()=> {
+                this.initScroll();
+            });
         },
         methods: {
             initList () {

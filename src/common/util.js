@@ -310,7 +310,7 @@ const util = {
         if(!islogin || !path) {
             path = "login";
         }
-        router.push({
+        vue.$router.push({
             path: path
         });
     },
