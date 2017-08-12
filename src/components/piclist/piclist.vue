@@ -116,7 +116,7 @@ export default {
                 scrollbars: true,
                 fadeScrollbars: true,
                 probeType: 3,
-                click:false
+                click: true
             });
             let self = this;
             scroll.on("scrollEnd", function () {

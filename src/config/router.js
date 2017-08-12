@@ -1,7 +1,7 @@
 /**
  * Created by songyingchun on 2017/7/25 0025.
  */
-// import index from "src/page/index/index";
+import index from "src/page/index/index";
 import gallery from "src/page/gallery/gallery";
 import boutique from "src/page/boutique/boutique";
 import boutiqueDetail from "src/page/boutiqueDetail/boutiqueDetail";
@@ -34,127 +34,127 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     routes: [{
         path: "/",
-        component: resolve => require(["src/page/index/index"], resolve),
+        component: index,
         meta: {
             title: "搜石商城"
         }
     },{
         path: "/index",
-        component: resolve => require(["src/page/index/index"], resolve),
+        component: index,
         meta: {
             title: "搜石商城"
         }
     },{
         path: "/gallery",
-        component: resolve => require(["src/page/gallery/gallery"], resolve),
+        component:gallery ,
         meta: {
             title: "石材图库"
         }
     },{
         path: "/boutique",
-        component: resolve => require(["src/page/boutique/boutique"], resolve),
+        component: boutique,
         meta: {
             title: "精品商城"
         }
     },{
         path: "/boutiqueDetail",
-        component: resolve => require(["src/page/boutiqueDetail/boutiqueDetail"], resolve),
+        component: boutiqueDetail,
         meta: {
             title: "精品商城详情页"
         }
     },{
         path: "/search",
-        component: resolve => require(["src/page/search/search"], resolve),
+        component: search,
         meta: {
             title: "搜现货"
         }
     },{
         path: "/searchDetail",
-        component: resolve => require(["src/page/searchDetail/searchDetail"], resolve),
+        component: searchDetail,
         meta: {
             title: "搜现货详情页"
         }
     },{
         path: "/send",
-        component: resolve => require(["src/page/send/send"], resolve),
+        component: send,
         meta: {
             title: "样板寄送"
         }
     },{
         path: "/personal",
-        component: resolve => require(["src/page/personal/personal"], resolve),
+        component: personal,
         meta: {
             title: "个人中心"
         }
     },{
         path: "/galleryDetail",
-        component: resolve => require(["src/page/galleryDetail/galleryDetail"], resolve),
+        component: galleryDetail,
         meta: {
             title: "石材图库详情页"
         }
     },{
         path: "/gallerySend",
-        component: resolve => require(["src/page/gallerySend/gallerySend"], resolve),
+        component: gallerySend,
         meta: {
             title: "石材图库样板寄送"
         }
     },{
         path: "/photo",
-        component: resolve => require(["src/page/photo/photo"], resolve),
+        component: photo,
         meta:{
             title:" 拍照找石"
         }
     },{
         path: "/addAddress",
-        component: resolve => require(["src/page/addAddress/addAddress"], resolve),
+        component: addAddress,
         meta: {
             title: "新增收货地址"
         }
     },{
         path: "/login",
-        component: resolve => require(["src/page/login/login"], resolve),
+        component: login,
         meta: {
             title: "登录-搜石网"
         }
     },{
         path: "/authorized",
-        component: resolve => require(["src/page/authorized/authorized"], resolve),
+        component: authorized,
         meta: {
             title: "个人认证"
         }
     },{
         path: "/manageAddress",
-        component: resolve => require(["src/page/manageAddress/manageAddress"], resolve),
+        component: manageAddress,
         meta: {
             title: "管理收货地址"
         }
     },{
         path: "/editorAddress",
-        component: resolve => require(["src/page/editorAddress/editorAddress"], resolve),
+        component: editorAddress,
         meta: {
             title: "编辑收货地址"
         }
     },{
         path: "/modifyPassword",
-        component: resolve => require(["src/page/modifyPassword/modifyPassword"], resolve),
+        component: modifyPassword,
         meta: {
             title: "修改密码"
         }
     },{
         path: "/register",
-        component: resolve => require(["src/page/register/register"], resolve),
+        component: register,
         meta: {
             title: "注册帐号"
         }
     },{
         path: "/forgetPassword",
-        component: resolve => require(["src/page/forgetPassword/forgetPassword"], resolve),
+        component: forgetPassword,
         meta: {
             title: "手机证验"
         }
     },{
         path: "/findPassword",
-        component: resolve => require(["src/page/findPassword/findPassword"], resolve),
+        component: findPassword,
         meta: {
             title: "找回密码"
         }

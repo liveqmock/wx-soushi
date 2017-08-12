@@ -15,13 +15,15 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "./js/[name].[hash:8].js",
+        filename: "./js/[name].[hash:8].[ext]",
         publicPath: "./",
+        sourceMapFilename: '[name].map'
     },
     devServer: {
         hot: true,
         inline: true,
         port: 9000,
+        historyApiFallback: true,
     },
     devtool: "cheap-module-inline-source-map",
     module: {
@@ -127,7 +129,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, "src/data"),
-            to: path.resolve(__dirname, "dist/assets/data")
+            to: path.resolve(__dirname, "dist/assets/data"),
+            name: "[name].[hash:8].[ext]"
         }])
     ]
 };
