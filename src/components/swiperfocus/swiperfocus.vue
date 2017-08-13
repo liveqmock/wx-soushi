@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .swiper-container {
     width: 100%;
     height: 100%;
@@ -47,6 +47,9 @@ export default {
             width: 100%;
         }
     }
+}
+</style>
+<style>
     .swiper-pagination-bullet {
         width: 10px;
         height: 10px;
@@ -57,5 +60,4 @@ export default {
         width: 20px;
         border-radius: 5px;
     }
-}
 </style>

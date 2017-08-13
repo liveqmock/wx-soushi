@@ -3,7 +3,7 @@
         <div class="container">
             <div class="personal-panel">
                 <div class="pic">
-                    <img :src="genderMap[data.gender]" alt="">
+                    <img src="./icon/none.png" alt="">
                 </div>
                 <p class="text">{{data.name}}</p>
             </div>

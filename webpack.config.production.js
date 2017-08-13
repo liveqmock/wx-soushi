@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "./js/[name].[hash:8].[ext]",
+        filename: "./js/[name].[hash:8].js",
         publicPath: "./",
         sourceMapFilename: '[name].map'
     },
@@ -107,7 +107,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin([path.resolve(__dirname, "dist")]),
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin("./style/style.css"),
+        new ExtractTextPlugin("style.css"),
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: "'production'"
