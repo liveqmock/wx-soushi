@@ -1,6 +1,12 @@
 /**
  * Created by songyingchun on 2017/7/25 0025.
  */
+import Vue from "vue";
+import VueResource from "vue-resource";
+import store from "src/store/index";
+import url from "src/config/url";
+Vue.use(VueResource);
+
 const util = {
     // 方法extend将参数defaults和参数opt合并，并且支持多个参数合并。如果最后一个参数为布尔true，支持深度拷贝。参数defaults为默认对象, 参数opt是被合并对象。
     extend: function (target, src) {
@@ -304,10 +310,9 @@ const util = {
         }, this.loadDataTime);
     },
 
-    checkLogin (path, vue) {
-        const router = vue.$store.state.router;
-        const islogin = vue.$store.state.islogin;
-        if(!islogin || !path) {
+    checkLogin (path = "login", vue) {
+        const islogin = store.state.islogin;
+        if(!islogin) {
             path = "login";
         }
         vue.$router.push({
@@ -326,6 +331,31 @@ const util = {
             item.style.width = docW + "px";
             item.style.height = docH + "px";
         }
-    }
+    },
+
+    getMyProfileData () {
+        Vue.http.get(url.getMyProfile, {
+            params: {}
+        }).then((response) => {
+            var data = response.data;
+            if(data.status.code == 0) {
+                store.commit("login");
+                store.commit("showPrice");
+                if(data.data.employVerify == 2 || data.data.employVerify == 5) {
+                    store.commit("employVerify");
+                }
+                if(data.data.employVerify == 1) {
+                    store.commit("unchecked");
+                }
+            }
+            store.commit({
+                type: "data",
+                key: "getMyProfile",
+                value: response.data
+            });
+        }).catch((response) => {
+            util.toast(response.message, this);
+        });
+    },
 };
 export default util;

@@ -28,6 +28,7 @@ import findPassword from "src/page/findPassword/findPassword";
 
 import Vue from "vue";
 import VueRouter from "vue-router";
+import util from "src/common/util";
 
 Vue.use(VueRouter);
 
@@ -163,6 +164,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
+    util.getMyProfileData();
     next();
 });
 

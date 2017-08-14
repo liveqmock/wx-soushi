@@ -38,6 +38,7 @@
     import loadingbar from 'src/components/loadingbar/loadingbar';
     import url from "src/config/url";
     import util from "src/common/util";
+    import { mapState } from 'vuex';
 
     export default {
         data() {
@@ -66,7 +67,7 @@
         },
         mounted () {
             console.log("index-mounted");
-            this.getMyProfileData();
+            this.getData();
         },
         destroyed() {
             console.log("index-destroyed");
@@ -90,32 +91,6 @@
                     orderBy: 0
                 }
             },
-            getMyProfileData () {
-                this.$http.get(url.getMyProfile, {
-                    params: {}
-                }).then((response) => {
-                    var data = response.data;
-                    if(data.status.code == 0) {
-                        this.$store.commit("login");
-                        this.$store.commit("showPrice");
-                        if(data.data.employVerify == 2 || data.data.employVerify == 5) {
-                            console.log("94");
-                            this.$store.commit("employVerify");
-                        }
-                        if(data.data.employVerify == 1) {
-                            this.$store.commit("unchecked");
-                        }
-                    }
-                    this.$store.commit({
-                        type: "data",
-                        key: "getMyProfile",
-                        value: response.data
-                    });
-                    this.getData();
-                }).catch((response) => {
-                    util.toast(response.message, this);
-                });
-            },
             getData() {
                 this.loadingStatus.show = true;
                 this.$http.get(url.index, {
@@ -137,7 +112,7 @@
                 }).catch((response) => {
                     util.toast(response.message, this);
                 });
-            }
+            },
         },
     }
 </script>

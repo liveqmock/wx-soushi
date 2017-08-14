@@ -29,7 +29,8 @@ module.exports = {
                 options: {
                     loaders: {
                         scss: "vue-style-loader!css-loader?sourceMap!postcss-loader!sass-loader",
-                        sass: "vue-style-loader!css-loader?sourceMap!postcss-loader!sass-loader"
+                        sass: "vue-style-loader!css-loader?sourceMap!postcss-loader!sass-loader",
+                        js: "babel-loader",
                     }
                 }
             }],

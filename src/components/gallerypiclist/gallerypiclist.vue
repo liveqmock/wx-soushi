@@ -82,10 +82,8 @@
 
                 for(let i = 0, l = dataList[dataList.length - 1].data.list.length; i < l; i++) {
                     let item = dataList[dataList.length - 1].data.list[i];
-                    let assistantImageList = item.assistantImageList;
-                    let standardImage = item.standardImage;
                     item.currentIndex = 0;
-                    item.assistantImageList = [{assistantImageUrl: standardImage}, ...assistantImageList];
+                    item.assistantImageList = [{assistantImageUrl: item.standardImage}, ...item.assistantImageList];
                 }
 
                 this.list = list;
@@ -142,7 +140,7 @@
                     pullDown: true
                 });
             },
-            selectSmallPic(index_imageUrlList, index, ev) {
+            selectSmallPic(index_imageUrlList, index) {
                 this.list[index].currentIndex = index_imageUrlList
             },
             initSearchPic () {
