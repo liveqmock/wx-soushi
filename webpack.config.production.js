@@ -17,7 +17,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "./js/[name].[hash:8].js",
         publicPath: "./",
-        sourceMapFilename: '[name].map'
+        sourceMapFilename: "[name].map"
     },
     devServer: {
         hot: true,
@@ -94,7 +94,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            favicon: "./src/images/logo.ico",
+            favicon: "favicon.ico",
             template: "index.html",
             filename: "index.html",
             inject: "body",
