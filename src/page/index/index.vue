@@ -96,7 +96,6 @@
                 this.$http.get(url.index, {
                     params: this.handleData()
                 }).then((response) => {
-                    console.log("response");
                     if(response.data.status.code == 0) {
                         setTimeout(()=>{
                             this.loadingStatus.show = false;
